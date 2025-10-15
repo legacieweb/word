@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Step 2: Learn Your True Nature - God's Church Chieko</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    .vintage-bg {
+      background: 
+        linear-gradient(45deg, rgba(139, 69, 19, 0.1) 0%, rgba(160, 82, 45, 0.1) 100%),
+        url('https://images.unsplash.com/photo-1481833761820-0509d3217039?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+    
+    .vintage-overlay {
+      background: 
+        radial-gradient(circle at center, rgba(245, 245, 220, 0.95) 0%, rgba(222, 184, 135, 0.98) 100%);
+      backdrop-filter: blur(2px);
+    }
+    
+    .elegant-text {
+      font-family: 'Playfair Display', serif;
+      color: #8B4513;
+      text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
+    }
+    
+    .scripture-text {
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+      color: #654321;
+    }
+    
+    .vintage-card {
+      background: linear-gradient(145deg, #F5F5DC 0%, #FAEBD7 100%);
+      border: 3px solid #D2B48C;
+      box-shadow: 
+        0 8px 32px rgba(139, 69, 19, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      position: relative;
+    }
+    
+    .vintage-card::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px solid #CD853F;
+      pointer-events: none;
+    }
+    
+    .ornamental-border {
+      border-image: linear-gradient(45deg, #CD853F, #D2B48C, #CD853F) 1;
+      border-width: 2px;
+      border-style: solid;
+    }
+    
+    .vintage-button {
+      background: linear-gradient(145deg, #8B4513 0%, #A0522D 100%);
+      border: 2px solid #CD853F;
+      box-shadow: 
+        0 4px 15px rgba(139, 69, 19, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+    
+    .vintage-button:hover {
+      background: linear-gradient(145deg, #A0522D 0%, #8B4513 100%);
+      transform: translateY(-2px);
+      box-shadow: 
+        0 6px 20px rgba(139, 69, 19, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+    
+    .decorative-flourish {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0 10 Q25 0 50 10 T100 10' stroke='%23CD853F' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 20px;
+      width: 100px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body class="vintage-bg min-h-screen overflow-x-hidden">
+
+<!-- Navbar -->
+<header class="vintage-overlay border-b-4 ornamental-border">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-6">
+      <!-- Logo -->
+      <h1 class="text-2xl sm:text-3xl font-bold elegant-text">✝ Eternal Truth - God's Church Chieko</h1>
+
+      <!-- Navigation -->
+      <nav class="hidden md:flex space-x-4">
+        <a href="index.html" class="vintage-button text-white px-6 py-3 rounded-lg">← Back to Home</a>
+        <a href="step3-the-new-testament.html" class="vintage-button text-white px-6 py-3 rounded-lg">Next Step →</a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-amber-800 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Links -->
+    <div id="mobile-menu" class="md:hidden hidden flex-col space-y-2 pb-4">
+      <a href="index.html" class="block vintage-button text-white text-center py-3 rounded-lg">← Back to Home</a>
+      <a href="step3-the-new-testament.html" class="block vintage-button text-white text-center py-3 rounded-lg">Next Step →</a>
+    </div>
+  </div>
+
+  <!-- Script to toggle menu -->
+  <script>
+    const button = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    button.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
+</header>
+
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center px-4 py-20">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 text-center max-w-6xl mx-auto">
+    <div class="mb-12">
+      <div class="decorative-flourish mb-6"></div>
+      <h2 class="text-5xl md:text-7xl font-extrabold mb-8 elegant-text">
+        STEP 2
+      </h2>
+      <h3 class="text-4xl md:text-5xl font-bold mb-8 elegant-text">
+        LEARN YOUR TRUE NATURE
+      </h3>
+      <div class="decorative-flourish mb-8"></div>
+      <div class="text-2xl md:text-3xl font-bold mb-8 scripture-text">
+        "The heart is deceitful above all things, and desperately wicked; who can know it?"
+      </div>
+      <p class="text-xl md:text-2xl elegant-text font-semibold">— Jeremiah 17:9</p>
+    </div>
+  </div>
+</section>
+
+<!-- What Sin Really Means -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="decorative-flourish mb-6"></div>
+      <h3 class="text-4xl md:text-5xl font-bold elegant-text mb-8">WHAT SIN REALLY MEANS</h3>
+      <p class="text-2xl scripture-text font-semibold">Understanding the True Nature of Sin</p>
+      <div class="decorative-flourish mt-6"></div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text">The Biblical Definition of Sin</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="space-y-8">
+        <div class="bg-purple-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-purple-800 mb-4 elegant-text">🎯 Missing the Mark</h5>
+          <p class="text-lg text-purple-700 mb-4">
+            The word "sin" means to miss the mark or fall short of a standard. God's standard is absolute perfection. 
+            Even one sin makes you guilty before God.
+          </p>
+          <div class="scripture-text text-purple-600 font-semibold">
+            "For whoever shall keep the whole law, and yet stumble in one point, he is guilty of all." — James 2:10
+          </div>
+        </div>
+        
+        <div class="bg-blue-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-blue-800 mb-4 elegant-text">⚖️ Breaking God's Law</h5>
+          <p class="text-lg text-blue-700 mb-4">
+            Sin is lawlessness - breaking God's commandments. Every time you lie, steal, lust, hate, or disobey God 
+            in any way, you are breaking His law.
+          </p>
+          <div class="scripture-text text-blue-600 font-semibold">
+            "Whoever commits sin also commits lawlessness, and sin is lawlessness." — 1 John 3:4
+          </div>
+        </div>
+        
+        <div class="bg-green-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-green-800 mb-4 elegant-text">🚫 Falling Short of Glory</h5>
+          <p class="text-lg text-green-700 mb-4">
+            God created you to reflect His glory, but sin has corrupted that image. You cannot bring glory to God 
+            in your natural state because you are spiritually dead in sin.
+          </p>
+          <div class="scripture-text text-green-600 font-semibold">
+            "And you He made alive, who were dead in trespasses and sins" — Ephesians 2:1
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The Consequences of Sin -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="decorative-flourish mb-6"></div>
+      <h3 class="text-4xl md:text-5xl font-bold elegant-text mb-8">THE CONSEQUENCES OF YOUR SIN</h3>
+      <p class="text-2xl scripture-text font-semibold">What Your Sin Has Done to You</p>
+      <div class="decorative-flourish mt-6"></div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text text-red-800">The Devastating Results of Sin</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-red-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-red-800 mb-4 elegant-text">💀 Spiritual Death</h5>
+          <p class="text-lg text-red-700 mb-4">
+            Sin separates you from God. You are spiritually dead and cannot have fellowship with the holy God.
+          </p>
+          <div class="scripture-text text-red-600 font-semibold mb-4">
+            "But your iniquities have separated you from your God; And your sins have hidden His face from you" — Isaiah 59:2
+          </div>
+          <div class="scripture-text text-red-600 font-semibold">
+            "For the wages of sin is death" — Romans 6:23a
+          </div>
+        </div>
+        
+        <div class="bg-orange-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-orange-800 mb-4 elegant-text">🔥 Eternal Judgment</h5>
+          <p class="text-lg text-orange-700 mb-4">
+            After death comes judgment. Because you are a sinner, you are destined for eternal punishment in hell.
+          </p>
+          <div class="scripture-text text-orange-600 font-semibold mb-4">
+            "And as it is appointed for men to die once, but after this the judgment" — Hebrews 9:27
+          </div>
+          <div class="scripture-text text-orange-600 font-semibold">
+            "And these will go away into everlasting punishment" — Matthew 25:46a
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-yellow-50 p-8 rounded-lg ornamental-border mt-8">
+        <h5 class="text-2xl font-bold text-yellow-800 mb-4 elegant-text text-center">⚠️ The Sobering Truth</h5>
+        <p class="text-lg text-yellow-700 text-center mb-4">
+          This is your condition before God right now. You are a guilty sinner under the wrath of God, 
+          destined for eternal punishment. You must understand this reality before you can understand your need for repentance.
+        </p>
+        <div class="decorative-flourish mb-4"></div>
+        <div class="text-lg font-semibold text-yellow-900 scripture-text text-center">
+            "The soul who sins shall die." — Ezekiel 18:4
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The Reality of Human Nature -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="decorative-flourish mb-6"></div>
+      <h3 class="text-4xl md:text-5xl font-bold elegant-text mb-8">THE REALITY OF HUMAN NATURE</h3>
+      <p class="text-2xl scripture-text font-semibold">What God's Word Says About You</p>
+      <div class="decorative-flourish mt-6"></div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text text-red-800">You Are Born a Sinner</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="bg-red-50 p-8 rounded-lg ornamental-border mb-8">
+        <h5 class="text-2xl font-bold text-red-800 mb-4 elegant-text text-center">🍎 Inherited from Adam</h5>
+        <p class="text-lg text-red-700 mb-4 text-center">
+          When Adam sinned in the Garden of Eden, sin entered the human race. Every person born since Adam 
+          has inherited a sinful nature. This is not something you chose - it's what you are.
+        </p>
+        <div class="decorative-flourish mb-4"></div>
+        <div class="text-lg font-semibold text-red-900 scripture-text text-center">
+          "Therefore, just as through one man sin entered the world, and death through sin, and thus death spread to all men, because all sinned" — Romans 5:12
+        </div>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-yellow-50 p-6 rounded-lg ornamental-border">
+          <h6 class="text-xl font-bold text-yellow-800 mb-3 elegant-text">Born in Sin</h6>
+          <p class="scripture-text text-yellow-700 mb-3">
+            "Behold, I was brought forth in iniquity, and in sin my mother conceived me." — Psalm 51:5
+          </p>
+          <p class="text-sm text-yellow-600">
+            David recognized that he was sinful from the moment of conception. This is the condition of every human being.
+          </p>
+        </div>
+        
+        <div class="bg-orange-50 p-6 rounded-lg ornamental-border">
+          <h6 class="text-xl font-bold text-orange-800 mb-3 elegant-text">No Exceptions</h6>
+          <p class="scripture-text text-orange-700 mb-3">
+            "There is not a just man on earth who does good and does not sin." — Ecclesiastes 7:20
+          </p>
+          <p class="text-sm text-orange-600">
+            Even the most moral person on earth is still a sinner. There are no exceptions to this universal condition.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- We Are Sinners From Conception -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="decorative-flourish mb-6"></div>
+      <h3 class="text-4xl md:text-5xl font-bold elegant-text mb-8">WE ARE SINNERS FROM CONCEPTION</h3>
+      <p class="text-2xl scripture-text font-semibold">You Don't Become a Sinner by Breaking the Law</p>
+      <div class="decorative-flourish mt-6"></div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text text-red-800">Born Sinners, Not Made Sinners</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="space-y-8">
+        <div class="bg-red-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-red-800 mb-4 elegant-text">🍼 Sinners From Conception</h5>
+          <p class="text-lg text-red-700 mb-4">
+            You were born a sinner - this is your nature from the moment of conception. You don't become a sinner 
+            by breaking God's law; you break God's law because you ARE a sinner by nature.
+          </p>
+          <div class="scripture-text text-red-600 font-semibold mb-4">
+            "Behold, I was brought forth in iniquity, and in sin my mother conceived me." — Psalm 51:5
+          </div>
+          <p class="text-red-700">
+            David understood that his sinful condition existed from the very moment of his conception. 
+            This is the universal condition of all humanity.
+          </p>
+        </div>
+        
+        <div class="bg-orange-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-orange-800 mb-4 elegant-text">⚖️ The Law Reveals What Already Exists</h5>
+          <p class="text-lg text-orange-700 mb-4">
+            God's law doesn't make you a sinner - it reveals that you already ARE a sinner. 
+            The law exposes your sinful nature and shows you the depth of your corruption.
+          </p>
+          <div class="scripture-text text-orange-600 font-semibold mb-4">
+            "What shall we say then? Is the law sin? Certainly not! On the contrary, I would not have known sin except through the law. For I would not have known covetousness unless the law had said, 'You shall not covet.'" — Romans 7:7
+          </div>
+          <p class="text-orange-700">
+            Paul explains that the law's purpose is to make sin known - to reveal what was already there.
+          </p>
+        </div>
+        
+        <div class="bg-yellow-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-yellow-800 mb-4 elegant-text">🔍 Romans and the Universal Condition</h5>
+          <p class="text-lg text-yellow-700 mb-4">
+            The book of Romans systematically proves that all humanity - both Jews and Gentiles - 
+            are born sinners under condemnation, regardless of whether they have the law or not.
+          </p>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white p-4 rounded-lg border-l-4 border-yellow-600">
+              <h6 class="font-bold text-yellow-800 mb-2">Gentiles Without Law</h6>
+              <p class="scripture-text text-yellow-700 text-sm mb-2">
+                "For when Gentiles, who do not have the law, by nature do the things in the law, these, although not having the law, are a law to themselves" — Romans 2:14
+              </p>
+              <p class="text-xs text-yellow-600">Even without written law, they know right from wrong and are condemned.</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-l-4 border-yellow-600">
+              <h6 class="font-bold text-yellow-800 mb-2">Jews With Law</h6>
+              <p class="scripture-text text-yellow-700 text-sm mb-2">
+                "Now we know that whatever the law says, it says to those who are under the law, that every mouth may be stopped, and all the world may become guilty before God." — Romans 3:19
+              </p>
+              <p class="text-xs text-yellow-600">Having the law makes them even more guilty because they know better.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-blue-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-blue-800 mb-4 elegant-text">📖 The Verdict of Romans</h5>
+          <p class="text-lg text-blue-700 mb-4">
+            After examining both Jews and Gentiles, Paul concludes that ALL are born sinners, 
+            ALL are under sin, and ALL are condemned before God.
+          </p>
+          <div class="space-y-4">
+            <div class="scripture-text text-blue-600 font-semibold">
+              "What then? Are we better than they? Not at all. For we have previously charged both Jews and Greeks that they are all under sin." — Romans 3:9
+            </div>
+            <div class="scripture-text text-blue-600 font-semibold">
+              "As it is written: 'There is none righteous, no, not one; There is none who understands; There is none who seeks after God.'" — Romans 3:10-11
+            </div>
+            <div class="scripture-text text-blue-600 font-semibold">
+              "For all have sinned and fall short of the glory of God" — Romans 3:23
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-green-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-green-800 mb-4 elegant-text">🎯 The Law's True Function</h5>
+          <p class="text-lg text-green-700 mb-4">
+            The law was never given to make people righteous. It was given to reveal sin, 
+            increase transgression, and drive people to desperation for God's mercy.
+          </p>
+          <div class="space-y-3">
+            <div class="scripture-text text-green-600 font-semibold">
+              "Moreover the law entered that the offense might abound." — Romans 5:20a
+            </div>
+            <div class="scripture-text text-green-600 font-semibold">
+              "Therefore by the deeds of the law no flesh will be justified in His sight, for by the law is the knowledge of sin." — Romans 3:20
+            </div>
+            <div class="scripture-text text-green-600 font-semibold">
+              "But sin, taking opportunity by the commandment, produced in me all manner of evil desire." — Romans 7:8a
+            </div>
+          </div>
+          <p class="text-green-700 mt-4">
+            The law actually stirs up sin in our hearts, proving that we are sinners by nature, not by choice.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The Purpose of God's Law -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="decorative-flourish mb-6"></div>
+      <h3 class="text-4xl md:text-5xl font-bold elegant-text mb-8">THE PURPOSE OF GOD'S LAW</h3>
+      <p class="text-2xl scripture-text font-semibold">Understanding Why God Gave the Laws</p>
+      <div class="decorative-flourish mt-6"></div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text">God's Law Reveals Your Sin</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="space-y-8">
+        <div class="bg-blue-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-blue-800 mb-4 elegant-text">📜 The Law as a Mirror</h5>
+          <p class="text-lg text-blue-700 mb-4">
+            God gave His law not to make you righteous, but to show you how sinful you really are. 
+            The law is like a mirror that reveals the dirt on your face - it shows you the problem but cannot clean you.
+          </p>
+          <div class="scripture-text text-blue-600 font-semibold">
+            "Therefore by the deeds of the law no flesh will be justified in His sight, for by the law is the knowledge of sin." — Romans 3:20
+          </div>
+        </div>
+        
+        <div class="bg-purple-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-purple-800 mb-4 elegant-text">⚖️ The Standard of Perfection</h5>
+          <p class="text-lg text-purple-700 mb-4">
+            God's law demands absolute perfection. It requires you to love God with all your heart, soul, mind, and strength, 
+            and to love your neighbor as yourself. Have you done this perfectly every moment of your life?
+          </p>
+          <div class="scripture-text text-purple-600 font-semibold mb-4">
+            "And you shall love the LORD your God with all your heart, with all your soul, with all your mind, and with all your strength." — Mark 12:30
+          </div>
+          <div class="scripture-text text-purple-600 font-semibold">
+            "You shall love your neighbor as yourself." — Mark 12:31
+          </div>
+        </div>
+        
+        <div class="bg-green-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-green-800 mb-4 elegant-text">🔍 Exposing Hidden Sin</h5>
+          <p class="text-lg text-green-700 mb-4">
+            The law reveals not just outward actions, but the sinful thoughts and desires of your heart. 
+            God sees and judges the intentions of your heart, not just your external behavior.
+          </p>
+          <div class="scripture-text text-green-600 font-semibold mb-4">
+            "But I say to you that whoever looks at a woman to lust for her has already committed adultery with her in his heart." — Matthew 5:28
+          </div>
+          <div class="scripture-text text-green-600 font-semibold">
+            "For the word of God is living and powerful, and sharper than any two-edged sword, piercing even to the division of soul and spirit, and of joints and marrow, and is a discerner of the thoughts and intents of the heart." — Hebrews 4:12
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The Truth About the Law -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="decorative-flourish mb-6"></div>
+      <h3 class="text-4xl md:text-5xl font-bold elegant-text mb-8">THE TRUTH ABOUT THE LAW</h3>
+      <p class="text-2xl scripture-text font-semibold">What the Law Cannot Do for You</p>
+      <div class="decorative-flourish mt-6"></div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text text-red-800">The Law Cannot Save You</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="space-y-8">
+        <div class="bg-red-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-red-800 mb-4 elegant-text">❌ No Justification by Works</h5>
+          <p class="text-lg text-red-700 mb-4">
+            You cannot be made righteous before God by keeping the law. The law only condemns you because you have already broken it. 
+            Even if you could keep it perfectly from now on, you are still guilty of past violations.
+          </p>
+          <div class="scripture-text text-red-600 font-semibold">
+            "Therefore by the deeds of the law no flesh will be justified in His sight" — Romans 3:20a
+          </div>
+        </div>
+        
+        <div class="bg-orange-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-orange-800 mb-4 elegant-text">⚡ The Law Brings Wrath</h5>
+          <p class="text-lg text-orange-700 mb-4">
+            The law does not bring God's favor - it brings His wrath upon sinners. Every commandment you break 
+            increases your guilt and condemnation before the holy God.
+          </p>
+          <div class="scripture-text text-orange-600 font-semibold">
+            "Because the law brings about wrath; for where there is no law there is no transgression." — Romans 4:15
+          </div>
+        </div>
+        
+        <div class="bg-yellow-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-yellow-800 mb-4 elegant-text">🎯 The Law's True Purpose</h5>
+          <p class="text-lg text-yellow-700 mb-4">
+            The law was given to make you conscious of your sin and your desperate need for forgiveness. 
+            It drives you to acknowledge your guilt before God and cry out for mercy.
+          </p>
+          <div class="scripture-text text-yellow-600 font-semibold mb-4">
+            "Now we know that whatever the law says, it says to those who are under the law, that every mouth may be stopped, and all the world may become guilty before God." — Romans 3:19
+          </div>
+          <div class="text-center">
+            <p class="text-xl font-bold text-yellow-900 elegant-text">
+              The law's purpose is to make you acknowledge your sins before God and understand your desperate need to repent!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Do You Understand Your Condition? -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-4xl mx-auto text-center">
+    <div class="vintage-card rounded-2xl p-12 shadow-2xl">
+      <h3 class="text-4xl font-bold mb-8 elegant-text">Do You Understand Your Condition?</h3>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="bg-red-50 p-8 rounded-lg ornamental-border mb-8">
+        <h4 class="text-2xl font-bold text-red-800 mb-4 elegant-text text-center">🔥 You Are Guilty Before God!</h4>
+        <p class="text-lg text-red-700 mb-4 text-center">
+          Now that you understand what sin really means, its devastating consequences, your sinful nature, 
+          and the purpose of God's law, you must face the truth: You are a guilty sinner who has broken God's law 
+          and deserves His eternal punishment.
+        </p>
+        <div class="scripture-text text-red-600 font-semibold text-center mb-4">
+          "For all have sinned and fall short of the glory of God" — Romans 3:23
+        </div>
+        <p class="text-red-700 text-center font-semibold">
+          The law has done its work - it has shown you your sin and made you guilty before God.
+        </p>
+      </div>
+
+      <div class="bg-blue-50 p-6 rounded-lg ornamental-border mb-8">
+        <h5 class="text-xl font-bold text-blue-800 mb-3 elegant-text text-center">❓ But How Can Sins Be Forgiven?</h5>
+        <p class="text-lg text-blue-700 text-center">
+          You now understand your desperate need for repentance and forgiveness, but how can a holy God forgive sins? 
+          What provision has He made for the forgiveness of sins? The next step will reveal God's plan from the beginning.
+        </p>
+      </div>
+      
+      <p class="text-xl mb-8 text-amber-900 text-center">
+        Are you ready to learn about God's provision for the forgiveness of sins? 
+        The next step will show you how God established the way for sins to be forgiven through His divine plan.
+      </p>
+      <div class="flex flex-col md:flex-row gap-6 justify-center">
+        <a href="step3-the-new-testament.html" class="vintage-button text-white px-10 py-4 rounded-xl text-xl font-bold">
+          📜 Continue to Step 3: Understanding Repentance
+        </a>
+        <a href="index.html" class="vintage-button text-white px-10 py-4 rounded-xl text-xl font-bold">
+          ← Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="vintage-overlay py-12 border-t-4 ornamental-border">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <div class="decorative-flourish mb-6"></div>
+    <h3 class="text-2xl font-bold elegant-text mb-4">✝ God's Church Chieko</h3>
+    <p class="scripture-text text-lg mb-4">
+      "For all have sinned and fall short of the glory of God" — Romans 3:23
+    </p>
+    <div class="decorative-flourish"></div>
+  </div>
+</footer>
+
+</body>
+</html>

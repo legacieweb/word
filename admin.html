@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard - God's Church Chieko</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Crimson Text', serif;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .vintage-bg {
+      background: linear-gradient(135deg, #F5F5DC 0%, #E8DCC4 100%);
+    }
+    
+    .vintage-card {
+      background: linear-gradient(145deg, #F5F5DC 0%, #FAEBD7 100%);
+      border: 3px solid #D2B48C;
+      box-shadow: 0 8px 32px rgba(139, 69, 19, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .vintage-card::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px solid #CD853F;
+      pointer-events: none;
+    }
+    
+    .vintage-button {
+      background: linear-gradient(145deg, #8B4513 0%, #A0522D 100%);
+      border: 2px solid #CD853F;
+      box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+    
+    .vintage-button:hover {
+      background: linear-gradient(145deg, #A0522D 0%, #8B4513 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+    
+    .sidebar {
+      background: linear-gradient(180deg, #8B4513 0%, #654321 100%);
+      border-right: 3px solid #CD853F;
+    }
+    
+    .sidebar-link {
+      transition: all 0.2s ease;
+      border-left: 4px solid transparent;
+    }
+    
+    .sidebar-link:hover {
+      background-color: rgba(205, 133, 63, 0.2);
+      border-left-color: #CD853F;
+    }
+    
+    .sidebar-link.active {
+      background-color: rgba(205, 133, 63, 0.3);
+      border-left-color: #F5DEB3;
+    }
+    
+    .live-pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .floating-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #DC2626 0%, #991B1B 100%);
+      box-shadow: 0 8px 25px rgba(220, 38, 38, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      border: 3px solid #FCA5A5;
+    }
+    
+    .floating-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 35px rgba(220, 38, 38, 0.7);
+    }
+    
+    .floating-button.hidden {
+      display: none;
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 50;
+        width: 280px;
+      }
+      
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 40;
+      }
+      
+      .overlay.show {
+        display: block;
+      }
+    }
+    
+    .schedule-item {
+      border-left: 4px solid #8B4513;
+      transition: all 0.3s ease;
+    }
+    
+    .schedule-item:hover {
+      border-left-color: #CD853F;
+      transform: translateX(5px);
+    }
+  </style>
+</head>
+<body class="vintage-bg min-h-screen">
+  
+  <!-- Mobile Overlay -->
+  <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+  
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar text-white w-72 flex flex-col shadow-2xl">
+      <div class="p-6 border-b border-amber-700">
+        <h1 class="text-2xl font-bold text-amber-100">⛪ Admin Panel</h1>
+        <p class="text-xs text-amber-300 mt-1">God's Church Chieko</p>
+      </div>
+      
+      <nav class="flex-1 p-4 overflow-y-auto">
+        <ul class="space-y-2">
+          <li>
+            <a href="#" onclick="showSection('scheduleSection')" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-amber-100">
+              <span class="text-xl">📅</span>
+              <span class="font-semibold">Schedule</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" onclick="showSection('liveSermonPanel')" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-amber-100">
+              <span class="text-xl">🔴</span>
+              <span class="font-semibold">Go Live</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" onclick="showSection('membersSection');fetchMembers()" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-amber-100">
+              <span class="text-xl">👥</span>
+              <span>All Members</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" onclick="showSection('membersSection');fetchMembers(true)" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-amber-100">
+              <span class="text-xl">✨</span>
+              <span>First-Time Visitors</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" onclick="showSection('sermonManager')" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-amber-100">
+              <span class="text-xl">🎼</span>
+              <span>Manage Sermons</span>
+            </a>
+          </li>
+          <li>
+            <a href="sermon.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-amber-100">
+              <span class="text-xl">📺</span>
+              <span>View Sermon Page</span>
+            </a>
+          </li>
+          <li>
+            <a href="dashboard.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-amber-100">
+              <span class="text-xl">🏠</span>
+              <span>User Dashboard</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="p-4 border-t border-amber-700 text-center">
+        <p class="text-xs text-amber-300">© 2025 God's Church Chieko</p>
+        <p class="text-xs text-amber-200 mt-1">Admin Access</p>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto">
+      <!-- Header -->
+      <header class="bg-white shadow-sm border-b-2 border-amber-200 px-4 md:px-8 py-5 sticky top-0 z-30">
+        <div class="flex items-center justify-between">
+          <button onclick="toggleSidebar()" class="md:hidden vintage-button text-white px-4 py-2 rounded-lg">
+            ☰
+          </button>
+          <h2 class="text-2xl md:text-3xl font-bold text-amber-900" id="heading">Dashboard Overview</h2>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="p-4 md:p-8">
+        
+        <!-- Schedule Section -->
+        <section id="scheduleSection">
+          <div class="vintage-card rounded-2xl p-6 md:p-8 mb-6">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
+              <div>
+                <h2 class="text-2xl md:text-3xl font-bold text-amber-900 flex items-center gap-3">
+                  <span class="text-3xl md:text-4xl">📅</span>
+                  Church Schedule
+                </h2>
+                <p class="text-amber-700 mt-2">Manage events and announcements</p>
+              </div>
+              <button onclick="openScheduleModal()" class="vintage-button text-white px-6 py-3 rounded-lg font-semibold">
+                ➕ Add Event
+              </button>
+            </div>
+            
+            <div id="scheduleList" class="space-y-4">
+              <p class="text-gray-500 text-center py-8">Loading schedule...</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Schedule Modal -->
+        <div id="scheduleModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4">
+          <div class="vintage-card rounded-2xl p-6 md:p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <h2 class="text-2xl font-bold text-amber-900 mb-6">📅 Add Schedule Event</h2>
+            
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-bold text-amber-900 mb-2">Event Title</label>
+                <input type="text" id="scheduleTitle" class="w-full border-2 border-amber-300 rounded-lg p-3 focus:outline-none focus:border-amber-500" placeholder="e.g., Sunday Service">
+              </div>
+              
+              <div>
+                <label class="block text-sm font-bold text-amber-900 mb-2">Description</label>
+                <textarea id="scheduleDescription" rows="3" class="w-full border-2 border-amber-300 rounded-lg p-3 focus:outline-none focus:border-amber-500" placeholder="Event details..."></textarea>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-bold text-amber-900 mb-2">Date</label>
+                  <input type="date" id="scheduleDate" class="w-full border-2 border-amber-300 rounded-lg p-3 focus:outline-none focus:border-amber-500">
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-bold text-amber-900 mb-2">Time</label>
+                  <input type="time" id="scheduleTime" class="w-full border-2 border-amber-300 rounded-lg p-3 focus:outline-none focus:border-amber-500">
+                </div>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-bold text-amber-900 mb-2">🔐 Admin PIN</label>
+                <input type="password" id="schedulePIN" class="w-full border-2 border-amber-300 rounded-lg p-3 focus:outline-none focus:border-amber-500" placeholder="Enter admin PIN">
+              </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-end gap-3 mt-6">
+              <button onclick="closeScheduleModal()" class="vintage-button bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold">Cancel</button>
+              <button onclick="saveSchedule()" class="vintage-button text-white px-6 py-3 rounded-lg font-semibold">Save Event</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Note Modal -->
+        <div id="noteModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4">
+          <div class="vintage-card rounded-2xl p-6 md:p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <h2 class="text-2xl font-bold text-amber-900 mb-6">📝 Notes for <span id="modalUserName"></span></h2>
+            
+            <div id="noteHistory" class="space-y-3 mb-6 max-h-64 overflow-y-auto border-2 border-amber-200 p-4 rounded-lg bg-amber-50">
+              <p class="text-gray-500 text-sm">Loading note history...</p>
+            </div>
+            
+            <textarea id="noteInput" rows="4" class="w-full border-2 border-amber-300 rounded-lg p-4 mb-6 focus:outline-none focus:border-amber-500" placeholder="Write your new note or reply..."></textarea>
+            
+            <div class="flex flex-col md:flex-row justify-end gap-3">
+              <button onclick="closeModal()" class="vintage-button bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold">Cancel</button>
+              <button onclick="sendNote()" class="vintage-button text-white px-6 py-3 rounded-lg font-semibold">Send Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Members Table Section -->
+        <section id="membersSection" class="hidden">
+          <div class="vintage-card rounded-2xl overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="min-w-full">
+                <thead class="bg-gradient-to-r from-amber-800 to-amber-900 text-white">
+                  <tr>
+                    <th class="text-left p-4 font-semibold">Name</th>
+                    <th class="text-left p-4 font-semibold">Email</th>
+                    <th class="text-left p-4 font-semibold">Phone</th>
+                    <th class="text-left p-4 font-semibold">First Time?</th>
+                    <th class="text-left p-4 font-semibold">Source</th>
+                    <th class="text-left p-4 font-semibold">Signup Date</th>
+                  </tr>
+                </thead>
+                <tbody id="memberTable" class="text-amber-900 divide-y divide-amber-200">
+                  <tr><td colspan="6" class="p-6 text-center text-gray-500">Loading members...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Live Sermon Panel -->
+        <section id="liveSermonPanel" class="hidden">
+          <div class="vintage-card rounded-2xl p-6 md:p-8">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-4">
+              <div>
+                <h2 class="text-2xl md:text-3xl font-bold text-red-700 flex items-center gap-3">
+                  <span class="text-3xl md:text-4xl">🔴</span>
+                  Live Sermon Broadcasting
+                </h2>
+                <p class="text-amber-700 mt-2">Start a live sermon and broadcast to all members</p>
+              </div>
+              <div id="liveStatus" class="px-4 py-2 rounded-full bg-gray-100 text-gray-600 font-semibold text-sm">
+                ● Offline
+              </div>
+            </div>
+
+            <!-- Start Sermon Form -->
+            <div id="startSermonForm" class="space-y-6">
+              <div>
+                <label class="block text-sm font-bold text-amber-900 mb-2">📖 Sermon Title</label>
+                <input 
+                  type="text" 
+                  id="sermonTitle" 
+                  placeholder="e.g., Sunday Morning Service - The Power of Faith" 
+                  class="w-full border-2 border-amber-300 rounded-lg p-4 focus:outline-none focus:border-amber-500"
+                />
+              </div>
+              
+              <div>
+                <label class="block text-sm font-bold text-amber-900 mb-2">🔐 Admin PIN (Required: 8372)</label>
+                <input 
+                  type="password" 
+                  id="adminPin" 
+                  placeholder="Enter admin PIN to start broadcast" 
+                  class="w-full border-2 border-amber-300 rounded-lg p-4 focus:outline-none focus:border-amber-500"
+                />
+                <p class="text-xs text-amber-700 mt-2">⚠️ You must enter the correct admin PIN to start the live sermon</p>
+              </div>
+              
+              <button onclick="startLiveSermon()" class="w-full vintage-button text-white font-bold py-4 px-6 rounded-lg text-lg">
+                🎙️ Start Live Sermon
+              </button>
+            </div>
+
+            <!-- Live Sermon Controls (Hidden by default) -->
+            <div id="liveSermonControls" class="hidden space-y-6">
+              <!-- Live Status Card -->
+              <div class="bg-gradient-to-r from-red-50 to-red-100 border-2 border-red-300 rounded-xl p-6">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-4">
+                  <div class="flex items-center gap-4">
+                    <span class="w-5 h-5 bg-red-600 rounded-full live-pulse"></span>
+                    <span class="text-red-700 font-bold text-xl md:text-2xl">LIVE NOW</span>
+                  </div>
+                  <span id="liveDuration" class="text-gray-800 font-mono text-lg md:text-xl font-bold">00:00:00</span>
+                </div>
+                <p class="text-gray-800 font-semibold text-base md:text-lg" id="currentSermonTitle">Sunday Morning Service</p>
+              </div>
+
+              <!-- Audio Recording Preview -->
+              <div class="bg-amber-50 rounded-xl p-6 border-2 border-amber-200">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="text-2xl">🎤</span>
+                  <p class="text-sm font-bold text-amber-900">Audio Recording</p>
+                </div>
+                <audio id="liveAudioPreview" controls class="w-full mb-3"></audio>
+                <p class="text-xs text-amber-700">✅ Recording will be automatically saved when you stop the sermon</p>
+              </div>
+
+              <!-- Live Stats Grid -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="vintage-card rounded-xl p-6 text-center">
+                  <p class="text-3xl md:text-4xl font-bold text-amber-900" id="viewerCount">0</p>
+                  <p class="text-sm text-amber-700 font-semibold mt-2">👥 Viewers</p>
+                </div>
+                <div class="vintage-card rounded-xl p-6 text-center">
+                  <p class="text-3xl md:text-4xl font-bold text-amber-900" id="messageCount">0</p>
+                  <p class="text-sm text-amber-700 font-semibold mt-2">💬 Messages</p>
+                </div>
+                <div class="vintage-card rounded-xl p-6 text-center">
+                  <p class="text-3xl md:text-4xl font-bold text-amber-900" id="recordingSize">0 MB</p>
+                  <p class="text-sm text-amber-700 font-semibold mt-2">💾 Recording</p>
+                </div>
+              </div>
+
+              <!-- Stop Button -->
+              <button onclick="stopLiveSermon()" class="w-full bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black text-white font-bold py-4 px-6 rounded-lg text-lg border-2 border-gray-700">
+                ⏹️ Stop Sermon & Save Recording
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sermon Recordings Management Section -->
+        <section id="sermonManager" class="hidden">
+          <div class="vintage-card rounded-2xl p-6 md:p-8">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-4">
+              <h2 class="text-2xl md:text-3xl font-bold text-amber-900 flex items-center gap-3">
+                <span class="text-3xl md:text-4xl">🎼</span>
+                Manage Sermon Recordings
+              </h2>
+              <button onclick="loadSermons()" class="vintage-button text-white px-4 py-2 rounded-lg font-semibold">
+                🔄 Refresh
+              </button>
+            </div>
+            <div id="sermonList" class="space-y-4">
+              <p class="text-gray-500 text-center py-8">Loading sermons...</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // ===== GLOBAL VARIABLES =====
+    let selectedUser = null;
+    let liveSermonId = null;
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let liveStartTime = null;
+    let liveDurationInterval = null;
+    let liveStream = null;
+    const ADMIN_PIN = '8372';
+
+    // ===== SIDEBAR TOGGLE (Mobile) =====
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('show');
+    }
+
+    // ===== SECTION MANAGEMENT =====
+    function showSection(sectionId) {
+      const sections = ['scheduleSection', 'membersSection', 'sermonManager', 'liveSermonPanel'];
+      
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+      });
+
+      const showEl = document.getElementById(sectionId);
+      if (showEl) showEl.classList.remove('hidden');
+
+      // Update heading
+      const headings = {
+        'scheduleSection': 'Church Schedule',
+        'liveSermonPanel': 'Live Sermon Broadcasting',
+        'sermonManager': 'Manage Sermons',
+        'membersSection': 'Church Members'
+      };
+      
+      document.getElementById('heading').textContent = headings[sectionId] || 'Dashboard';
+
+      // Load content
+      if (sectionId === 'scheduleSection') {
+        loadSchedule();
+      } else if (sectionId === 'liveSermonPanel') {
+        checkLiveSermonStatus();
+      } else if (sectionId === 'sermonManager') {
+        loadSermons();
+      }
+      
+      // Close sidebar on mobile
+      if (window.innerWidth < 768) {
+        toggleSidebar();
+      }
+    }
+
+    // ===== SCHEDULE MANAGEMENT =====
+    function openScheduleModal() {
+      document.getElementById('scheduleModal').classList.remove('hidden');
+    }
+
+    function closeScheduleModal() {
+      document.getElementById('scheduleModal').classList.add('hidden');
+      document.getElementById('scheduleTitle').value = '';
+      document.getElementById('scheduleDescription').value = '';
+      document.getElementById('scheduleDate').value = '';
+      document.getElementById('scheduleTime').value = '';
+      document.getElementById('schedulePIN').value = '';
+    }
+
+    async function saveSchedule() {
+      const title = document.getElementById('scheduleTitle').value.trim();
+      const description = document.getElementById('scheduleDescription').value.trim();
+      const date = document.getElementById('scheduleDate').value;
+      const time = document.getElementById('scheduleTime').value;
+      const pin = document.getElementById('schedulePIN').value;
+
+      if (!title || !date || !time) {
+        alert('❌ Please fill in all required fields');
+        return;
+      }
+
+      if (pin !== ADMIN_PIN) {
+        alert('❌ Invalid admin PIN');
+        return;
+      }
+
+      try {
+        const res = await fetch('http://localhost:3000/api/schedule', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-admin-pin': pin
+          },
+          body: JSON.stringify({ title, description, date, time })
+        });
+
+        if (!res.ok) throw new Error('Failed to save schedule');
+
+        alert('✅ Schedule event added successfully!');
+        closeScheduleModal();
+        loadSchedule();
+      } catch (err) {
+        console.error('Error saving schedule:', err);
+        alert('❌ Failed to save schedule: ' + err.message);
+      }
+    }
+
+    async function loadSchedule() {
+      try {
+        const res = await fetch('http://localhost:3000/api/schedule');
+        const schedules = await res.json();
+
+        const scheduleList = document.getElementById('scheduleList');
+        
+        if (schedules.length === 0) {
+          scheduleList.innerHTML = '<p class="text-gray-500 text-center py-8">No scheduled events</p>';
+          return;
+        }
+
+        scheduleList.innerHTML = schedules.map(schedule => `
+          <div class="schedule-item bg-amber-50 rounded-lg p-4 border-2 border-amber-200">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-amber-900">${schedule.title}</h3>
+                <p class="text-amber-700 text-sm mt-1">${schedule.description || 'No description'}</p>
+                <div class="flex flex-wrap gap-3 mt-2 text-xs text-amber-600">
+                  <span>📅 ${new Date(schedule.date).toLocaleDateString()}</span>
+                  <span>🕐 ${schedule.time}</span>
+                  <span>📝 Added ${new Date(schedule.createdAt).toLocaleDateString()}</span>
+                </div>
+              </div>
+              <button onclick="deleteSchedule('${schedule._id}')" class="vintage-button bg-red-600 text-white px-4 py-2 rounded-lg text-sm">
+                🗑️ Delete
+              </button>
+            </div>
+          </div>
+        `).join('');
+      } catch (err) {
+        console.error('Error loading schedule:', err);
+        document.getElementById('scheduleList').innerHTML = '<p class="text-red-500 text-center py-8">Failed to load schedule</p>';
+      }
+    }
+
+    async function deleteSchedule(id) {
+      if (!confirm('⚠️ Are you sure you want to delete this event?')) return;
+
+      const pin = prompt('Enter admin PIN to confirm:');
+      if (pin !== ADMIN_PIN) {
+        alert('❌ Invalid admin PIN');
+        return;
+      }
+
+      try {
+        const res = await fetch(`http://localhost:3000/api/schedule/${id}`, {
+          method: 'DELETE',
+          headers: { 'x-admin-pin': pin }
+        });
+
+        if (!res.ok) throw new Error('Failed to delete');
+
+        alert('✅ Event deleted successfully!');
+        loadSchedule();
+      } catch (err) {
+        console.error('Error deleting schedule:', err);
+        alert('❌ Failed to delete event');
+      }
+    }
+
+    // ===== SERMON MANAGEMENT =====
+    async function startLiveSermon() {
+      const title = document.getElementById('sermonTitle').value.trim();
+      const pin = document.getElementById('adminPin').value;
+
+      if (!title) {
+        alert('❌ Please enter a sermon title');
+        return;
+      }
+
+      if (pin !== ADMIN_PIN) {
+        alert('❌ Invalid admin PIN');
+        return;
+      }
+
+      try {
+        // Request microphone access
+        liveStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        
+        // Create media recorder
+        mediaRecorder = new MediaRecorder(liveStream);
+        audioChunks = [];
+        
+        mediaRecorder.ondataavailable = (event) => {
+          if (event.data.size > 0) {
+            audioChunks.push(event.data);
+            updateRecordingSize();
+          }
+        };
+        
+        mediaRecorder.start(1000); // Collect data every second
+        
+        // Setup audio preview
+        const audioPreview = document.getElementById('liveAudioPreview');
+        audioPreview.srcObject = liveStream;
+        
+        // Start sermon on server
+        const res = await fetch('http://localhost:3000/api/sermons/start-live', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-admin-pin': ADMIN_PIN
+          },
+          body: JSON.stringify({ 
+            title
+          })
+        });
+        
+        if (!res.ok) throw new Error('Failed to start sermon');
+        
+        const data = await res.json();
+        liveSermonId = data.sermon._id;
+        
+        // Update UI
+        document.getElementById('startSermonForm').classList.add('hidden');
+        document.getElementById('liveSermonControls').classList.remove('hidden');
+        document.getElementById('liveStatus').textContent = '🔴 LIVE';
+        document.getElementById('liveStatus').className = 'px-4 py-2 rounded-full bg-red-600 text-white font-semibold text-sm live-pulse';
+        document.getElementById('currentSermonTitle').textContent = title;
+        
+        liveStartTime = new Date();
+        startDurationCounter();
+        
+        alert('✅ Sermon is now LIVE! 🎙️');
+        
+      } catch (err) {
+        console.error('Error starting sermon:', err);
+        alert('❌ Failed to start sermon: ' + err.message);
+      }
+    }
+
+    async function stopLiveSermon() {
+      if (!confirm('⚠️ Are you sure you want to stop the live sermon? The recording will be saved.')) {
+        return;
+      }
+      
+      try {
+        // Stop media recorder
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+          mediaRecorder.stop();
+          
+          await new Promise(resolve => {
+            mediaRecorder.onstop = resolve;
+          });
+        }
+        
+        // Stop audio stream
+        if (liveStream) {
+          liveStream.getTracks().forEach(track => track.stop());
+        }
+        
+        // Create audio blob
+        const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+        
+        // Upload to server
+        const formData = new FormData();
+        formData.append('audio', audioBlob, 'sermon.webm');
+        formData.append('sermonId', liveSermonId);
+        
+        const res = await fetch('http://localhost:3000/api/sermons/stop-live', {
+          method: 'POST',
+          headers: {
+            'x-admin-pin': ADMIN_PIN
+          },
+          body: formData
+        });
+        
+        if (!res.ok) {
+          const error = await res.json();
+          throw new Error(error.message || 'Failed to save recording');
+        }
+        
+        // Reset UI
+        document.getElementById('startSermonForm').classList.remove('hidden');
+        document.getElementById('liveSermonControls').classList.add('hidden');
+        document.getElementById('liveStatus').textContent = '● Offline';
+        document.getElementById('liveStatus').className = 'px-4 py-2 rounded-full bg-gray-100 text-gray-600 font-semibold text-sm';
+        
+        if (liveDurationInterval) {
+          clearInterval(liveDurationInterval);
+          liveDurationInterval = null;
+        }
+        
+        // Reset variables
+        liveSermonId = null;
+        mediaRecorder = null;
+        audioChunks = [];
+        liveStartTime = null;
+        liveStream = null;
+        
+        document.getElementById('liveDuration').textContent = '00:00:00';
+        document.getElementById('viewerCount').textContent = '0';
+        document.getElementById('messageCount').textContent = '0';
+        document.getElementById('recordingSize').textContent = '0 MB';
+        document.getElementById('sermonTitle').value = '';
+        document.getElementById('adminPin').value = '';
+        
+        alert('✅ Sermon stopped and recording saved successfully!');
+        
+      } catch (err) {
+        console.error('Error stopping sermon:', err);
+        alert('❌ Failed to stop sermon: ' + err.message);
+      }
+    }
+
+    function startDurationCounter() {
+      if (liveDurationInterval) {
+        clearInterval(liveDurationInterval);
+      }
+      
+      liveDurationInterval = setInterval(() => {
+        if (!liveStartTime) return;
+        
+        const now = new Date();
+        const diff = Math.floor((now - liveStartTime) / 1000);
+        
+        const hours = Math.floor(diff / 3600);
+        const minutes = Math.floor((diff % 3600) / 60);
+        const seconds = diff % 60;
+        
+        document.getElementById('liveDuration').textContent = 
+          `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      }, 1000);
+    }
+
+    function updateRecordingSize() {
+      const totalSize = audioChunks.reduce((acc, chunk) => acc + chunk.size, 0);
+      const sizeMB = (totalSize / (1024 * 1024)).toFixed(2);
+      document.getElementById('recordingSize').textContent = `${sizeMB} MB`;
+    }
+
+    async function checkLiveSermonStatus() {
+      try {
+        const res = await fetch('http://localhost:3000/api/sermons/current-live');
+        const data = await res.json();
+        
+        if (data.isLive) {
+          liveSermonId = data.sermon._id;
+          document.getElementById('startSermonForm').classList.add('hidden');
+          document.getElementById('liveSermonControls').classList.remove('hidden');
+          document.getElementById('liveStatus').textContent = '🔴 LIVE';
+          document.getElementById('liveStatus').className = 'px-4 py-2 rounded-full bg-red-600 text-white font-semibold text-sm live-pulse';
+          document.getElementById('currentSermonTitle').textContent = data.sermon.title;
+          
+          liveStartTime = new Date(data.sermon.startedAt);
+          startDurationCounter();
+        }
+      } catch (err) {
+        console.error('Error checking live status:', err);
+      }
+    }
+
+    // ===== MEMBERS MANAGEMENT =====
+    async function fetchMembers(firstTimeOnly = false) {
+      try {
+        const url = firstTimeOnly 
+          ? 'http://localhost:3000/api/admin/first-time-visitors'
+          : 'http://localhost:3000/api/admin/users';
+        
+        const res = await fetch(url);
+        if (!res.ok) {
+          const errorPayload = await res.text();
+          throw new Error(`Request failed (${res.status} ${res.statusText}): ${errorPayload.slice(0, 120)}${errorPayload.length > 120 ? '…' : ''}`);
+        }
+        const members = await res.json();
+        
+        const tableBody = document.getElementById('memberTable');
+        
+        if (members.length === 0) {
+          tableBody.innerHTML = '<tr><td colspan="6" class="p-6 text-center text-gray-500">No members found</td></tr>';
+          return;
+        }
+        
+        tableBody.innerHTML = members.map(member => `
+          <tr class="hover:bg-amber-50">
+            <td class="p-4 font-semibold">${member.name}</td>
+            <td class="p-4">${member.email}</td>
+            <td class="p-4">${member.phone || 'N/A'}</td>
+            <td class="p-4">${member.isFirstTime ? '✅ Yes' : '❌ No'}</td>
+            <td class="p-4">${member.howDidYouHear || 'N/A'}</td>
+            <td class="p-4">${new Date(member.createdAt).toLocaleDateString()}</td>
+          </tr>
+        `).join('');
+        
+      } catch (err) {
+        console.error('Error fetching members:', err);
+        document.getElementById('memberTable').innerHTML = '<tr><td colspan="6" class="p-6 text-center text-red-500">Failed to load members</td></tr>';
+      }
+    }
+
+    // ===== SERMON RECORDINGS =====
+    async function loadSermons() {
+      try {
+        const res = await fetch('http://localhost:3000/api/sermons');
+        const sermons = await res.json();
+        
+        const sermonList = document.getElementById('sermonList');
+        
+        if (sermons.length === 0) {
+          sermonList.innerHTML = '<p class="text-gray-500 text-center py-8">No sermon recordings found</p>';
+          return;
+        }
+        
+        sermonList.innerHTML = sermons.map(sermon => `
+          <div class="vintage-card rounded-lg p-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-amber-900">${sermon.title}</h3>
+                <div class="flex flex-wrap gap-3 mt-2 text-sm text-amber-700">
+                  <span>📅 ${new Date(sermon.createdAt).toLocaleDateString()}</span>
+                  <span>⏱️ ${Math.floor(sermon.duration / 60)} min</span>
+                  <span>💬 ${sermon.chatMessages?.length || 0} messages</span>
+                </div>
+              </div>
+              <button onclick="deleteSermon('${sermon._id}')" class="vintage-button bg-red-600 text-white px-4 py-2 rounded-lg">
+                🗑️ Delete
+              </button>
+            </div>
+          </div>
+        `).join('');
+        
+      } catch (err) {
+        console.error('Error loading sermons:', err);
+        document.getElementById('sermonList').innerHTML = '<p class="text-red-500 text-center py-8">Failed to load sermons</p>';
+      }
+    }
+
+    async function deleteSermon(id) {
+      if (!confirm('⚠️ Are you sure you want to delete this sermon?')) return;
+      
+      const pin = prompt('Enter admin PIN to confirm:');
+      if (pin !== ADMIN_PIN) {
+        alert('❌ Invalid admin PIN');
+        return;
+      }
+      
+      try {
+        const res = await fetch(`http://localhost:3000/api/sermons/${id}`, {
+          method: 'DELETE',
+          headers: { 'x-admin-pin': pin }
+        });
+        
+        if (!res.ok) throw new Error('Failed to delete');
+        
+        alert('✅ Sermon deleted successfully!');
+        loadSermons();
+      } catch (err) {
+        console.error('Error deleting sermon:', err);
+        alert('❌ Failed to delete sermon');
+      }
+    }
+
+    // ===== NOTES MODAL =====
+    function closeModal() {
+      document.getElementById('noteModal').classList.add('hidden');
+    }
+
+    // ===== INITIALIZATION =====
+    window.addEventListener('DOMContentLoaded', () => {
+      showSection('scheduleSection');
+    });
+  </script>
+</body>
+</html>

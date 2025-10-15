@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why We Believe - The Gospel of Water and Spirit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    .vintage-bg {
+      background: 
+        linear-gradient(45deg, rgba(139, 69, 19, 0.1) 0%, rgba(160, 82, 45, 0.1) 100%),
+        url('https://images.unsplash.com/photo-1481833761820-0509d3217039?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+    
+    .vintage-overlay {
+      background: 
+        radial-gradient(circle at center, rgba(245, 245, 220, 0.95) 0%, rgba(222, 184, 135, 0.98) 100%);
+      backdrop-filter: blur(2px);
+    }
+    
+    .elegant-text {
+      font-family: 'Playfair Display', serif;
+      color: #8B4513;
+      text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
+    }
+    
+    .scripture-text {
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+      color: #654321;
+      line-height: 1.8;
+    }
+    
+    .vintage-card {
+      background: linear-gradient(145deg, #F5F5DC 0%, #FAEBD7 100%);
+      border: 3px solid #D2B48C;
+      box-shadow: 
+        0 8px 32px rgba(139, 69, 19, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      position: relative;
+    }
+    
+    .vintage-card::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px solid #CD853F;
+      pointer-events: none;
+    }
+    
+    .ornamental-border {
+      border-image: linear-gradient(45deg, #CD853F, #D2B48C, #CD853F) 1;
+      border-width: 2px;
+      border-style: solid;
+    }
+    
+    .vintage-button {
+      background: linear-gradient(145deg, #8B4513 0%, #A0522D 100%);
+      border: 2px solid #CD853F;
+      box-shadow: 
+        0 4px 15px rgba(139, 69, 19, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+    
+    .vintage-button:hover {
+      background: linear-gradient(145deg, #A0522D 0%, #8B4513 100%);
+      transform: translateY(-2px);
+      box-shadow: 
+        0 6px 20px rgba(139, 69, 19, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+    
+    .decorative-flourish {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0 10 Q25 0 50 10 T100 10' stroke='%23CD853F' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 20px;
+      width: 100px;
+      margin: 0 auto;
+    }
+
+    /* Enhanced Bible verse styling */
+    .bible-verse {
+      font-size: 1.125rem;
+      line-height: 1.8;
+      font-weight: 500;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 0.75rem;
+      border-left: 6px solid;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1rem;
+    }
+
+    .bible-reference {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .subsection-title {
+      font-size: 1.875rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    @media (max-width: 768px) {
+      .bible-verse {
+        font-size: 1rem;
+        padding: 1.25rem;
+      }
+      
+      .bible-reference {
+        font-size: 1.125rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .subsection-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body class="vintage-bg min-h-screen">
+
+<!-- Navigation -->
+<nav class="vintage-overlay border-b-4 ornamental-border py-4">
+  <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+    <a href="index.html" class="text-2xl font-bold elegant-text">✝ Eternal Truth</a>
+    <div class="flex space-x-4">
+      <a href="step5-get-saved.html" class="vintage-button text-white px-4 py-2 rounded-lg">← Get Saved</a>
+      <a href="index.html" class="vintage-button text-white px-4 py-2 rounded-lg">Home</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto text-center">
+    <div class="decorative-flourish mb-8"></div>
+    <h1 class="text-5xl md:text-7xl font-extrabold mb-8 elegant-text">WHY WE BELIEVE</h1>
+    <div class="text-3xl md:text-4xl font-bold mb-8 scripture-text">
+      "This is He who came by water and blood—Jesus Christ; not only by water, but by water and blood."
+    </div>
+    <p class="text-2xl elegant-text font-semibold">— 1 John 5:6</p>
+    <div class="decorative-flourish mt-8"></div>
+  </div>
+</section>
+
+<!-- The Only Way of Peace -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <h2 class="section-title elegant-text text-blue-800 mb-12">🕊️ THE ONLY WAY OF PEACE</h2>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <p class="text-xl text-center mb-8 text-amber-900 leading-relaxed">
+        We believe in the gospel of water and spirit because it is <strong>the only way of peace</strong>. 
+        Without this complete gospel, there is no true peace with God or peace in our hearts.
+      </p>
+      
+      <div class="grid gap-8">
+        <div class="bible-verse border-blue-500">
+          <h3 class="bible-reference text-blue-800">Isaiah 53:5</h3>
+          <p class="scripture-text text-blue-700">
+            "But He was wounded for our transgressions, He was bruised for our iniquities; <strong>the chastisement for our peace was upon Him</strong>, and by His stripes we are healed."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-blue-500">
+          <h3 class="bible-reference text-blue-800">Romans 5:1</h3>
+          <p class="scripture-text text-blue-700">
+            "Therefore, having been justified by faith, <strong>we have peace with God through our Lord Jesus Christ</strong>."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-blue-500">
+          <h3 class="bible-reference text-blue-800">Ephesians 2:14</h3>
+          <p class="scripture-text text-blue-700">
+            "For <strong>He Himself is our peace</strong>, who has made both one, and has broken down the middle wall of separation."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-blue-500">
+          <h3 class="bible-reference text-blue-800">John 16:33</h3>
+          <p class="scripture-text text-blue-700">
+            "These things I have spoken to you, that <strong>in Me you may have peace</strong>. In the world you will have tribulation; but be of good cheer, I have overcome the world."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-blue-500">
+          <h3 class="bible-reference text-blue-800">Philippians 4:7</h3>
+          <p class="scripture-text text-blue-700">
+            "And <strong>the peace of God, which surpasses all understanding, will guard your hearts and minds through Christ Jesus</strong>."
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The Message of Reconciliation -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <h2 class="section-title elegant-text text-green-800 mb-12">🤝 THE MESSAGE OF RECONCILIATION</h2>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <p class="text-xl text-center mb-8 text-amber-900 leading-relaxed">
+        This is <strong>the message of reconciliation</strong> - God reconciling the world to Himself through Christ. 
+        The water and blood of Jesus made this reconciliation complete and perfect.
+      </p>
+      
+      <div class="grid gap-8">
+        <div class="bible-verse border-green-500">
+          <h3 class="bible-reference text-green-800">2 Corinthians 5:18-19</h3>
+          <p class="scripture-text text-green-700">
+            "Now all things are of God, <strong>who has reconciled us to Himself through Jesus Christ, and has given us the ministry of reconciliation</strong>, that is, that <strong>God was in Christ reconciling the world to Himself, not imputing their trespasses to them</strong>, and has committed to us the word of reconciliation."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-green-500">
+          <h3 class="bible-reference text-green-800">2 Corinthians 5:20</h3>
+          <p class="scripture-text text-green-700">
+            "Now then, we are ambassadors for Christ, as though God were pleading through us: <strong>we implore you on Christ's behalf, be reconciled to God</strong>."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-green-500">
+          <h3 class="bible-reference text-green-800">Colossians 1:20-22</h3>
+          <p class="scripture-text text-green-700">
+            "And by Him <strong>to reconcile all things to Himself, by Him, whether things on earth or things in heaven, having made peace through the blood of His cross</strong>. And you, who once were alienated and enemies in your mind by wicked works, yet now <strong>He has reconciled in the body of His flesh through death, to present you holy, and blameless, and above reproach in His sight</strong>."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-green-500">
+          <h3 class="bible-reference text-green-800">Romans 5:10-11</h3>
+          <p class="scripture-text text-green-700">
+            "For if when we were enemies <strong>we were reconciled to God through the death of His Son</strong>, much more, having been reconciled, we shall be saved by His life. And not only that, but we also rejoice in God through our Lord Jesus Christ, <strong>through whom we have now received the reconciliation</strong>."
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The Message of Redemption -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <h2 class="section-title elegant-text text-purple-800 mb-12">💎 THE MESSAGE OF REDEMPTION</h2>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <p class="text-xl text-center mb-8 text-amber-900 leading-relaxed">
+        This is <strong>the message of redemption</strong> - we were bought with a price, redeemed from sin and death. 
+        Jesus paid the full price through His water baptism and blood sacrifice.
+      </p>
+      
+      <div class="grid gap-8">
+        <div class="bible-verse border-purple-500">
+          <h3 class="bible-reference text-purple-800">1 Corinthians 6:19-20</h3>
+          <p class="scripture-text text-purple-700">
+            "Or do you not know that your body is the temple of the Holy Spirit who is in you, whom you have from God, and <strong>you are not your own? For you were bought at a price</strong>; therefore glorify God in your body and in your spirit, which are God's."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-purple-500">
+          <h3 class="bible-reference text-purple-800">1 Peter 1:18-19</h3>
+          <p class="scripture-text text-purple-700">
+            "Knowing that <strong>you were not redeemed with corruptible things, like silver or gold</strong>, from your aimless conduct received by tradition from your fathers, <strong>but with the precious blood of Christ, as of a lamb without blemish and without spot</strong>."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-purple-500">
+          <h3 class="bible-reference text-purple-800">Ephesians 1:7</h3>
+          <p class="scripture-text text-purple-700">
+            "<strong>In Him we have redemption through His blood, the forgiveness of sins</strong>, according to the riches of His grace."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-purple-500">
+          <h3 class="bible-reference text-purple-800">Galatians 3:13</h3>
+          <p class="scripture-text text-purple-700">
+            "<strong>Christ has redeemed us from the curse of the law</strong>, having become a curse for us (for it is written, 'Cursed is everyone who hangs on a tree')."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-purple-500">
+          <h3 class="bible-reference text-purple-800">Revelation 5:9</h3>
+          <p class="scripture-text text-purple-700">
+            "And they sang a new song, saying: 'You are worthy to take the scroll, and to open its seals; for <strong>You were slain, and have redeemed us to God by Your blood out of every tribe and tongue and people and nation</strong>.'"
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Jesus Proclaimed the New Kingdom -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <h2 class="section-title elegant-text text-red-800 mb-12">👑 JESUS PROCLAIMED THE NEW KINGDOM</h2>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <p class="text-xl text-center mb-8 text-amber-900 leading-relaxed">
+        This is <strong>the gospel which Jesus Himself, God, proclaimed</strong> - the message of the new kingdom and the way to it. 
+        Jesus came preaching the kingdom of heaven and showing the way through water and blood.
+      </p>
+      
+      <div class="grid gap-8">
+        <div class="bible-verse border-red-500">
+          <h3 class="bible-reference text-red-800">Matthew 4:17</h3>
+          <p class="scripture-text text-red-700">
+            "From that time <strong>Jesus began to preach and to say, 'Repent, for the kingdom of heaven is at hand!'</strong>"
+          </p>
+        </div>
+        
+        <div class="bible-verse border-red-500">
+          <h3 class="bible-reference text-red-800">Mark 1:14-15</h3>
+          <p class="scripture-text text-red-700">
+            "Now after John was put in prison, <strong>Jesus came to Galilee, preaching the gospel of the kingdom of God</strong>, and saying, 'The time is fulfilled, and <strong>the kingdom of God is at hand. Repent, and believe in the gospel</strong>.'"
+          </p>
+        </div>
+        
+        <div class="bible-verse border-red-500">
+          <h3 class="bible-reference text-red-800">Luke 4:43</h3>
+          <p class="scripture-text text-red-700">
+            "But He said to them, '<strong>I must preach the kingdom of God to the other cities also, because for this purpose I have been sent</strong>.'"
+          </p>
+        </div>
+        
+        <div class="bible-verse border-red-500">
+          <h3 class="bible-reference text-red-800">John 3:3-5</h3>
+          <p class="scripture-text text-red-700">
+            "Jesus answered and said to him, 'Most assuredly, I say to you, <strong>unless one is born again, he cannot see the kingdom of God</strong>.' Nicodemus said to Him, 'How can a man be born when he is old? Can he enter a second time into his mother's womb and be born?' Jesus answered, 'Most assuredly, I say to you, <strong>unless one is born of water and the Spirit, he cannot enter the kingdom of God</strong>.'"
+          </p>
+        </div>
+        
+        <div class="bible-verse border-red-500">
+          <h3 class="bible-reference text-red-800">Matthew 9:35</h3>
+          <p class="scripture-text text-red-700">
+            "Then <strong>Jesus went about all the cities and villages, teaching in their synagogues, preaching the gospel of the kingdom</strong>, and healing every sickness and every disease among the people."
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Jesus is the Only Way -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <h2 class="section-title elegant-text text-yellow-800 mb-12">🛤️ JESUS IS THE ONLY WAY</h2>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <p class="text-xl text-center mb-8 text-amber-900 leading-relaxed">
+        We believe because <strong>there is no other way</strong> - Jesus is the only way, the truth, and the life. 
+        His Words are life, and He only has the words of eternal life. He is our God.
+      </p>
+      
+      <div class="grid gap-8">
+        <div class="bible-verse border-yellow-500">
+          <h3 class="bible-reference text-yellow-800">John 14:6</h3>
+          <p class="scripture-text text-yellow-700">
+            "Jesus said to him, '<strong>I am the way, the truth, and the life. No one comes to the Father except through Me</strong>.'"
+          </p>
+        </div>
+        
+        <div class="bible-verse border-yellow-500">
+          <h3 class="bible-reference text-yellow-800">John 6:68</h3>
+          <p class="scripture-text text-yellow-700">
+            "But Simon Peter answered Him, 'Lord, to whom shall we go? <strong>You have the words of eternal life</strong>.'"
+          </p>
+        </div>
+        
+        <div class="bible-verse border-yellow-500">
+          <h3 class="bible-reference text-yellow-800">Acts 4:12</h3>
+          <p class="scripture-text text-yellow-700">
+            "<strong>Nor is there salvation in any other, for there is no other name under heaven given among men by which we must be saved</strong>."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-yellow-500">
+          <h3 class="bible-reference text-yellow-800">John 6:63</h3>
+          <p class="scripture-text text-yellow-700">
+            "It is the Spirit who gives life; the flesh profits nothing. <strong>The words that I speak to you are spirit, and they are life</strong>."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-yellow-500">
+          <h3 class="bible-reference text-yellow-800">1 Timothy 2:5</h3>
+          <p class="scripture-text text-yellow-700">
+            "For <strong>there is one God and one Mediator between God and men, the Man Christ Jesus</strong>."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-yellow-500">
+          <h3 class="bible-reference text-yellow-800">John 1:1</h3>
+          <p class="scripture-text text-yellow-700">
+            "In the beginning was the Word, and the Word was with God, and <strong>the Word was God</strong>."
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- We Accepted Our Sinful Nature -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <h2 class="section-title elegant-text text-indigo-800 mb-12">😔 WE ACCEPTED OUR SINFUL NATURE</h2>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <p class="text-xl text-center mb-8 text-amber-900 leading-relaxed">
+        We believe because <strong>we accept our sinful nature</strong> and didn't have any other way to find peace. 
+        We were being tormented by our sins daily, but when we heard the way of peace, we believed it because it's the only way of peace and hope.
+      </p>
+      
+      <div class="grid gap-8">
+        <div class="bible-verse border-indigo-500">
+          <h3 class="bible-reference text-indigo-800">Romans 3:23</h3>
+          <p class="scripture-text text-indigo-700">
+            "For <strong>all have sinned and fall short of the glory of God</strong>."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-indigo-500">
+          <h3 class="bible-reference text-indigo-800">Romans 7:24</h3>
+          <p class="scripture-text text-indigo-700">
+            "<strong>O wretched man that I am! Who will deliver me from this body of death?</strong>"
+          </p>
+        </div>
+        
+        <div class="bible-verse border-indigo-500">
+          <h3 class="bible-reference text-indigo-800">Jeremiah 17:9</h3>
+          <p class="scripture-text text-indigo-700">
+            "<strong>The heart is deceitful above all things, and desperately wicked</strong>; who can know it?"
+          </p>
+        </div>
+        
+        <div class="bible-verse border-indigo-500">
+          <h3 class="bible-reference text-indigo-800">Romans 7:18</h3>
+          <p class="scripture-text text-indigo-700">
+            "For I know that <strong>in me (that is, in my flesh) nothing good dwells</strong>; for to will is present with me, but how to perform what is good I do not find."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-indigo-500">
+          <h3 class="bible-reference text-indigo-800">Psalm 51:5</h3>
+          <p class="scripture-text text-indigo-700">
+            "<strong>Behold, I was brought forth in iniquity, and in sin my mother conceived me</strong>."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-indigo-500">
+          <h3 class="bible-reference text-indigo-800">1 John 1:8</h3>
+          <p class="scripture-text text-indigo-700">
+            "<strong>If we say that we have no sin, we deceive ourselves, and the truth is not in us</strong>."
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- We Searched for the Doctor -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <h2 class="section-title elegant-text text-teal-800 mb-12">👨‍⚕️ WE SEARCHED FOR THE DOCTOR</h2>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <p class="text-xl text-center mb-8 text-amber-900 leading-relaxed">
+        We who have accepted our sinful nature, <strong>we searched for the doctor because our disease was only sin</strong>. 
+        Jesus is the Great Physician who came to heal the sick and save sinners.
+      </p>
+      
+      <div class="grid gap-8">
+        <div class="bible-verse border-teal-500">
+          <h3 class="bible-reference text-teal-800">Matthew 9:12</h3>
+          <p class="scripture-text text-teal-700">
+            "When Jesus heard that, He said to them, '<strong>Those who are well have no need of a physician, but those who are sick</strong>.'"
+          </p>
+        </div>
+        
+        <div class="bible-verse border-teal-500">
+          <h3 class="bible-reference text-teal-800">Luke 5:31-32</h3>
+          <p class="scripture-text text-teal-700">
+            "Jesus answered and said to them, '<strong>Those who are well have no need of a physician, but those who are sick. I have not come to call the righteous, but sinners, to repentance</strong>.'"
+          </p>
+        </div>
+        
+        <div class="bible-verse border-teal-500">
+          <h3 class="bible-reference text-teal-800">1 Timothy 1:15</h3>
+          <p class="scripture-text text-teal-700">
+            "This is a faithful saying and worthy of all acceptance, that <strong>Christ Jesus came into the world to save sinners</strong>, of whom I am chief."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-teal-500">
+          <h3 class="bible-reference text-teal-800">Luke 19:10</h3>
+          <p class="scripture-text text-teal-700">
+            "For <strong>the Son of Man has come to seek and to save that which was lost</strong>."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-teal-500">
+          <h3 class="bible-reference text-teal-800">Isaiah 53:4-5</h3>
+          <p class="scripture-text text-teal-700">
+            "Surely <strong>He has borne our griefs and carried our sorrows</strong>; yet we esteemed Him stricken, smitten by God, and afflicted. But He was wounded for our transgressions, He was bruised for our iniquities; the chastisement for our peace was upon Him, <strong>and by His stripes we are healed</strong>."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-teal-500">
+          <h3 class="bible-reference text-teal-800">Jeremiah 8:22</h3>
+          <p class="scripture-text text-teal-700">
+            "<strong>Is there no balm in Gilead, is there no physician there?</strong> Why then is there no recovery for the health of the daughter of my people?"
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The Third Day Creation Analogy -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <h2 class="section-title elegant-text text-emerald-800 mb-12">🌱 THE THIRD DAY CREATION ANALOGY</h2>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <p class="text-xl text-center mb-8 text-amber-900 leading-relaxed">
+        Just like in the creation story of the third day, <strong>the waters were gathered to create dry ground and seas</strong>. 
+        On the dry ground, plants and trees were created. <strong>God exposed our sinful nature and then He planted the seed of life</strong> - 
+        because the ground was fertile, the seed grew.
+      </p>
+      
+      <div class="grid gap-8">
+        <div class="bible-verse border-emerald-500">
+          <h3 class="bible-reference text-emerald-800">Genesis 1:9-11</h3>
+          <p class="scripture-text text-emerald-700">
+            "Then God said, '<strong>Let the waters under the heavens be gathered together into one place, and let the dry land appear</strong>'; and it was so. And God called the dry land Earth, and the gathering together of the waters He called Seas. And God saw that it was good. Then God said, '<strong>Let the earth bring forth grass, the herb that yields seed, and the fruit tree that yields fruit according to its kind, whose seed is in itself, on the earth</strong>'; and it was so."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-emerald-500">
+          <h3 class="bible-reference text-emerald-800">Luke 8:11</h3>
+          <p class="scripture-text text-emerald-700">
+            "Now the parable is this: <strong>The seed is the word of God</strong>."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-emerald-500">
+          <h3 class="bible-reference text-emerald-800">1 Peter 1:23</h3>
+          <p class="scripture-text text-emerald-700">
+            "Having been <strong>born again, not of corruptible seed but incorruptible, through the word of God</strong> which lives and abides forever."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-emerald-500">
+          <h3 class="bible-reference text-emerald-800">Matthew 13:23</h3>
+          <p class="scripture-text text-emerald-700">
+            "But he who received seed <strong>on the good ground is he who hears the word and understands it, who indeed bears fruit</strong> and produces: some a hundredfold, some sixty, some thirty."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-emerald-500">
+          <h3 class="bible-reference text-emerald-800">Isaiah 55:10-11</h3>
+          <p class="scripture-text text-emerald-700">
+            "For as the rain comes down, and the snow from heaven, and do not return there, but water the earth, and make it bring forth and bud, that it may give seed to the sower and bread to the eater, <strong>so shall My word be that goes forth from My mouth; it shall not return to Me void, but it shall accomplish what I please, and it shall prosper in the thing for which I sent it</strong>."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-emerald-500">
+          <h3 class="bible-reference text-emerald-800">James 1:18</h3>
+          <p class="scripture-text text-emerald-700">
+            "Of His own will <strong>He brought us forth by the word of truth</strong>, that we might be a kind of firstfruits of His creatures."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-emerald-500">
+          <h3 class="bible-reference text-emerald-800">1 Corinthians 3:6-7</h3>
+          <p class="scripture-text text-emerald-700">
+            "I planted, Apollos watered, <strong>but God gave the increase. So then neither he who plants is anything, nor he who waters, but God who gives the increase</strong>."
+          </p>
+        </div>
+        
+        <div class="bible-verse border-emerald-500">
+          <h3 class="bible-reference text-emerald-800">Mark 4:26-28</h3>
+          <p class="scripture-text text-emerald-700">
+            "And He said, '<strong>The kingdom of God is as if a man should scatter seed on the ground, and should sleep by night and rise by day, and the seed should sprout and grow, he himself does not know how. For the earth yields crops by itself: first the blade, then the head, after that the full grain in the head</strong>.'"
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-4xl mx-auto text-center">
+    <div class="vintage-card rounded-2xl p-12 shadow-2xl">
+      <h2 class="text-4xl font-bold mb-8 elegant-text">This Is Why We Believe</h2>
+      <p class="text-xl mb-8 text-amber-900 leading-relaxed">
+        The gospel of water and spirit is not just a doctrine - it is <strong>the only way of peace, reconciliation, and redemption</strong>. 
+        It is the message Jesus Himself proclaimed, the only way to the Father, and the cure for our sin-sick souls.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="step5-get-saved.html" class="vintage-button text-white px-8 py-4 rounded-lg text-lg font-semibold">
+          Get Saved Now
+        </a>
+        <a href="index.html" class="vintage-button text-white px-8 py-4 rounded-lg text-lg font-semibold">
+          Return Home
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="vintage-overlay border-t-4 ornamental-border py-8">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <p class="text-lg elegant-text">"This is He who came by water and blood—Jesus Christ; not only by water, but by water and blood."</p>
+    <p class="text-sm text-amber-700 mt-2">— 1 John 5:6</p>
+  </div>
+</footer>
+
+</body>
+</html>

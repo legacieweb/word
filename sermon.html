@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎙️ Live Sermons - God's Church Chieko</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Crimson Text', serif;
+      background: linear-gradient(135deg, #F5F5DC 0%, #E8DCC4 100%);
+    }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+    .vintage-card {
+      background: linear-gradient(to bottom, #FDFBF7, #F5F5DC);
+      border: 2px solid #D2B48C;
+      box-shadow: 0 4px 6px rgba(139, 69, 19, 0.1);
+    }
+    .vintage-button {
+      background: linear-gradient(to bottom, #8B4513, #654321);
+      border: 2px solid #CD853F;
+      transition: all 0.3s ease;
+    }
+    .vintage-button:hover {
+      background: linear-gradient(to bottom, #654321, #8B4513);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(139, 69, 19, 0.3);
+    }
+    .live-pulse {
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .chat-message {
+      animation: slideIn 0.3s ease;
+    }
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .flourish {
+      color: #CD853F;
+      font-size: 1.5rem;
+    }
+    .sermon-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(139, 69, 19, 0.2);
+    }
+    .sermon-card {
+      transition: all 0.3s ease;
+    }
+    .pdf-canvas {
+      max-width: 100%;
+      height: auto;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .raise-hand-toggle {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      border-radius: 9999px;
+      border: 6px solid #CD853F;
+      background: radial-gradient(circle at 30% 30%, #f8e4c5, #d39c5c);
+      box-shadow: 0 12px 24px rgba(139, 69, 19, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .raise-hand-toggle:active {
+      transform: scale(0.97);
+      box-shadow: 0 8px 16px rgba(139, 69, 19, 0.3);
+    }
+    .raise-hand-toggle[data-mode="hold"]::after,
+    .raise-hand-toggle[data-mode="handsfree"]::after {
+      content: attr(data-label);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #3b2f2f;
+      font-weight: 700;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+    .raise-hand-toggle[data-talking="true"] {
+      border-color: #f43f5e;
+      box-shadow: 0 0 0 6px rgba(244, 63, 94, 0.15);
+    }
+    .handsfree-slider {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(to right, #d6b98d, #b8864a);
+    }
+    .handsfree-slider::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50%;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.8);
+      transition: transform 0.25s ease;
+    }
+    .handsfree-slider[data-position="right"]::before {
+      transform: translate(100%, -50%);
+    }
+    .audio-visualizer {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 52px;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.65);
+      border: 2px solid rgba(210, 180, 140, 0.6);
+    }
+    .audio-visualizer span {
+      width: 6px;
+      border-radius: 999px;
+      background: linear-gradient(to top, #f59f0b, #b45309);
+      transition: height 0.1s ease;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  
+  <!-- Sticky Header -->
+  <header class="sticky top-0 z-50 vintage-card shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="text-3xl">⛪</span>
+        <div>
+          <h1 class="text-2xl font-bold text-amber-900">God's Church Chieko</h1>
+          <p class="text-sm text-amber-700">Live Sermons & Archive</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span id="userGreeting" class="text-amber-800 font-semibold hidden"></span>
+        <button onclick="goToDashboard()" class="vintage-button text-white px-4 py-2 rounded-lg font-semibold hidden" id="dashboardBtn">
+          📊 Dashboard
+        </button>
+        <button onclick="goToHome()" class="vintage-button text-white px-4 py-2 rounded-lg font-semibold">
+          🏠 Home
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="max-w-7xl mx-auto px-4 py-8 space-y-8">
+
+    <!-- Schedule Section -->
+    <section class="vintage-card rounded-lg p-6">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center space-x-3">
+          <span class="text-3xl">📅</span>
+          <div>
+            <h2 class="text-2xl font-bold text-amber-900">Upcoming Events</h2>
+            <p class="text-amber-700">Stay updated with our church schedule</p>
+          </div>
+        </div>
+        <button onclick="loadSchedule()" class="text-amber-700 hover:text-amber-900 font-semibold">
+          🔄 Refresh
+        </button>
+      </div>
+      <div id="scheduleList" class="space-y-3">
+        <div class="text-center text-amber-600 py-4">
+          <div class="animate-spin text-4xl mb-2">⏳</div>
+          <p>Loading schedule...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Sermon Banner -->
+    <section id="liveBanner" class="hidden vintage-card rounded-lg p-6 border-4 border-red-600 relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 live-pulse"></div>
+      <div class="flex items-center justify-between flex-wrap gap-4">
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <span class="text-5xl">🎙️</span>
+            <span class="absolute top-0 right-0 w-3 h-3 bg-red-600 rounded-full live-pulse"></span>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-red-700">🔴 LIVE NOW</h2>
+            <p class="text-amber-800 text-lg" id="liveSermonTitle">A Live Sermon is in Progress</p>
+            <p class="text-sm text-amber-600">Join now and be part of the worship</p>
+          </div>
+        </div>
+        <button onclick="joinLiveSermon()" class="vintage-button text-white px-8 py-3 rounded-lg font-bold text-lg">
+          ✨ Join Live Sermon
+        </button>
+      </div>
+    </section>
+
+    <!-- Live Sermon Player Section -->
+    <section id="livePlayerSection" class="hidden vintage-card rounded-lg p-6">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center space-x-3">
+          <span class="text-4xl">🎙️</span>
+          <div>
+            <h2 class="text-2xl font-bold text-amber-900">Live Sermon</h2>
+            <p class="text-amber-700" id="currentSermonTitle">Connected to live broadcast</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="w-3 h-3 bg-red-600 rounded-full live-pulse"></span>
+          <span class="text-red-700 font-bold">LIVE</span>
+        </div>
+      </div>
+      
+      <!-- Audio Player -->
+      <div class="bg-amber-50 rounded-lg p-4 mb-4 border-2 border-amber-200">
+        <audio id="liveAudioPlayer" controls autoplay class="w-full"></audio>
+      </div>
+
+      <!-- Live Controls -->
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-6 mb-6">
+        <div class="flex items-center gap-4 order-2 lg:order-1">
+          <button onclick="toggleMute()" id="muteBtn" class="vintage-button text-white px-6 py-2 rounded-lg font-semibold">
+            🔊 Mute
+          </button>
+          <button onclick="scrollToChat()" class="vintage-button text-white px-6 py-2 rounded-lg font-semibold">
+            💬 Open Chat
+          </button>
+          <button onclick="leaveLiveSermon()" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold border-2 border-red-800">
+            🚪 Leave
+          </button>
+        </div>
+
+        <div class="flex flex-col items-center gap-3 order-1 lg:order-2">
+          <p class="text-sm text-amber-700 font-semibold tracking-wide">Press and hold to speak. Slide right for hands-free.</p>
+          <div class="relative flex flex-col items-center">
+            <button 
+              id="raiseHandBtn"
+              class="raise-hand-toggle"
+              data-mode="hold"
+              data-label="Hold"
+              data-talking="false"
+              aria-pressed="false"
+              aria-label="Hold to speak"
+            ></button>
+            <div id="handsfreeSlider" class="handsfree-slider" role="switch" aria-label="Hands-free toggle" data-position="left"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="activeSpeakerCard" class="hidden bg-amber-50 rounded-lg p-4 mb-6 border-2 border-amber-200">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <p class="text-sm uppercase tracking-wide text-amber-600 font-semibold">Current Speaker</p>
+            <p id="activeSpeakerName" class="text-xl font-bold text-amber-900">-</p>
+            <p class="text-xs text-amber-600">Admin mic is paused while this user is talking.</p>
+          </div>
+          <div class="audio-visualizer" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Stats -->
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <div class="bg-amber-50 rounded-lg p-3 border border-amber-200">
+          <p class="text-2xl font-bold text-amber-900" id="liveViewers">0</p>
+          <p class="text-sm text-amber-700">Viewers</p>
+        </div>
+        <div class="bg-amber-50 rounded-lg p-3 border border-amber-200">
+          <p class="text-2xl font-bold text-amber-900" id="liveDuration">00:00</p>
+          <p class="text-sm text-amber-700">Duration</p>
+        </div>
+        <div class="bg-amber-50 rounded-lg p-3 border border-amber-200">
+          <p class="text-2xl font-bold text-amber-900" id="chatCount">0</p>
+          <p class="text-sm text-amber-700">Messages</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PDF Viewer Section (for live sermons with PDF) -->
+    <section id="pdfViewerSection" class="hidden vintage-card rounded-lg p-6">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center space-x-3">
+          <span class="text-3xl">📖</span>
+          <h2 class="text-2xl font-bold text-amber-900">Reading Together</h2>
+        </div>
+        <div class="text-amber-700 font-semibold">
+          Page <span id="currentPdfPage">1</span> of <span id="totalPdfPages">1</span>
+        </div>
+      </div>
+      <div class="bg-amber-50 rounded-lg p-4 border-2 border-amber-200 flex justify-center">
+        <canvas id="pdfCanvas" class="pdf-canvas"></canvas>
+      </div>
+      <p class="text-center text-amber-600 text-sm mt-3">📖 Follow along as we read together</p>
+    </section>
+
+    <!-- Live Chat Section -->
+    <section id="liveChatSection" class="hidden vintage-card rounded-lg p-6">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center space-x-3">
+          <span class="text-3xl">💬</span>
+          <h2 class="text-2xl font-bold text-amber-900">Live Chat</h2>
+        </div>
+        <span class="text-sm text-amber-600">Share your thoughts and prayers</span>
+      </div>
+
+      <!-- Chat Messages -->
+      <div id="chatMessages" class="h-96 overflow-y-auto bg-amber-50 rounded-lg p-4 mb-4 border-2 border-amber-200 space-y-2">
+        <div class="text-center text-amber-600 text-sm py-8">
+          <p>💬 Chat messages will appear here</p>
+          <p class="text-xs mt-2">Be respectful and encouraging</p>
+        </div>
+      </div>
+
+      <!-- Chat Input -->
+      <div class="flex space-x-2">
+        <input 
+          type="text" 
+          id="chatInput" 
+          placeholder="Type your message..." 
+          class="flex-1 border-2 border-amber-300 rounded-lg px-4 py-3 focus:outline-none focus:border-amber-500"
+          onkeypress="if(event.key==='Enter') sendChatMessage()"
+        />
+        <button onclick="sendChatMessage()" class="vintage-button text-white px-8 py-3 rounded-lg font-semibold">
+          Send
+        </button>
+      </div>
+    </section>
+
+    <!-- Sermon Archive Section -->
+    <section class="vintage-card rounded-lg p-6">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center space-x-3">
+          <span class="text-3xl">📜</span>
+          <div>
+            <h2 class="text-2xl font-bold text-amber-900">Sermon Archive</h2>
+            <p class="text-amber-700">Listen to previous sermons and view chat history</p>
+          </div>
+        </div>
+        <button onclick="loadSermons()" class="text-amber-700 hover:text-amber-900 font-semibold">
+          🔄 Refresh
+        </button>
+      </div>
+
+      <!-- Sermons List -->
+      <div id="sermonsList" class="space-y-4">
+        <div class="text-center text-amber-600 py-8">
+          <div class="animate-spin text-4xl mb-2">⏳</div>
+          <p>Loading sermons...</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Login Required Modal -->
+  <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm hidden items-center justify-center z-50">
+    <div class="vintage-card rounded-lg p-8 max-w-md mx-4 text-center">
+      <span class="text-6xl mb-4 block">🔒</span>
+      <h2 class="text-2xl font-bold text-amber-900 mb-2">Login Required</h2>
+      <p class="text-amber-700 mb-6">You must be logged in to access live sermons and participate in chat.</p>
+      <div class="flex flex-col space-y-3">
+        <button onclick="window.location.href='login.html'" class="vintage-button text-white px-6 py-3 rounded-lg font-semibold">
+          🔑 Login
+        </button>
+        <button onclick="window.location.href='signup.html'" class="vintage-button text-white px-6 py-3 rounded-lg font-semibold">
+          ✨ Create Account
+        </button>
+        <button onclick="closeLoginModal()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-3 rounded-lg font-semibold">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat History Modal -->
+  <div id="chatHistoryModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm hidden items-center justify-center z-50">
+    <div class="vintage-card rounded-lg p-6 max-w-2xl w-full mx-4 max-h-[80vh] overflow-hidden flex flex-col">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center space-x-3">
+          <span class="text-3xl">💬</span>
+          <h2 class="text-2xl font-bold text-amber-900" id="chatHistoryTitle">Chat History</h2>
+        </div>
+        <button onclick="closeChatHistory()" class="text-3xl text-amber-700 hover:text-amber-900">×</button>
+      </div>
+      <div id="chatHistoryContent" class="flex-1 overflow-y-auto bg-amber-50 rounded-lg p-4 border-2 border-amber-200 space-y-2">
+        <!-- Chat messages will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Configure PDF.js worker
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    let currentUser = null;
+    let socket = null;
+    let currentLiveSermonId = null;
+    let liveAudioStream = null;
+    let isMuted = false;
+    let liveDurationInterval = null;
+    let liveStartTime = null;
+    let pdfDoc = null;
+    let currentPdfPath = null;
+    let localStream = null;
+    let handsfreeMode = false;
+    let audioContext = null;
+    let analyserNode = null;
+    let visualizerSource = null;
+    let visualizerDataArray = null;
+    let animationFrameId = null;
+
+    const visualizerBars = Array.from(document.querySelectorAll('.audio-visualizer span'));
+
+    async function ensureAudioContext() {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) {
+        console.warn('AudioContext not supported in this browser.');
+        return null;
+      }
+
+      if (!audioContext || audioContext.state === 'closed') {
+        audioContext = new AudioCtx();
+      }
+
+      if (audioContext.state === 'suspended') {
+        try {
+          await audioContext.resume();
+        } catch (error) {
+          console.warn('Failed to resume audio context:', error);
+        }
+      }
+
+      return audioContext;
+    }
+
+    async function prepareLocalAudio() {
+      if (localStream) {
+        await ensureAudioContext();
+
+        if (!visualizerSource && localStream) {
+          setupVisualizer(localStream);
+        } else {
+          startVisualizer();
+        }
+
+        return localStream;
+      }
+
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        throw new Error('Microphone access is not supported in this browser.');
+      }
+
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      localStream = stream;
+
+      const ctx = await ensureAudioContext();
+      if (ctx) {
+        setupVisualizer(stream);
+      }
+
+      return stream;
+    }
+
+    function setupVisualizer(stream) {
+      if (!audioContext) return;
+
+      if (visualizerSource) {
+        try {
+          visualizerSource.disconnect();
+        } catch (error) {
+          console.warn('Visualizer source disconnect failed:', error);
+        }
+      }
+
+      analyserNode = audioContext.createAnalyser();
+      analyserNode.fftSize = 256;
+
+      visualizerSource = audioContext.createMediaStreamSource(stream);
+      visualizerSource.connect(analyserNode);
+      visualizerDataArray = new Uint8Array(analyserNode.frequencyBinCount);
+
+      startVisualizer();
+    }
+
+    function startVisualizer() {
+      if (!analyserNode || !visualizerDataArray || visualizerBars.length === 0) {
+        return;
+      }
+
+      stopVisualizer(false);
+
+      const update = () => {
+        analyserNode.getByteFrequencyData(visualizerDataArray);
+
+        visualizerBars.forEach((bar, index) => {
+          const dataIndex = Math.min(index * 2, visualizerDataArray.length - 1);
+          const value = visualizerDataArray[dataIndex] / 255;
+          const height = Math.max(4, Math.round(value * 52));
+          bar.style.height = `${height}px`;
+        });
+
+        animationFrameId = requestAnimationFrame(update);
+      };
+
+      update();
+    }
+
+    function stopVisualizer(resetHeights = true) {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+
+      if (resetHeights) {
+        visualizerBars.forEach(bar => {
+          bar.style.height = '4px';
+        });
+      }
+    }
+
+    function releaseLocalAudio() {
+      stopVisualizer();
+
+      if (localStream) {
+        localStream.getTracks().forEach(track => track.stop());
+        localStream = null;
+      }
+
+      if (visualizerSource) {
+        try {
+          visualizerSource.disconnect();
+        } catch (error) {
+          console.warn('Visualizer source disconnect failed:', error);
+        }
+        visualizerSource = null;
+      }
+
+      if (audioContext) {
+        audioContext.close().catch(error => {
+          console.warn('Failed to close audio context:', error);
+        });
+        audioContext = null;
+      }
+
+      analyserNode = null;
+      visualizerDataArray = null;
+    }
+
+    // Check user login status
+    function checkLoginStatus() {
+      const userStr = localStorage.getItem('user');
+      if (userStr) {
+        try {
+          currentUser = JSON.parse(userStr);
+          document.getElementById('userGreeting').textContent = `Welcome, ${currentUser.name}`;
+          document.getElementById('userGreeting').classList.remove('hidden');
+          document.getElementById('dashboardBtn').classList.remove('hidden');
+          return true;
+        } catch (e) {
+          console.error('Error parsing user data:', e);
+          return false;
+        }
+      }
+      return false;
+    }
+
+    // Show login modal
+    function showLoginModal() {
+      document.getElementById('loginModal').classList.remove('hidden');
+      document.getElementById('loginModal').classList.add('flex');
+    }
+
+    // Close login modal
+    function closeLoginModal() {
+      document.getElementById('loginModal').classList.add('hidden');
+      document.getElementById('loginModal').classList.remove('flex');
+    }
+
+    // Navigation functions
+    function goToDashboard() {
+      window.location.href = 'dashboard.html';
+    }
+
+    function goToHome() {
+      window.location.href = 'index.html';
+    }
+
+    // Setup WebSocket connection
+    function setupWebSocket() {
+      const protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+      const host = location.hostname || 'localhost';
+      const port = location.port || '3000';
+      const wsUrl = `${protocol}://${host}:${port}`;
+      
+      socket = new WebSocket(wsUrl);
+      
+      socket.onopen = () => {
+        console.log('✅ WebSocket connected');
+      };
+      
+      socket.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          handleWebSocketMessage(data);
+        } catch (e) {
+          console.error('Error parsing WebSocket message:', e);
+        }
+      };
+      
+      socket.onerror = (error) => {
+        console.error('WebSocket error:', error);
+      };
+      
+      socket.onclose = () => {
+        console.log('WebSocket disconnected');
+        // Reconnect after 3 seconds
+        setTimeout(setupWebSocket, 3000);
+      };
+    }
+
+    // Handle WebSocket messages
+    function handleWebSocketMessage(data) {
+      switch (data.type) {
+        case 'sermon-started':
+          if (!currentUser) return;
+          currentLiveSermonId = data.sermonId;
+          showLiveBanner();
+          break;
+        
+        case 'sermon-ended':
+          hideLiveSermon();
+          loadSermons(); // Refresh sermon list
+          break;
+        
+        case 'chat-message':
+          if (data.sermonId === currentLiveSermonId) {
+            addChatMessage(data.message);
+          }
+          break;
+        
+        case 'pdf-page-change':
+          if (data.sermonId === currentLiveSermonId && data.pdfPath && data.page) {
+            renderPdfPage(data.pdfPath, data.page);
+          }
+          break;
+      }
+    }
+
+    // Check for live sermon
+    async function checkLiveSermon() {
+      try {
+        const response = await fetch('http://localhost:3000/api/sermons/current-live');
+        const data = await response.json();
+        
+        if (data.isLive && data.sermon) {
+          currentLiveSermonId = data.sermon._id;
+          if (currentUser) {
+            showLiveBanner(data.sermon.title);
+          }
+          
+          // Load PDF if available
+          if (data.sermon.pdfPath) {
+            currentPdfPath = data.sermon.pdfPath;
+            const page = data.sermon.currentPdfPage || 1;
+            await renderPdfPage(data.sermon.pdfPath, page);
+          }
+        }
+      } catch (error) {
+        console.error('Error checking live sermon:', error);
+      }
+    }
+
+    // Show live banner
+    function showLiveBanner(title = 'Live Sermon in Progress') {
+      const banner = document.getElementById('liveBanner');
+      const titleEl = document.getElementById('liveSermonTitle');
+      titleEl.textContent = title;
+      banner.classList.remove('hidden');
+    }
+
+    function updateRaisedHandUI(isTalking, speakerName = '') {
+      const button = document.getElementById('raiseHandBtn');
+      const slider = document.getElementById('handsfreeSlider');
+      const speakerCard = document.getElementById('activeSpeakerCard');
+      const speakerNameEl = document.getElementById('activeSpeakerName');
+
+      button.dataset.talking = isTalking ? 'true' : 'false';
+      button.setAttribute('aria-pressed', isTalking);
+      button.dataset.label = isTalking ? (handsfreeMode ? 'Handsfree' : 'Release') : (handsfreeMode ? 'Handsfree' : 'Hold');
+
+      slider.dataset.position = handsfreeMode ? 'right' : 'left';
+
+      if (isTalking) {
+        speakerCard.classList.remove('hidden');
+        speakerNameEl.textContent = speakerName || 'Guest speaker';
+      } else if (!handsfreeMode) {
+        speakerCard.classList.add('hidden');
+      }
+    }
+
+    // Join live sermon
+    async function joinLiveSermon() {
+      if (!currentUser) {
+        showLoginModal();
+        return;
+      }
+
+      if (!currentLiveSermonId) {
+        alert('No live sermon available');
+        return;
+      }
+
+      try {
+        await prepareLocalAudio();
+      } catch (error) {
+        console.error('Microphone access denied:', error);
+        alert('We need microphone access for the talk feature. Please allow mic permissions and try again.');
+        return;
+      }
+
+      // Hide banner, show player and chat
+      document.getElementById('liveBanner').classList.add('hidden');
+      document.getElementById('livePlayerSection').classList.remove('hidden');
+      document.getElementById('liveChatSection').classList.remove('hidden');
+
+      // Show PDF viewer if PDF is available
+      if (currentPdfPath) {
+        document.getElementById('pdfViewerSection').classList.remove('hidden');
+      }
+
+      // Load chat messages
+      await loadChatMessages(currentLiveSermonId);
+
+      // Start duration counter
+      liveStartTime = Date.now();
+      liveDurationInterval = setInterval(updateLiveDuration, 1000);
+
+      // Scroll to player
+      document.getElementById('livePlayerSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Leave live sermon
+    function leaveLiveSermon() {
+      document.getElementById('livePlayerSection').classList.add('hidden');
+      document.getElementById('liveChatSection').classList.add('hidden');
+      document.getElementById('pdfViewerSection').classList.add('hidden');
+      document.getElementById('activeSpeakerCard').classList.add('hidden');
+      updateRaisedHandUI(false);
+      stopVisualizer();
+      releaseLocalAudio();
+      
+      if (currentLiveSermonId) {
+        showLiveBanner();
+      }
+
+      // Stop duration counter
+      if (liveDurationInterval) {
+        clearInterval(liveDurationInterval);
+        liveDurationInterval = null;
+      }
+
+      // Reset audio
+      const audioPlayer = document.getElementById('liveAudioPlayer');
+      audioPlayer.pause();
+      audioPlayer.src = '';
+    }
+
+    // Hide live sermon (when ended)
+    function hideLiveSermon() {
+      document.getElementById('liveBanner').classList.add('hidden');
+      document.getElementById('livePlayerSection').classList.add('hidden');
+      document.getElementById('liveChatSection').classList.add('hidden');
+      document.getElementById('pdfViewerSection').classList.add('hidden');
+      document.getElementById('activeSpeakerCard').classList.add('hidden');
+      updateRaisedHandUI(false);
+      stopVisualizer();
+      releaseLocalAudio();
+      currentLiveSermonId = null;
+      currentPdfPath = null;
+      pdfDoc = null;
+
+      if (liveDurationInterval) {
+        clearInterval(liveDurationInterval);
+        liveDurationInterval = null;
+      }
+
+      alert('The live sermon has ended. Thank you for joining!');
+    }
+
+    // Update live duration
+    function updateLiveDuration() {
+      if (!liveStartTime) return;
+      
+      const elapsed = Math.floor((Date.now() - liveStartTime) / 1000);
+      const minutes = Math.floor(elapsed / 60);
+      const seconds = elapsed % 60;
+      
+      document.getElementById('liveDuration').textContent = 
+        `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    // Toggle mute
+    function toggleMute() {
+      const audioPlayer = document.getElementById('liveAudioPlayer');
+      const muteBtn = document.getElementById('muteBtn');
+      
+      isMuted = !isMuted;
+      audioPlayer.muted = isMuted;
+      muteBtn.textContent = isMuted ? '🔇 Unmute' : '🔊 Mute';
+    }
+
+    function buildRaisedHandPayload(action) {
+      return JSON.stringify({
+        type: 'raise-hand-action',
+        action,
+        sermonId: currentLiveSermonId,
+        userId: currentUser?._id,
+        userName: currentUser?.name
+      });
+    }
+
+    // Scroll to chat
+    function scrollToChat() {
+      document.getElementById('liveChatSection').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('chatInput').focus();
+    }
+
+    // Send chat message
+    async function sendChatMessage() {
+      if (!currentUser) {
+        showLoginModal();
+        return;
+      }
+
+      if (!currentLiveSermonId) {
+        alert('No live sermon active');
+        return;
+      }
+
+      const input = document.getElementById('chatInput');
+      const message = input.value.trim();
+      
+      if (!message) return;
+
+      try {
+        const response = await fetch('http://localhost:3000/api/sermons/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            sermonId: currentLiveSermonId,
+            userId: currentUser._id,
+            userName: currentUser.name,
+            message: message
+          })
+        });
+
+        if (response.ok) {
+          input.value = '';
+          // Message will be added via WebSocket broadcast
+        } else {
+          alert('Failed to send message');
+        }
+      } catch (error) {
+        console.error('Error sending chat message:', error);
+        alert('Failed to send message');
+      }
+    }
+
+    // Load chat messages
+    async function loadChatMessages(sermonId) {
+      try {
+        const response = await fetch(`http://localhost:3000/api/sermons/${sermonId}/chat`);
+        const data = await response.json();
+        
+        const chatContainer = document.getElementById('chatMessages');
+        chatContainer.innerHTML = '';
+        
+        if (data.chatMessages && data.chatMessages.length > 0) {
+          data.chatMessages.forEach(msg => {
+            addChatMessage(msg, false);
+          });
+          document.getElementById('chatCount').textContent = data.chatMessages.length;
+        } else {
+          chatContainer.innerHTML = `
+            <div class="text-center text-amber-600 text-sm py-8">
+              <p>💬 No messages yet</p>
+              <p class="text-xs mt-2">Be the first to share!</p>
+            </div>
+          `;
+        }
+        
+        // Scroll to bottom
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      } catch (error) {
+        console.error('Error loading chat messages:', error);
+      }
+    }
+
+    // Add chat message to UI
+    function addChatMessage(message, animate = true) {
+      const chatContainer = document.getElementById('chatMessages');
+      
+      // Remove empty state if present
+      if (chatContainer.querySelector('.text-center')) {
+        chatContainer.innerHTML = '';
+      }
+      
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `bg-white rounded-lg p-3 border border-amber-200 ${animate ? 'chat-message' : ''}`;
+      
+      const time = new Date(message.timestamp).toLocaleTimeString('en-US', { 
+        hour: '2-digit', 
+        minute: '2-digit' 
+      });
+      
+      messageDiv.innerHTML = `
+        <div class="flex items-start justify-between">
+          <div class="flex-1">
+            <p class="font-semibold text-amber-900">${message.userName}</p>
+            <p class="text-gray-700 mt-1">${escapeHtml(message.message)}</p>
+          </div>
+          <span class="text-xs text-amber-600 ml-2">${time}</span>
+        </div>
+      `;
+      
+      chatContainer.appendChild(messageDiv);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+      
+      // Update chat count
+      const currentCount = parseInt(document.getElementById('chatCount').textContent) || 0;
+      document.getElementById('chatCount').textContent = currentCount + 1;
+    }
+
+    // Escape HTML to prevent XSS
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Load sermons archive
+    async function loadSermons() {
+      try {
+        const response = await fetch('http://localhost:3000/api/sermons');
+        const sermons = await response.json();
+        
+        const container = document.getElementById('sermonsList');
+        container.innerHTML = '';
+        
+        if (!sermons || sermons.length === 0) {
+          container.innerHTML = `
+            <div class="text-center text-amber-600 py-8">
+              <p class="text-lg">📜 No sermons available yet</p>
+              <p class="text-sm mt-2">Check back later for recorded sermons</p>
+            </div>
+          `;
+          return;
+        }
+        
+        // Filter out live sermons and sort by date
+        const archivedSermons = sermons.filter(s => !s.isLive).sort((a, b) => 
+          new Date(b.createdAt) - new Date(a.createdAt)
+        );
+        
+        archivedSermons.forEach(sermon => {
+          const sermonCard = createSermonCard(sermon);
+          container.appendChild(sermonCard);
+        });
+        
+      } catch (error) {
+        console.error('Error loading sermons:', error);
+        document.getElementById('sermonsList').innerHTML = `
+          <div class="text-center text-red-600 py-8">
+            <p>❌ Failed to load sermons</p>
+            <button onclick="loadSermons()" class="mt-4 vintage-button text-white px-6 py-2 rounded-lg">
+              Try Again
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    // Create sermon card
+    function createSermonCard(sermon) {
+      const card = document.createElement('div');
+      card.className = 'sermon-card vintage-card rounded-lg p-6 border-2 border-amber-300';
+      
+      const date = new Date(sermon.createdAt).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      
+      const time = new Date(sermon.createdAt).toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      
+      const duration = sermon.duration ? formatDuration(sermon.duration) : 'N/A';
+      const messageCount = sermon.chatMessages ? sermon.chatMessages.length : 0;
+      
+      card.innerHTML = `
+        <div class="flex items-start justify-between mb-4">
+          <div class="flex-1">
+            <h3 class="text-xl font-bold text-amber-900 mb-2">${sermon.title || 'Untitled Sermon'}</h3>
+            <div class="flex flex-wrap gap-4 text-sm text-amber-700">
+              <span>📅 ${date}</span>
+              <span>🕐 ${time}</span>
+              <span>⏱️ ${duration}</span>
+              <span>💬 ${messageCount} messages</span>
+            </div>
+          </div>
+          <span class="text-4xl">🎙️</span>
+        </div>
+        
+        ${sermon.audio && sermon.audio.data ? `
+          <div class="bg-amber-50 rounded-lg p-4 mb-4 border border-amber-200">
+            <audio controls class="w-full">
+              <source src="http://localhost:3000/api/sermons/${sermon._id}/audio" type="${sermon.audio.contentType || 'audio/webm'}">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        ` : '<p class="text-amber-600 text-sm mb-4">⚠️ Audio not available</p>'}
+        
+        <div class="flex space-x-3">
+          ${messageCount > 0 ? `
+            <button onclick="viewChatHistory('${sermon._id}')" class="vintage-button text-white px-4 py-2 rounded-lg font-semibold flex-1">
+              💬 View Chat (${messageCount})
+            </button>
+          ` : '<span class="text-amber-600 text-sm flex-1">No chat messages</span>'}
+        </div>
+      `;
+      
+      return card;
+    }
+
+    // Format duration
+    function formatDuration(seconds) {
+      const hours = Math.floor(seconds / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      const secs = seconds % 60;
+      
+      if (hours > 0) {
+        return `${hours}h ${minutes}m`;
+      } else if (minutes > 0) {
+        return `${minutes}m ${secs}s`;
+      } else {
+        return `${secs}s`;
+      }
+    }
+
+    // View chat history
+    async function viewChatHistory(sermonId) {
+      try {
+        const response = await fetch(`http://localhost:3000/api/sermons/${sermonId}/chat`);
+        const data = await response.json();
+        
+        document.getElementById('chatHistoryTitle').textContent = `Chat: ${data.title || 'Sermon'}`;
+        
+        const container = document.getElementById('chatHistoryContent');
+        container.innerHTML = '';
+        
+        if (data.chatMessages && data.chatMessages.length > 0) {
+          data.chatMessages.forEach(msg => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'bg-white rounded-lg p-3 border border-amber-200';
+            
+            const time = new Date(msg.timestamp).toLocaleString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            });
+            
+            messageDiv.innerHTML = `
+              <div class="flex items-start justify-between">
+                <div class="flex-1">
+                  <p class="font-semibold text-amber-900">${msg.userName}</p>
+                  <p class="text-gray-700 mt-1">${escapeHtml(msg.message)}</p>
+                </div>
+                <span class="text-xs text-amber-600 ml-2">${time}</span>
+              </div>
+            `;
+            
+            container.appendChild(messageDiv);
+          });
+        } else {
+          container.innerHTML = '<p class="text-center text-amber-600">No messages in this sermon</p>';
+        }
+        
+        document.getElementById('chatHistoryModal').classList.remove('hidden');
+        document.getElementById('chatHistoryModal').classList.add('flex');
+        
+      } catch (error) {
+        console.error('Error loading chat history:', error);
+        alert('Failed to load chat history');
+      }
+    }
+
+    // Close chat history modal
+    function closeChatHistory() {
+      document.getElementById('chatHistoryModal').classList.add('hidden');
+      document.getElementById('chatHistoryModal').classList.remove('flex');
+    }
+
+    // Load schedule
+    async function loadSchedule() {
+      try {
+        const response = await fetch('http://localhost:3000/api/schedule');
+        const schedules = await response.json();
+        
+        const container = document.getElementById('scheduleList');
+        container.innerHTML = '';
+        
+        if (!schedules || schedules.length === 0) {
+          container.innerHTML = `
+            <div class="text-center text-amber-600 py-4">
+              <p>📅 No upcoming events scheduled</p>
+            </div>
+          `;
+          return;
+        }
+        
+        // Sort by date
+        schedules.sort((a, b) => new Date(a.date) - new Date(b.date));
+        
+        schedules.forEach(schedule => {
+          const scheduleCard = document.createElement('div');
+          scheduleCard.className = 'bg-amber-50 rounded-lg p-4 border-2 border-amber-200 hover:border-amber-400 transition-all';
+          
+          const date = new Date(schedule.date).toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+          
+          scheduleCard.innerHTML = `
+            <div class="flex items-start justify-between">
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-amber-900">${schedule.title}</h3>
+                <p class="text-amber-700 text-sm mt-1">${schedule.description}</p>
+                <div class="flex items-center space-x-4 mt-2 text-sm text-amber-600">
+                  <span>📅 ${date}</span>
+                  <span>🕐 ${schedule.time}</span>
+                </div>
+              </div>
+              <span class="text-3xl">📌</span>
+            </div>
+          `;
+          
+          container.appendChild(scheduleCard);
+        });
+        
+      } catch (error) {
+        console.error('Error loading schedule:', error);
+        document.getElementById('scheduleList').innerHTML = `
+          <div class="text-center text-red-600 py-4">
+            <p>❌ Failed to load schedule</p>
+          </div>
+        `;
+      }
+    }
+
+    // Render PDF page
+    async function renderPdfPage(pdfPath, pageNumber) {
+      try {
+        const pdfUrl = `http://localhost:3000/books/${pdfPath}`;
+        
+        // Load PDF document if not already loaded or if path changed
+        if (!pdfDoc || currentPdfPath !== pdfPath) {
+          pdfDoc = await pdfjsLib.getDocument(pdfUrl).promise;
+          currentPdfPath = pdfPath;
+          document.getElementById('totalPdfPages').textContent = pdfDoc.numPages;
+          document.getElementById('pdfViewerSection').classList.remove('hidden');
+        }
+        
+        // Get the page
+        const page = await pdfDoc.getPage(pageNumber);
+        
+        // Prepare canvas
+        const canvas = document.getElementById('pdfCanvas');
+        const context = canvas.getContext('2d');
+        
+        // Calculate scale to fit container
+        const viewport = page.getViewport({ scale: 1.5 });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        
+        // Render PDF page
+        const renderContext = {
+          canvasContext: context,
+          viewport: viewport
+        };
+        
+        await page.render(renderContext).promise;
+        
+        // Update page number display
+        document.getElementById('currentPdfPage').textContent = pageNumber;
+        
+        console.log(`✅ Rendered PDF page ${pageNumber}`);
+        
+      } catch (error) {
+        console.error('Error rendering PDF:', error);
+      }
+    }
+
+    // Initialize page
+    async function init() {
+      const isLoggedIn = checkLoginStatus();
+      
+      if (!isLoggedIn) {
+        // Show limited view for non-logged-in users
+        console.log('User not logged in - limited access');
+      }
+      
+      setupWebSocket();
+      await loadSchedule();
+      await checkLiveSermon();
+      await loadSermons();
+      
+      // Poll for live sermon status every 10 seconds
+      setInterval(checkLiveSermon, 10000);
+    }
+
+    // Start initialization when page loads
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

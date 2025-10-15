@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login - God's Church Chieko</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-green-50 flex items-center justify-center min-h-screen">
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <h2 class="text-3xl font-bold mb-6 text-green-700 text-center">Admin Login</h2>
+
+    <form id="adminLoginForm" class="space-y-5">
+      <div>
+        <label for="email" class="block mb-1 text-gray-700 font-medium">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email"
+          required 
+          class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+          autocomplete="email"
+        />
+      </div>
+
+      <div>
+        <label for="password" class="block mb-1 text-gray-700 font-medium">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password"
+          required 
+          class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+          autocomplete="current-password"
+        />
+      </div>
+
+      <button 
+        type="submit" 
+        id="loginBtn"
+        class="w-full bg-green-700 hover:bg-green-800 text-white font-semibold py-2 rounded transition"
+      >
+        Login
+      </button>
+
+      <p id="errorMsg" class="text-red-600 text-center hidden mt-3"></p>
+    </form>
+  </div>
+
+  <script>
+    // Redirect if already logged in
+    if (localStorage.getItem('adminLoggedIn') === 'true') {
+      window.location.href = 'admin.html';
+    }
+
+    const errorMsg = document.getElementById('errorMsg');
+    const loginBtn = document.getElementById('loginBtn');
+
+    // Clear error on input
+    document.querySelectorAll('#email, #password').forEach(input => {
+      input.addEventListener('input', () => {
+        errorMsg.classList.add('hidden');
+        errorMsg.textContent = '';
+      });
+    });
+
+    // Handle login
+    document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      loginBtn.disabled = true;
+      loginBtn.textContent = 'Logging in...';
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      try {
+        const res = await fetch('http://localhost:3000/api/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          localStorage.setItem('adminLoggedIn', 'true');
+          window.location.href = 'admin.html';
+        } else {
+          console.error('Login failed:', data);
+          errorMsg.textContent = data.message || 'Invalid credentials';
+          errorMsg.classList.remove('hidden');
+        }
+      } catch (err) {
+        console.error('Server error:', err);
+        errorMsg.textContent = 'Server error. Try again later.';
+        errorMsg.classList.remove('hidden');
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Login';
+      }
+    });
+  </script>
+</body>
+</html>

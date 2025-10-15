@@ -1,0 +1,180 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║          🎬 CHURCH REELS - QUICK START GUIDE 🎬             ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+✅ WHAT'S NEW:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Video server integrated into main server
+✓ Audio plays automatically when you click a video
+✓ No need to run separate video server
+✓ Videos display correctly
+✓ Everything works from ONE server!
+
+
+🚀 HOW TO USE (3 STEPS):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 1: Add Videos
+──────────────────
+Copy your MP4 files to:
+📁 d:\desktop\church\church_videos\
+
+Example:
+  copy "C:\Videos\Sunday_Worship.mp4" "d:\desktop\church\church_videos\"
+
+
+STEP 2: Start Server
+─────────────────────
+Open Command Prompt and run:
+  cd d:\desktop\church
+  node server.js
+
+You should see:
+  ✅ Connected to MongoDB
+  🚀 Server is running at http://localhost:3000
+  📹 Video API available at http://localhost:3000/api/videos
+
+
+STEP 3: Open Reels
+───────────────────
+Open in your browser:
+  http://localhost:3000/reels.html
+
+Click any video → It plays with SOUND! 🔊
+
+
+📝 IMPORTANT NOTES:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Only ONE server needed now (server.js)
+✓ Videos play with audio automatically
+✓ No need to click mute button
+✓ Mute button still available if you want silence
+✓ Videos load from church_videos folder
+✓ New videos appear instantly (just refresh page)
+
+
+🎯 WHAT CHANGED:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BEFORE:
+  ❌ Run server.js (port 3000)
+  ❌ Run get_videos.js (port 3001)
+  ❌ Videos start muted
+  ❌ Click mute button to hear audio
+
+AFTER:
+  ✅ Run server.js only (port 3000)
+  ✅ Videos start with sound
+  ✅ Audio plays automatically
+  ✅ Much simpler!
+
+
+🎬 USER EXPERIENCE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. User sees video gallery
+2. User clicks a video
+3. Video opens in full screen
+4. Audio plays automatically 🔊
+5. User can swipe to next video
+6. Audio continues playing
+7. User can toggle mute if needed
+
+
+📁 FOLDER STRUCTURE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+d:\desktop\church\
+├── server.js                    ← RUN THIS!
+├── reels.html                   ← Open in browser
+├── church_videos/               ← Add MP4 files here
+│   ├── Sunday_Worship.mp4
+│   ├── Pastor_Message.mp4
+│   └── thumbnails/
+│       └── (auto-generated)
+└── get_videos.js                ← No longer needed
+
+
+🎮 CONTROLS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Gallery View:
+  • Click video → Open watch mode
+
+Watch Mode:
+  • Swipe up/down → Next/Previous video
+  • ❤️ Like button → Toggle like
+  • ↗️ Share button → Share video
+  • 🔊 Mute button → Toggle sound
+  • ✕ Close button → Back to gallery
+
+Keyboard Shortcuts:
+  • ↑↓ Arrow keys → Navigate videos
+  • L → Toggle like
+  • Esc → Close watch mode
+
+
+🔧 TROUBLESHOOTING:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Problem: "Server Not Running" message
+Solution: Run "node server.js" in d:\desktop\church
+
+Problem: No videos showing
+Solution: Add MP4 files to church_videos folder
+
+Problem: Video won't play
+Solution: Check if file is valid MP4 format
+
+Problem: No audio
+Solution: Check browser console - may need user interaction first
+
+
+✨ FEATURES:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Automatic video detection
+✓ Smart title generation from filenames
+✓ Instagram/TikTok-style player
+✓ Auto-play with sound
+✓ Swipe navigation
+✓ Like & Share buttons
+✓ Mute toggle
+✓ Mobile responsive
+✓ Keyboard shortcuts
+
+
+💡 TIPS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Name files descriptively: Sunday_Worship_Jan_2024.mp4
+• Underscores become spaces: "Sunday Worship Jan 2024"
+• Only MP4 format supported
+• Videos appear instantly after adding
+• Keep videos under 200MB for best performance
+• Compress videos for faster loading
+
+
+🎉 SUCCESS!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Your church reels system is now:
+  ✅ Simpler (one server)
+  ✅ Better UX (auto audio)
+  ✅ Easier to use
+  ✅ Fully working!
+
+Enjoy your Instagram-style church reels! 🙏📹
+
+
+═══════════════════════════════════════════════════════════════
+
+For detailed documentation, see:
+  • REELS_UPDATE_SUMMARY.md
+  • REELS_COMPLETE_SUMMARY.md
+  • REELS_SETUP_GUIDE.md
+
+═══════════════════════════════════════════════════════════════

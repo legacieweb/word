@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - God's Church Chieko</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    .vintage-bg {
+      background:
+        linear-gradient(45deg, rgba(139, 69, 19, 0.1) 0%, rgba(160, 82, 45, 0.1) 100%),
+        url('https://images.unsplash.com/photo-1481833761820-0509d3217039?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+
+    .vintage-overlay {
+      background: radial-gradient(circle at center, rgba(245, 245, 220, 0.95) 0%, rgba(222, 184, 135, 0.98) 100%);
+      backdrop-filter: blur(2px);
+    }
+
+    .elegant-text {
+      font-family: 'Playfair Display', serif;
+      color: #8B4513;
+      text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
+    }
+
+    .scripture-text {
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+      color: #654321;
+    }
+
+    .vintage-card {
+      background: linear-gradient(145deg, #F5F5DC 0%, #FAEBD7 100%);
+      border: 3px solid #D2B48C;
+      box-shadow: 0 8px 32px rgba(139, 69, 19, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .vintage-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(139, 69, 19, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .vintage-card::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px solid #CD853F;
+      pointer-events: none;
+    }
+
+    .vintage-button {
+      background: linear-gradient(145deg, #8B4513 0%, #A0522D 100%);
+      border: 2px solid #CD853F;
+      box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+
+    .vintage-button:hover {
+      background: linear-gradient(145deg, #A0522D 0%, #8B4513 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .decorative-flourish {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0 10 Q25 0 50 10 T100 10' stroke='%23CD853F' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 20px;
+      width: 100px;
+      margin: 0 auto;
+    }
+
+    .live-pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .5; }
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+      border: 2px solid #CD853F;
+      color: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+    }
+
+    .reels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .reel-card {
+      position: relative;
+      aspect-ratio: 9/16;
+      border-radius: 1rem;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 3px solid #D2B48C;
+      box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
+    }
+
+    .reel-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+      border-color: #CD853F;
+    }
+
+    .reel-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .reel-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      padding: 1rem;
+      color: white;
+    }
+
+    .ornamental-border {
+      border-image: linear-gradient(45deg, #CD853F, #D2B48C, #CD853F) 1;
+      border-width: 2px;
+    }
+
+    .live-banner {
+      animation: slideDown 0.5s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .live-pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+      border-style: solid;
+    }
+  </style>
+</head>
+<body class="vintage-bg min-h-screen font-sans">
+  
+  <!-- Navbar -->
+  <header class="vintage-overlay border-b-4 ornamental-border sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <a href="index.html" class="text-xl sm:text-2xl font-bold elegant-text">✝ God's Church Chieko</a>
+        <div class="flex items-center gap-4">
+          <span class="elegant-text hidden sm:inline">Welcome, <span id="userName">Guest</span></span>
+          <button onclick="logout()" class="vintage-button text-white px-4 py-2 rounded-lg text-sm">Logout</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+    
+    <!-- Welcome Section -->
+    <div class="vintage-card rounded-2xl p-6 sm:p-8 mb-6">
+      <div class="text-center">
+        <div class="decorative-flourish mb-4"></div>
+        <h1 class="text-3xl sm:text-4xl font-bold elegant-text mb-2">Welcome Back, <span id="userNameMain">Guest</span>!</h1>
+        <p class="scripture-text text-lg">"I am the way, the truth, and the life" - John 14:6</p>
+        <div class="decorative-flourish mt-4"></div>
+      </div>
+    </div>
+
+    <!-- 🔴 Live Banner -->
+    <div id="liveBanner" class="hidden vintage-card rounded-2xl p-6 mb-6 border-4 border-red-600 live-banner cursor-pointer hover:shadow-2xl transition-all" onclick="window.location.href='sermon.html'">
+      <div class="flex items-center justify-between flex-wrap gap-4">
+        <div class="flex items-center gap-4">
+          <span class="text-5xl live-pulse">🔴</span>
+          <div>
+            <p class="text-2xl font-bold elegant-text">LIVE SERMON IN PROGRESS</p>
+            <p class="scripture-text text-lg" id="liveSermonTitle">Join now and be part of the worship</p>
+          </div>
+        </div>
+        <button class="vintage-button text-white px-6 py-3 rounded-lg font-bold text-lg">
+          ✨ Join Now →
+        </button>
+      </div>
+    </div>
+
+    <!-- First-time banner -->
+    <div id="firstTimeBanner" class="hidden vintage-card rounded-2xl p-6 mb-6 border-4 border-yellow-600">
+      <p class="font-bold elegant-text text-xl mb-2">We're so glad you're here for the first time! 💚</p>
+      <p id="sourceInfo" class="scripture-text text-lg"></p>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-6">
+      <div class="stat-card">
+        <div class="text-4xl mb-2">📖</div>
+        <div class="text-2xl font-bold">12</div>
+        <div class="text-sm opacity-90">Sermons Watched</div>
+      </div>
+      <div class="stat-card">
+        <div class="text-4xl mb-2">🎬</div>
+        <div class="text-2xl font-bold" id="reelsWatchedCount">0</div>
+        <div class="text-sm opacity-90">Reels Watched</div>
+      </div>
+      <div class="stat-card">
+        <div class="text-4xl mb-2">📅</div>
+        <div class="text-2xl font-bold">3</div>
+        <div class="text-sm opacity-90">Events Joined</div>
+      </div>
+      <div class="stat-card">
+        <div class="text-4xl mb-2">🙏</div>
+        <div class="text-2xl font-bold">28</div>
+        <div class="text-sm opacity-90">Days Active</div>
+      </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid gap-6 grid-cols-1 lg:grid-cols-2 mb-6">
+      
+      <!-- Upcoming Events Schedule -->
+      <div class="vintage-card rounded-2xl p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-2xl font-bold elegant-text flex items-center gap-2">
+            <span>📅</span> Upcoming Events
+          </h2>
+          <button onclick="loadSchedule()" class="text-amber-700 hover:text-amber-900 font-semibold text-sm">
+            🔄 Refresh
+          </button>
+        </div>
+        <div id="scheduleList" class="space-y-3">
+          <div class="text-center py-4">
+            <div class="animate-spin text-4xl mb-2">⏳</div>
+            <p class="scripture-text">Loading schedule...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Announcements -->
+      <div class="vintage-card rounded-2xl p-6">
+        <h2 class="text-2xl font-bold elegant-text mb-4 flex items-center gap-2">
+          <span>📢</span> Announcements
+        </h2>
+        <div class="space-y-3">
+          <div class="bg-white bg-opacity-50 p-4 rounded-lg border-2 border-amber-200">
+            <div class="font-bold text-amber-900 mb-2">Monthly Prayer & Fasting</div>
+            <p class="scripture-text">Join our monthly prayer and fasting this coming Saturday. Let's seek God's face together.</p>
+          </div>
+          <div class="bg-white bg-opacity-50 p-4 rounded-lg border-2 border-amber-200">
+            <div class="font-bold text-amber-900 mb-2">Outreach Program</div>
+            <p class="scripture-text">Volunteers needed for the community outreach program. Sign up at the front desk.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Church Reels Section -->
+    <div class="vintage-card rounded-2xl p-6 mb-6">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl sm:text-3xl font-bold elegant-text flex items-center gap-2">
+          <span>🎬</span> Church Reels
+        </h2>
+        <a href="reels.html" class="vintage-button text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base">
+          View All Reels →
+        </a>
+      </div>
+      
+      <div id="reelsPreloader" class="text-center py-12">
+        <div class="inline-block animate-spin text-6xl">⏳</div>
+        <p class="scripture-text mt-4">Loading inspiring content...</p>
+      </div>
+
+      <div id="reelsGrid" class="reels-grid hidden"></div>
+
+      <div id="noReelsMessage" class="hidden text-center py-12">
+        <div class="text-6xl mb-4">🎬</div>
+        <p class="elegant-text text-xl mb-2">No reels available yet</p>
+        <p class="scripture-text">Check back soon for inspiring content!</p>
+      </div>
+    </div>
+
+    <!-- 🔴 Live Sermon Controls for Users -->
+    <section id="userSermonControls" class="hidden vintage-card rounded-2xl p-6 mb-6">
+      <h2 class="text-2xl font-bold elegant-text mb-4 flex items-center gap-2">
+        <span>🎧</span> Live Sermon Controls
+      </h2>
+      <audio id="sermonAudio" controls autoplay class="w-full mb-4 hidden rounded-lg"></audio>
+      <button onclick="toggleMic()" class="vintage-button text-white px-6 py-3 rounded-lg" id="micStatus">🎙️ Enable Mic</button>
+      
+      <div class="mt-6">
+        <label for="userComment" class="block text-lg font-bold elegant-text mb-2">Leave a comment for admin</label>
+        <textarea id="userComment" rows="3" class="w-full border-2 border-amber-300 rounded-lg p-3 scripture-text" placeholder="Share a thought, prayer or question..."></textarea>
+        <button onclick="sendUserComment()" class="mt-3 vintage-button text-white px-6 py-3 rounded-lg">✉️ Send Comment</button>
+      </div>
+    </section>
+
+    <!-- Personal Notes Section -->
+    <div id="notesSection" class="vintage-card rounded-2xl p-6 mb-6 hidden">
+      <h2 class="text-2xl font-bold elegant-text mb-4 flex items-center gap-2">
+        <span>📝</span> Personal Notes from Church Admin
+      </h2>
+      <ul id="notesList" class="space-y-4"></ul>
+    </div>
+
+    <!-- Church Welcome Message -->
+    <div class="vintage-card rounded-2xl p-6 mb-6">
+      <h2 class="text-2xl font-bold elegant-text mb-4 flex items-center gap-2">
+        <span>💒</span> Church Welcome Message
+      </h2>
+      <p class="scripture-text text-lg leading-relaxed">
+        Thank you for joining God's Church Chieko! We're thrilled to have you with us. Stay connected and be part of our growing family. May the Lord bless you and keep you as you walk in His eternal truth.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="vintage-overlay border-t-4 ornamental-border py-8">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <div class="decorative-flourish mb-4"></div>
+      <h4 class="text-xl font-bold elegant-text mb-2">✝ Eternal Truth - God's Church Chieko</h4>
+      <p class="scripture-text text-base mb-4">
+        "Heaven and earth will pass away, but My words will by no means pass away." — Matthew 24:35
+      </p>
+      <div class="decorative-flourish mb-4"></div>
+      <p class="text-amber-800 font-semibold">&copy; 2025 God's Church Chieko. All rights reserved. | Walking in Eternal Truth</p>
+    </div>
+  </footer>
+
+  <script>
+    const VIDEO_API = 'http://localhost:3000/api/videos';
+    let reelsData = [];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const liveBanner = document.getElementById("liveBanner");
+      const userSermonControls = document.getElementById("userSermonControls");
+      const userData = JSON.parse(localStorage.getItem('user'));
+
+      let audioConnection = null;
+      let micStream = null;
+      let micTrack = null;
+      let peer = null;
+
+      // Load user data
+      if (userData) {
+        if (userData.name) {
+          document.getElementById("userName").textContent = userData.name;
+          document.getElementById("userNameMain").textContent = userData.name;
+        }
+        if (userData.isFirstTime) {
+          document.getElementById("firstTimeBanner").classList.remove("hidden");
+          if (userData.source) {
+            document.getElementById("sourceInfo").textContent = `You mentioned you heard about us through: ${userData.source}`;
+          }
+        }
+
+        // Load personal notes
+        if (userData._id) {
+          fetch(`http://localhost:3000/api/user/notes/${userData._id}`)
+            .then(res => res.ok ? res.json() : Promise.reject(res.status))
+            .then(data => {
+              const notes = data.notes || [];
+              if (notes.length > 0) {
+                const section = document.getElementById("notesSection");
+                const list = document.getElementById("notesList");
+                section.classList.remove("hidden");
+                notes.forEach(note => {
+                  const li = document.createElement("li");
+                  li.className = "bg-white bg-opacity-50 border-2 border-amber-200 p-4 rounded-lg";
+                  li.innerHTML = `
+                    <p class="font-bold elegant-text text-lg mb-2">${note.message}</p>
+                    <p class="scripture-text text-sm mb-3">Posted: ${new Date(note.date).toLocaleString()}</p>
+                    ${
+                      note.replies?.length
+                        ? `<div class="mt-3 bg-amber-50 p-3 rounded"><strong class="elegant-text">Replies:</strong><ul class="mt-2 space-y-2">${
+                            note.replies.map(reply => `
+                              <li class="scripture-text ml-4">💬 ${reply.message}
+                                <span class="text-xs text-gray-500">(${new Date(reply.date).toLocaleString()})</span>
+                              </li>
+                            `).join('')
+                          }</ul></div>`
+                        : `<div class="mt-3">
+                            <label class="block scripture-text font-bold mb-2">Your Reply</label>
+                            <input type="text" id="reply-${note._id}" class="w-full px-3 py-2 border-2 border-amber-300 rounded-lg mb-2" placeholder="Write a reply..." />
+                            <button onclick="sendReply('${userData._id}', '${note._id}')" class="vintage-button text-white px-4 py-2 rounded-lg text-sm">Send Reply</button>
+                          </div>`
+                    }
+                  `;
+                  list.appendChild(li);
+                });
+              }
+            })
+            .catch(err => console.error("Fetch notes error:", err));
+        }
+      }
+
+      // Load reels
+      loadReels();
+
+      // Load schedule
+      loadSchedule();
+
+      // Load watched reels count
+      const watchedVideos = JSON.parse(localStorage.getItem('watchedVideos') || '[]');
+      document.getElementById('reelsWatchedCount').textContent = watchedVideos.length;
+
+      // WebSocket for live sermon
+      const ws = new WebSocket("ws://localhost:3000");
+
+      ws.onmessage = async (msg) => {
+        if (typeof msg.data !== 'string') return;
+        let data;
+        try { data = JSON.parse(msg.data); } catch { return; }
+
+        if (data.type === "start-sermon") {
+          liveBanner.classList.remove("hidden");
+          userSermonControls.classList.remove("hidden");
+          await setupSermonListener();
+        } else if (data.type === "stop-sermon") {
+          liveBanner.classList.add("hidden");
+          userSermonControls.classList.add("hidden");
+          if (audioConnection) { audioConnection.srcObject = null; audioConnection.pause(); }
+          if (micTrack) micTrack.stop();
+          if (peer) peer.close();
+        }
+      };
+
+      async function setupSermonListener() {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          micStream = stream;
+          micTrack = stream.getAudioTracks()[0];
+        } catch (e) {
+          console.warn("Microphone access denied.");
+        }
+
+        peer = new RTCPeerConnection({ iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] });
+        peer.ontrack = (event) => {
+          const audio = document.getElementById("sermonAudio");
+          audio.srcObject = event.streams[0];
+          audio.classList.remove("hidden");
+          audioConnection = audio;
+          audio.play().catch(err => console.warn("Autoplay error:", err));
+        };
+
+        const socket = new WebSocket("ws://localhost:3000");
+        socket.onopen = () => {
+          peer.createOffer().then(offer => {
+            peer.setLocalDescription(offer);
+            socket.send(JSON.stringify({ type: "user-offer", offer }));
+          });
+        };
+
+        socket.onmessage = async (e) => {
+          if (typeof e.data !== 'string') return;
+          let msg;
+          try { msg = JSON.parse(e.data); } catch { return; }
+          if (msg.type === "admin-answer") await peer.setRemoteDescription(msg.answer);
+          if (msg.type === "ice") await peer.addIceCandidate(msg.ice);
+        };
+
+        peer.onicecandidate = (e) => {
+          if (e.candidate) socket.send(JSON.stringify({ type: "ice", ice: e.candidate }));
+        };
+      }
+
+      window.toggleMic = function() {
+        if (!micTrack) return alert("Mic not accessible.");
+        micTrack.enabled = !micTrack.enabled;
+        document.getElementById("micStatus").textContent = micTrack.enabled ? "🔊 Mic On" : "🔇 Mic Off";
+      }
+
+      window.sendUserComment = async function() {
+        const msg = document.getElementById("userComment").value.trim();
+        if (!msg || !userData?._id) return alert("Missing input or user ID.");
+        try {
+          const res = await fetch("http://localhost:3000/api/user/comment", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId: userData._id, message: msg })
+          });
+          if (res.ok) {
+            alert("✉️ Comment sent!");
+            document.getElementById("userComment").value = "";
+          } else alert("❌ Failed to send.");
+        } catch (err) {
+          console.error("Comment error:", err);
+          alert("Error sending comment.");
+        }
+      }
+
+      window.sendReply = async function(userId, noteId) {
+        const input = document.getElementById(`reply-${noteId}`);
+        const message = input.value.trim();
+        if (!message) return alert("Reply cannot be empty.");
+        try {
+          const res = await fetch(`http://localhost:3000/api/users/${userId}/notes/${noteId}/reply`, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message })
+          });
+          if (res.ok) {
+            input.value = '';
+            alert("Reply sent!");
+            location.reload();
+          } else {
+            alert("❌ Failed to send reply.");
+          }
+        } catch (err) {
+          console.error("Reply error:", err);
+        }
+      }
+
+      // Check if sermon is already live
+      fetch("http://localhost:3000/api/sermons/status")
+        .then(res => res.json())
+        .then(data => {
+          if (data?.isLive) {
+            liveBanner.classList.remove("hidden");
+            userSermonControls.classList.remove("hidden");
+            setupSermonListener();
+          }
+        })
+        .catch(err => console.error("Check live sermon error:", err));
+    });
+
+    // Load reels from server
+    async function loadReels() {
+      try {
+        const response = await fetch(VIDEO_API);
+        const data = await response.json();
+        
+        if (data.success && data.videos.length > 0) {
+          reelsData = data.videos.slice(0, 8); // Show first 8 reels
+          displayReels();
+        } else {
+          showNoReels();
+        }
+      } catch (error) {
+        console.error('Error loading reels:', error);
+        showNoReels();
+      }
+    }
+
+    // Display reels in grid
+    function displayReels() {
+      const grid = document.getElementById('reelsGrid');
+      const preloader = document.getElementById('reelsPreloader');
+      
+      grid.innerHTML = '';
+      
+      reelsData.forEach((video, index) => {
+        const card = document.createElement('div');
+        card.className = 'reel-card';
+        card.onclick = () => window.location.href = 'reels.html';
+        
+        card.innerHTML = `
+          <img src="${video.thumbnail}" alt="${video.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 356%22%3E%3Crect fill=%22%23D2B48C%22 width=%22200%22 height=%22356%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22%238B4513%22%3E🎬%3C/text%3E%3C/svg%3E'" />
+          <div class="reel-overlay">
+            <div class="font-bold text-sm mb-1">${video.title}</div>
+            <div class="text-xs opacity-90">👁️ ${video.views || 0} views</div>
+          </div>
+        `;
+        
+        grid.appendChild(card);
+      });
+      
+      preloader.classList.add('hidden');
+      grid.classList.remove('hidden');
+    }
+
+    // Show no reels message
+    function showNoReels() {
+      document.getElementById('reelsPreloader').classList.add('hidden');
+      document.getElementById('noReelsMessage').classList.remove('hidden');
+    }
+
+    // Load schedule
+    async function loadSchedule() {
+      try {
+        const response = await fetch('http://localhost:3000/api/schedule');
+        const schedules = await response.json();
+        
+        const container = document.getElementById('scheduleList');
+        container.innerHTML = '';
+        
+        if (!schedules || schedules.length === 0) {
+          container.innerHTML = `
+            <div class="text-center py-4">
+              <p class="scripture-text">📅 No upcoming events scheduled</p>
+            </div>
+          `;
+          return;
+        }
+        
+        // Sort by date
+        schedules.sort((a, b) => new Date(a.date) - new Date(b.date));
+        
+        schedules.forEach(schedule => {
+          const scheduleCard = document.createElement('div');
+          scheduleCard.className = 'bg-white bg-opacity-50 p-4 rounded-lg border-2 border-amber-200 hover:border-amber-400 transition-all';
+          
+          const date = new Date(schedule.date).toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+          });
+          
+          scheduleCard.innerHTML = `
+            <div class="flex items-start justify-between">
+              <div class="flex-1">
+                <div class="font-bold text-amber-900 text-lg">${schedule.title}</div>
+                <p class="scripture-text text-sm mt-1">${schedule.description}</p>
+                <div class="flex items-center gap-3 mt-2 text-sm text-amber-700">
+                  <span>📅 ${date}</span>
+                  <span>🕐 ${schedule.time}</span>
+                </div>
+              </div>
+              <span class="text-2xl">📌</span>
+            </div>
+          `;
+          
+          container.appendChild(scheduleCard);
+        });
+        
+      } catch (error) {
+        console.error('Error loading schedule:', error);
+        document.getElementById('scheduleList').innerHTML = `
+          <div class="text-center py-4">
+            <p class="scripture-text text-red-600">❌ Failed to load schedule</p>
+          </div>
+        `;
+      }
+    }
+
+    // Logout function
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('user');
+        localStorage.removeItem('userToken');
+        window.location.href = 'login.html';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,2686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Church Reels - God's Church Chieko</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Crimson Text', serif;
+      overflow-x: hidden;
+    }
+
+    .vintage-bg {
+      background: 
+        linear-gradient(45deg, rgba(139, 69, 19, 0.1) 0%, rgba(160, 82, 45, 0.1) 100%),
+        url('https://images.unsplash.com/photo-1481833761820-0509d3217039?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+    
+    .vintage-overlay {
+      background: 
+        radial-gradient(circle at center, rgba(245, 245, 220, 0.95) 0%, rgba(222, 184, 135, 0.98) 100%);
+      backdrop-filter: blur(2px);
+    }
+    
+    .elegant-text {
+      font-family: 'Playfair Display', serif;
+      color: #8B4513;
+      text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
+    }
+    
+    .scripture-text {
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+      color: #654321;
+    }
+    
+    .vintage-card {
+      background: linear-gradient(145deg, #F5F5DC 0%, #FAEBD7 100%);
+      border: 3px solid #D2B48C;
+      box-shadow: 
+        0 8px 32px rgba(139, 69, 19, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .vintage-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 
+        0 12px 40px rgba(139, 69, 19, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+    
+    .vintage-card::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px solid #CD853F;
+      pointer-events: none;
+    }
+    
+    .ornamental-border {
+      border-image: linear-gradient(45deg, #CD853F, #D2B48C, #CD853F) 1;
+      border-width: 2px;
+      border-style: solid;
+    }
+    
+    .vintage-button {
+      background: linear-gradient(145deg, #8B4513 0%, #A0522D 100%);
+      border: 2px solid #CD853F;
+      box-shadow: 
+        0 4px 15px rgba(139, 69, 19, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+    
+    .vintage-button:hover {
+      background: linear-gradient(145deg, #A0522D 0%, #8B4513 100%);
+      transform: translateY(-2px);
+      box-shadow: 
+        0 6px 20px rgba(139, 69, 19, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+    
+    .decorative-flourish {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0 10 Q25 0 50 10 T100 10' stroke='%23CD853F' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 20px;
+      width: 100px;
+      margin: 0 auto;
+    }
+
+    /* Profile Section */
+    .profile-section {
+      padding: 30px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 20px;
+    }
+
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 4px solid #CD853F;
+      object-fit: cover;
+      box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+    }
+
+    .profile-info h2 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .profile-stats {
+      display: flex;
+      gap: 30px;
+      margin-top: 15px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 24px;
+      font-weight: bold;
+      color: #8B4513;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: #654321;
+    }
+
+    /* Mobile Profile */
+    @media (max-width: 640px) {
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+
+      .profile-avatar {
+        width: 80px;
+        height: 80px;
+      }
+
+      .profile-info h2 {
+        font-size: 22px;
+      }
+
+      .profile-stats {
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .stat-number {
+        font-size: 20px;
+      }
+    }
+
+    /* Video Gallery Grid */
+    .video-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .video-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .video-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 10px;
+      }
+    }
+
+    .video-card {
+      position: relative;
+      cursor: pointer;
+      border-radius: 15px;
+      overflow: hidden;
+      aspect-ratio: 9/16;
+      transition: all 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(139, 69, 19, 0.4);
+    }
+
+    @media (hover: none) {
+      .video-card:hover {
+        transform: none;
+      }
+      .video-card:active {
+        transform: scale(0.98);
+      }
+    }
+
+    .video-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      padding: 15px;
+      color: white;
+    }
+
+    .video-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .video-meta {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #8B4513;
+      transition: all 0.3s ease;
+    }
+
+    .video-card:hover .play-icon {
+      transform: translate(-50%, -50%) scale(1.1);
+      background: rgba(255, 255, 255, 1);
+    }
+
+    @media (max-width: 640px) {
+      .video-overlay {
+        padding: 10px;
+      }
+
+      .video-title {
+        font-size: 14px;
+      }
+
+      .video-meta {
+        font-size: 11px;
+      }
+
+      .play-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+    }
+
+    /* Watch Mode - Full Screen Video Player */
+    .watch-mode {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #000;
+      z-index: 9999;
+      display: none;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .watch-mode.active {
+      display: block;
+    }
+
+    .video-slide {
+      width: 100%;
+      height: 100vh;
+      scroll-snap-align: start;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-player {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+    }
+
+    @media (min-width: 769px) {
+      .video-player {
+        max-width: 500px;
+        height: 90vh;
+        border-radius: 20px;
+      }
+    }
+
+    /* Video Info Overlay */
+    .video-info-overlay {
+      position: absolute;
+      bottom: 80px;
+      left: 20px;
+      right: 20px;
+      color: white;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    @media (min-width: 769px) {
+      .video-info-overlay {
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 500px;
+      }
+    }
+
+    .video-info-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-family: 'Playfair Display', serif;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    }
+
+    .video-info-description {
+      font-size: 14px;
+      opacity: 0.9;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    }
+
+    /* Video Controls Overlay */
+    .video-controls-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      padding: 20px;
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .video-controls-overlay.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    @media (min-width: 769px) {
+      .video-controls-overlay {
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 500px;
+        border-radius: 0 0 20px 20px;
+      }
+    }
+
+    .video-progress-bar {
+      width: 100%;
+      height: 5px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .video-progress-filled {
+      height: 100%;
+      background: #CD853F;
+      border-radius: 5px;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    .video-controls-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .video-control-btn {
+      background: rgba(245, 245, 220, 0.9);
+      border: 2px solid #CD853F;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 20px;
+      color: #8B4513;
+    }
+
+    .video-control-btn:hover {
+      transform: scale(1.1);
+      background: rgba(255, 255, 255, 1);
+    }
+
+    .video-control-btn:active {
+      transform: scale(0.95);
+    }
+
+    .video-control-btn.play-pause {
+      width: 55px;
+      height: 55px;
+      font-size: 24px;
+    }
+
+    .video-time {
+      color: white;
+      font-size: 12px;
+      text-align: center;
+      margin-top: 5px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Control Buttons - Always on Right Side */
+    .control-buttons {
+      position: fixed;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Mobile: Right Side (smaller) */
+    @media (max-width: 768px) {
+      .control-buttons {
+        right: 10px;
+        gap: 12px;
+      }
+    }
+
+    .control-btn {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: rgba(245, 245, 220, 0.95);
+      border: 3px solid #CD853F;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    @media (max-width: 768px) {
+      .control-btn {
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    .control-btn:hover {
+      transform: scale(1.1);
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    .control-btn:active {
+      transform: scale(0.95);
+    }
+
+    .control-icon {
+      font-size: 28px; /* Larger emoji since no label */
+    }
+
+    @media (max-width: 768px) {
+      .control-icon {
+        font-size: 24px; /* Larger emoji on mobile too */
+      }
+    }
+
+    .control-label {
+      display: none; /* Hide all labels - emoji only */
+    }
+
+    .control-btn.liked .control-icon {
+      color: #DC143C;
+    }
+
+    /* Shaking animation for muted audio button */
+    @keyframes shake-violent {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      10% { transform: translate(-3px, -3px) rotate(-5deg); }
+      20% { transform: translate(3px, 3px) rotate(5deg); }
+      30% { transform: translate(-3px, 3px) rotate(-5deg); }
+      40% { transform: translate(3px, -3px) rotate(5deg); }
+      50% { transform: translate(-3px, -3px) rotate(-5deg); }
+      60% { transform: translate(3px, 3px) rotate(5deg); }
+      70% { transform: translate(-3px, 3px) rotate(-5deg); }
+      80% { transform: translate(3px, -3px) rotate(5deg); }
+      90% { transform: translate(-3px, -3px) rotate(-5deg); }
+    }
+
+    .control-btn.muted-shake {
+      animation: shake-violent 0.5s infinite;
+      background: rgba(255, 200, 200, 0.95) !important;
+      border-color: #DC143C !important;
+    }
+
+    .control-btn.muted-shake .control-icon {
+      color: #DC143C;
+    }
+
+    /* First Time Guide Popup */
+    .guide-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 99999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .guide-overlay.active {
+      display: flex;
+    }
+
+    .guide-content {
+      background: linear-gradient(145deg, #F5F5DC 0%, #FAEBD7 100%);
+      border: 4px solid #CD853F;
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 500px;
+      max-height: 85vh;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(139, 69, 19, 0.5);
+      position: relative;
+      animation: guideSlideIn 0.5s ease-out;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    /* Scrollbar styling for guide popup */
+    .guide-content::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .guide-content::-webkit-scrollbar-track {
+      background: rgba(210, 180, 140, 0.3);
+      border-radius: 10px;
+    }
+
+    .guide-content::-webkit-scrollbar-thumb {
+      background: #8B4513;
+      border-radius: 10px;
+    }
+
+    .guide-content::-webkit-scrollbar-thumb:hover {
+      background: #A0522D;
+    }
+
+    @keyframes guideSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+
+    .guide-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .guide-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: #8B4513;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
+    }
+
+    .guide-subtitle {
+      font-family: 'Crimson Text', serif;
+      font-size: 16px;
+      color: #654321;
+      font-style: italic;
+    }
+
+    .guide-steps {
+      margin: 20px 0;
+    }
+
+    .guide-step {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 15px;
+      margin-bottom: 15px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 12px;
+      border: 2px solid #D2B48C;
+      transition: all 0.3s ease;
+      animation: stepFadeIn 0.5s ease-out backwards;
+    }
+
+    .guide-step:nth-child(1) { animation-delay: 0.1s; }
+    .guide-step:nth-child(2) { animation-delay: 0.2s; }
+    .guide-step:nth-child(3) { animation-delay: 0.3s; }
+    .guide-step:nth-child(4) { animation-delay: 0.4s; }
+    .guide-step:nth-child(5) { animation-delay: 0.5s; }
+    .guide-step:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes stepFadeIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .guide-step:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
+    }
+
+    .guide-icon {
+      font-size: 36px;
+      min-width: 50px;
+      text-align: center;
+      animation: iconBounce 2s infinite;
+    }
+
+    @keyframes iconBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .guide-step:hover .guide-icon {
+      animation: iconSpin 0.5s ease;
+    }
+
+    @keyframes iconSpin {
+      from { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.2); }
+      to { transform: rotate(360deg) scale(1); }
+    }
+
+    .guide-text {
+      flex: 1;
+    }
+
+    .guide-text-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #8B4513;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .guide-text-desc {
+      font-family: 'Crimson Text', serif;
+      font-size: 14px;
+      color: #654321;
+      line-height: 1.4;
+    }
+
+    .guide-footer {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .guide-button {
+      background: linear-gradient(145deg, #8B4513 0%, #A0522D 100%);
+      color: white;
+      border: 3px solid #CD853F;
+      padding: 15px 40px;
+      font-size: 18px;
+      font-family: 'Playfair Display', serif;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+      animation: buttonPulse 2s infinite;
+    }
+
+    @keyframes buttonPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3); }
+      50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(139, 69, 19, 0.5); }
+    }
+
+    .guide-button:hover {
+      background: linear-gradient(145deg, #A0522D 0%, #8B4513 100%);
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(139, 69, 19, 0.5);
+    }
+
+    .guide-button:active {
+      transform: scale(0.95);
+    }
+
+    .guide-progress {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .guide-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #D2B48C;
+      transition: all 0.3s ease;
+    }
+
+    .guide-dot.active {
+      background: #8B4513;
+      transform: scale(1.3);
+    }
+
+    /* Mobile adjustments for guide */
+    @media (max-width: 640px) {
+      .guide-content {
+        padding: 25px;
+        max-width: 95%;
+      }
+
+      .guide-title {
+        font-size: 24px;
+      }
+
+      .guide-subtitle {
+        font-size: 14px;
+      }
+
+      .guide-step {
+        gap: 15px;
+        padding: 12px;
+      }
+
+      .guide-icon {
+        font-size: 28px;
+        min-width: 40px;
+      }
+
+      .guide-text-title {
+        font-size: 16px;
+      }
+
+      .guide-text-desc {
+        font-size: 13px;
+      }
+
+      .guide-button {
+        padding: 12px 30px;
+        font-size: 16px;
+      }
+    }
+
+    /* Login Required Popup */
+    .login-popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 99998;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .login-popup-overlay.active {
+      display: flex;
+    }
+
+    .login-popup-content {
+      background: linear-gradient(145deg, #F5F5DC 0%, #FAEBD7 100%);
+      border: 4px solid #CD853F;
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 450px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(139, 69, 19, 0.5);
+      text-align: center;
+      animation: guideSlideIn 0.4s ease-out;
+    }
+
+    .login-popup-icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+
+    .login-popup-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: #8B4513;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
+    }
+
+    .login-popup-message {
+      font-family: 'Crimson Text', serif;
+      font-size: 16px;
+      color: #654321;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .login-popup-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .login-popup-btn {
+      background: linear-gradient(145deg, #8B4513 0%, #A0522D 100%);
+      color: white;
+      border: 3px solid #CD853F;
+      padding: 12px 30px;
+      font-size: 16px;
+      font-family: 'Playfair Display', serif;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+    }
+
+    .login-popup-btn:hover {
+      background: linear-gradient(145deg, #A0522D 0%, #8B4513 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 69, 19, 0.5);
+    }
+
+    .login-popup-btn.secondary {
+      background: linear-gradient(145deg, #D2B48C 0%, #C4A77D 100%);
+      color: #654321;
+    }
+
+    .login-popup-btn.secondary:hover {
+      background: linear-gradient(145deg, #C4A77D 0%, #D2B48C 100%);
+    }
+
+    @media (max-width: 640px) {
+      .login-popup-content {
+        padding: 30px 20px;
+      }
+
+      .login-popup-title {
+        font-size: 24px;
+      }
+
+      .login-popup-message {
+        font-size: 14px;
+      }
+
+      .login-popup-buttons {
+        flex-direction: column;
+      }
+
+      .login-popup-btn {
+        width: 100%;
+      }
+    }
+
+    /* Footer Styles */
+    .reels-footer {
+      background: linear-gradient(145deg, #2C1810 0%, #1A0F0A 100%);
+      color: #F5F5DC;
+      padding: 60px 20px 30px;
+      border-top: 4px solid #CD853F;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: #CD853F;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .footer-section p,
+    .footer-section a {
+      font-family: 'Crimson Text', serif;
+      font-size: 16px;
+      color: #D2B48C;
+      line-height: 1.8;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: #F5F5DC;
+      transform: translateX(5px);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .footer-social-icon {
+      width: 45px;
+      height: 45px;
+      background: rgba(205, 133, 63, 0.2);
+      border: 2px solid #CD853F;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #CD853F;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .footer-social-icon:hover {
+      background: #CD853F;
+      color: #1A0F0A;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(205, 133, 63, 0.4);
+    }
+
+    .footer-divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #CD853F, transparent);
+      margin: 30px 0;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      font-family: 'Crimson Text', serif;
+      font-size: 14px;
+      color: #A0826D;
+    }
+
+    .footer-bottom p {
+      margin: 5px 0;
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .reels-footer {
+        padding: 40px 20px 20px;
+      }
+    }
+
+    /* Watched indicator */
+    .video-card.watched::after {
+      content: '✓';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      background: rgba(34, 139, 34, 0.9);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
+      border: 2px solid white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    /* Close Button */
+    .close-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(245, 245, 220, 0.95);
+      border: 3px solid #CD853F;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10001;
+      font-size: 24px;
+      color: #8B4513;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .close-btn:hover {
+      transform: scale(1.1);
+      background: rgba(255, 255, 255, 1);
+    }
+
+    /* Navigation Hint */
+    .nav-hint {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 14px;
+      opacity: 0.7;
+      text-align: center;
+      z-index: 10;
+      animation: bounce 2s infinite;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-10px); }
+    }
+
+    @media (min-width: 769px) {
+      .nav-hint {
+        display: none;
+      }
+    }
+
+
+
+    /* Loading Spinner */
+    .loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255,255,255,0.3);
+      border-top-color: #CD853F;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Hide scrollbar but keep functionality */
+    .watch-mode::-webkit-scrollbar {
+      display: none;
+    }
+
+    .watch-mode {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Preloader Styles */
+    .page-preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(145deg, #F5F5DC 0%, #FAEBD7 100%);
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .page-preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .preloader-spinner {
+      width: 80px;
+      height: 80px;
+      border: 6px solid rgba(139, 69, 19, 0.2);
+      border-top-color: #8B4513;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    .preloader-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: #8B4513;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .preloader-subtext {
+      font-family: 'Crimson Text', serif;
+      font-size: 16px;
+      color: #654321;
+      font-style: italic;
+    }
+
+    /* Video Preloader - Shows when loading videos in watch mode */
+    .video-preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 100000;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease;
+    }
+
+    .video-preloader.active {
+      display: flex;
+    }
+
+    .video-preloader.fade-out {
+      opacity: 0;
+    }
+
+    .video-preloader-spinner {
+      width: 70px;
+      height: 70px;
+      border: 5px solid rgba(205, 133, 63, 0.3);
+      border-top-color: #CD853F;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    .video-preloader-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: #CD853F;
+      font-weight: bold;
+      text-shadow: 0 2px 10px rgba(205, 133, 63, 0.5);
+    }
+    
+    .video-preloader-info {
+      font-family: 'Crimson Text', serif;
+      font-size: 14px;
+      color: rgba(205, 133, 63, 0.8);
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body class="vintage-bg">
+
+  <!-- Page Preloader -->
+  <div id="pagePreloader" class="page-preloader">
+    <div class="preloader-spinner"></div>
+    <div class="preloader-text">Loading Videos...</div>
+    <div class="preloader-subtext">Please wait while we prepare your content</div>
+  </div>
+
+  <!-- Video Preloader (for watch mode) -->
+  <div id="videoPreloader" class="video-preloader">
+    <div class="video-preloader-spinner"></div>
+    <div class="video-preloader-text">⏳ Loading Video...</div>
+    <div class="video-preloader-info" id="videoPreloaderInfo">Please wait...</div>
+  </div>
+
+  <!-- First Time Guide Overlay -->
+  <div id="guideOverlay" class="guide-overlay">
+    <div class="guide-content">
+      <div class="guide-header">
+        <div class="guide-title">🎬 Welcome to Church Reels!</div>
+        <div class="guide-subtitle">Let's show you how to navigate and enjoy our videos</div>
+      </div>
+
+      <div class="guide-steps">
+        <div class="guide-step">
+          <div class="guide-icon">👆</div>
+          <div class="guide-text">
+            <div class="guide-text-title">Swipe to Navigate</div>
+            <div class="guide-text-desc">Swipe up or down (or scroll) to move between videos. Each video plays automatically!</div>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-icon">🔊</div>
+          <div class="guide-text">
+            <div class="guide-text-title">Audio Control</div>
+            <div class="guide-text-desc">Tap the speaker icon to mute/unmute. When muted, the button shakes to remind you!</div>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-icon">♡</div>
+          <div class="guide-text">
+            <div class="guide-text-title">Like Videos</div>
+            <div class="guide-text-desc">Show your appreciation by tapping the heart icon. Liked videos turn red!</div>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-icon">↗</div>
+          <div class="guide-text">
+            <div class="guide-text-title">Share with Others</div>
+            <div class="guide-text-desc">Spread the word! Tap the share icon to share videos with friends and family.</div>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-icon">⬇</div>
+          <div class="guide-text">
+            <div class="guide-text-title">Download Videos</div>
+            <div class="guide-text-desc">Save videos for offline viewing. Downloads include our church watermark.</div>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-icon">⏯</div>
+          <div class="guide-text">
+            <div class="guide-text-title">Video Controls</div>
+            <div class="guide-text-desc">Tap the video to show controls: play/pause, rewind, fast-forward, and progress bar.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="guide-footer">
+        <button class="guide-button" onclick="closeGuide()">
+          ✨ Got It! Let's Watch ✨
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="vintage-overlay border-b-4 ornamental-border sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4 sm:py-6">
+        <a href="index.html" class="text-xl sm:text-2xl md:text-3xl font-bold elegant-text">✝ God's Church Chieko</a>
+        <div class="flex items-center gap-2 sm:gap-4">
+          <div id="userStatus" class="hidden elegant-text text-sm sm:text-base">
+            <span class="hidden sm:inline">Welcome, </span><span id="headerUserName" class="font-bold"></span>
+          </div>
+          <a href="dashboard.html" id="dashboardBtn" class="hidden vintage-button text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm">
+            📊 Dashboard
+          </a>
+          <a href="login.html" id="loginBtn" class="vintage-button text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm">
+            🔑 Login
+          </a>
+          <a href="index.html" class="vintage-button text-white px-3 py-2 sm:px-6 sm:py-3 rounded-lg text-xs sm:text-base">
+            ← <span class="hidden sm:inline">Back to </span>Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- This Week Section -->
+  <section class="vintage-overlay">
+    <div class="profile-section">
+      <div class="text-center py-8">
+        <div class="decorative-flourish mb-4"></div>
+        <h3 class="text-3xl font-bold elegant-text">This Week</h3>
+        <p class="scripture-text mt-2">Featured videos of the week</p>
+        <div class="decorative-flourish mt-4"></div>
+      </div>
+      
+      <div id="thisWeekGallery" class="video-gallery" style="max-width: 800px; margin: 0 auto;">
+        <!-- This week's featured videos will be loaded here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Gallery -->
+  <section class="vintage-overlay pb-20">
+    <div class="text-center py-8">
+      <div class="decorative-flourish mb-4"></div>
+      <h3 class="text-3xl font-bold elegant-text">Church Reels</h3>
+      <p class="scripture-text mt-2">Experience faith through video</p>
+      <div class="decorative-flourish mt-4"></div>
+    </div>
+
+    <div id="videoGallery" class="video-gallery">
+      <!-- Videos will be dynamically loaded here -->
+    </div>
+  </section>
+
+  <!-- Watch Mode (Full Screen Video Player) -->
+  <div id="watchMode" class="watch-mode">
+    <!-- Close Button -->
+    <button class="close-btn" onclick="closeWatchMode()">✕</button>
+
+    <!-- Control Buttons - All on Right Side -->
+    <div class="control-buttons">
+      <button class="control-btn" id="volumeBtn" onclick="toggleMute()">
+        <span class="control-icon">🔊</span>
+        <span class="control-label">Volume</span>
+      </button>
+      <button class="control-btn" id="likeBtn" onclick="toggleLike()">
+        <span class="control-icon">♡</span>
+        <span class="control-label">Like</span>
+      </button>
+      <button class="control-btn" onclick="shareVideo()">
+        <span class="control-icon">↗</span>
+        <span class="control-label">Share</span>
+      </button>
+      <button class="control-btn" onclick="downloadVideo()">
+        <span class="control-icon">⬇</span>
+        <span class="control-label">Download</span>
+      </button>
+    </div>
+
+    <!-- Navigation Hint (Mobile Only) -->
+    <div class="nav-hint">
+      ↓ Scroll for next video ↓
+    </div>
+
+    <!-- Video Slides Container -->
+    <div id="videoSlides">
+      <!-- Video slides will be dynamically loaded here -->
+    </div>
+  </div>
+
+  <!-- Login Required Popup -->
+  <div id="loginPopup" class="login-popup-overlay">
+    <div class="login-popup-content">
+      <div class="login-popup-icon">🔒</div>
+      <h2 class="login-popup-title">Login Required</h2>
+      <p class="login-popup-message">
+        You must be logged in to download videos. Create a free account or sign in to access this feature and enjoy unlimited downloads!
+      </p>
+      <div class="login-popup-buttons">
+        <button class="login-popup-btn" onclick="redirectToLogin()">
+          🔑 Login
+        </button>
+        <button class="login-popup-btn" onclick="redirectToSignup()">
+          ✨ Create Account
+        </button>
+        <button class="login-popup-btn secondary" onclick="closeLoginPopup()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="reels-footer">
+    <div class="footer-content">
+      <div class="footer-grid">
+        <!-- About Section -->
+        <div class="footer-section">
+          <h3>About Us</h3>
+          <p>God's Church Chieko is dedicated to spreading the Gospel through inspiring video content. Join us in our mission to share faith and hope with the world.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="index.html">🏠 Home</a>
+          <a href="about.html">ℹ️ About</a>
+          <a href="sermons.html">📖 Sermons</a>
+          <a href="events.html">📅 Events</a>
+          <a href="contact.html">📧 Contact</a>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <p>📍 123 Faith Street, Chieko</p>
+          <p>📞 +1 (555) 123-4567</p>
+          <p>✉️ info@godschurchchieko.org</p>
+          
+          <div class="footer-social">
+            <div class="footer-social-icon" title="Facebook">📘</div>
+            <div class="footer-social-icon" title="Instagram">📷</div>
+            <div class="footer-social-icon" title="YouTube">📺</div>
+            <div class="footer-social-icon" title="Twitter">🐦</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 God's Church Chieko. All rights reserved.</p>
+        <p>Walking in Eternal Truth • Spreading the Gospel</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Video Data - Will be loaded from server
+    let videos = [];
+    let currentVideoIndex = 0;
+    let likedVideos = new Set();
+    let watchedVideos = new Set(); // Track watched videos
+    let isMuted = false; // Start unmuted - will play with sound when user clicks
+
+    // API endpoint for loading videos (using main server)
+    const VIDEO_API = 'http://localhost:3000/api/videos';
+
+    // First Time Guide Functions
+    function checkFirstTimeUser() {
+      const hasSeenGuide = localStorage.getItem('hasSeenReelsGuide');
+      if (!hasSeenGuide) {
+        // Show guide after a short delay for better UX
+        setTimeout(() => {
+          showGuide();
+        }, 500);
+      }
+    }
+
+    function showGuide() {
+      const guideOverlay = document.getElementById('guideOverlay');
+      guideOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGuide() {
+      const guideOverlay = document.getElementById('guideOverlay');
+      guideOverlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+      
+      // Mark that user has seen the guide
+      localStorage.setItem('hasSeenReelsGuide', 'true');
+      
+      // Add a nice fade out animation
+      guideOverlay.style.animation = 'fadeOut 0.3s ease-out';
+      setTimeout(() => {
+        guideOverlay.style.animation = '';
+      }, 300);
+    }
+
+    // Muted Button Shake Logic
+    function updateVolumeButtonShake() {
+      const volumeBtn = document.getElementById('volumeBtn');
+      if (!volumeBtn) return;
+
+      if (isMuted) {
+        // Add shake animation when muted
+        volumeBtn.classList.add('muted-shake');
+      } else {
+        // Remove shake animation when unmuted
+        volumeBtn.classList.remove('muted-shake');
+      }
+    }
+
+    // Load watched videos from localStorage
+    function loadWatchedVideos() {
+      const stored = localStorage.getItem('watchedVideos');
+      if (stored) {
+        watchedVideos = new Set(JSON.parse(stored));
+      }
+    }
+
+    // Save watched videos to localStorage
+    function saveWatchedVideos() {
+      localStorage.setItem('watchedVideos', JSON.stringify([...watchedVideos]));
+    }
+
+    // Mark video as watched
+    function markAsWatched(videoId) {
+      watchedVideos.add(videoId);
+      saveWatchedVideos();
+      updateGalleryWatchedStatus();
+    }
+
+    // Load videos from server
+    async function loadVideosFromServer() {
+      try {
+        const response = await fetch(VIDEO_API);
+        const data = await response.json();
+        
+        if (data.success && data.videos.length > 0) {
+          videos = data.videos;
+          console.log(`✅ Loaded ${videos.length} videos from church_videos folder`);
+          loadWatchedVideos(); // Load watched status
+          loadThisWeekGallery(); // Load "This Week" section first
+          loadGallery(); // Load main gallery (excluding This Week videos)
+          
+          // Hide preloader after videos are loaded
+          setTimeout(() => {
+            const preloader = document.getElementById('pagePreloader');
+            if (preloader) {
+              preloader.classList.add('hidden');
+            }
+          }, 500);
+        } else {
+          console.warn('⚠️ No videos found in church_videos folder');
+          showNoVideosMessage();
+          hidePreloader();
+        }
+      } catch (error) {
+        console.error('❌ Error loading videos:', error);
+        console.log('💡 Make sure the main server is running: node server.js');
+        showServerErrorMessage();
+        hidePreloader();
+      }
+    }
+    
+    // Hide preloader
+    function hidePreloader() {
+      const preloader = document.getElementById('pagePreloader');
+      if (preloader) {
+        preloader.classList.add('hidden');
+      }
+    }
+
+    // Update gallery to show watched status
+    function updateGalleryWatchedStatus() {
+      // Update main gallery
+      const gallery = document.getElementById('videoGallery');
+      const videoCards = gallery.querySelectorAll('.video-card');
+      videoCards.forEach((card, index) => {
+        const videoIndex = parseInt(card.dataset.videoIndex);
+        const video = videos[videoIndex];
+        if (video && watchedVideos.has(video.id)) {
+          card.classList.add('watched');
+        } else {
+          card.classList.remove('watched');
+        }
+      });
+
+      // Update "This Week" gallery
+      const thisWeekGallery = document.getElementById('thisWeekGallery');
+      if (thisWeekGallery) {
+        const thisWeekCards = thisWeekGallery.querySelectorAll('.video-card');
+        thisWeekCards.forEach((card) => {
+          const videoIndex = parseInt(card.dataset.videoIndex);
+          const video = videos[videoIndex];
+          if (video && watchedVideos.has(video.id)) {
+            card.classList.add('watched');
+          } else {
+            card.classList.remove('watched');
+          }
+        });
+      }
+    }
+
+    // Show message when no videos are found
+    function showNoVideosMessage() {
+      const gallery = document.getElementById('videoGallery');
+      gallery.innerHTML = `
+        <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px;">
+          <div class="vintage-card rounded-2xl p-12">
+            <div style="font-size: 60px; margin-bottom: 20px;">📁</div>
+            <h3 class="elegant-text text-2xl mb-4">No Videos Found</h3>
+            <p class="scripture-text text-lg mb-6">
+              Add your MP4 video files to the <strong>church_videos</strong> folder
+            </p>
+            <div class="text-left max-w-md mx-auto scripture-text">
+              <p class="mb-2"><strong>Steps:</strong></p>
+              <ol style="list-style: decimal; margin-left: 20px;">
+                <li>Place your .mp4 files in: <code style="background: rgba(139,69,19,0.1); padding: 2px 6px; border-radius: 4px;">d:\\desktop\\church\\church_videos\\</code></li>
+                <li>Make sure the server is running: <code style="background: rgba(139,69,19,0.1); padding: 2px 6px; border-radius: 4px;">node server.js</code></li>
+                <li>Refresh this page</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Show message when server is not running
+    function showServerErrorMessage() {
+      const gallery = document.getElementById('videoGallery');
+      gallery.innerHTML = `
+        <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px;">
+          <div class="vintage-card rounded-2xl p-12">
+            <div style="font-size: 60px; margin-bottom: 20px;">🔌</div>
+            <h3 class="elegant-text text-2xl mb-4">Server Not Running</h3>
+            <p class="scripture-text text-lg mb-6">
+              Please start the main server to load videos
+            </p>
+            <div class="text-left max-w-md mx-auto scripture-text">
+              <p class="mb-2"><strong>To start the server:</strong></p>
+              <ol style="list-style: decimal; margin-left: 20px;">
+                <li>Open a terminal/command prompt</li>
+                <li>Navigate to: <code style="background: rgba(139,69,19,0.1); padding: 2px 6px; border-radius: 4px;">d:\\desktop\\church</code></li>
+                <li>Run: <code style="background: rgba(139,69,19,0.1); padding: 2px 6px; border-radius: 4px;">node server.js</code></li>
+                <li>Refresh this page</li>
+              </ol>
+            </div>
+            <button onclick="loadVideosFromServer()" class="vintage-button text-white px-8 py-3 rounded-lg mt-6">
+              🔄 Try Again
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    // This Week's featured video filenames
+    const thisWeekVideos = ['Ins_-1713880860.mp4', 'Ins_1354583898.mp4'];
+
+    // Load This Week Gallery
+    function loadThisWeekGallery() {
+      const thisWeekGallery = document.getElementById('thisWeekGallery');
+      
+      // Filter videos that match this week's featured videos
+      const featuredVideos = videos.filter(video => {
+        const filename = video.videoUrl.split('/').pop();
+        return thisWeekVideos.includes(filename);
+      });
+
+      if (featuredVideos.length === 0) {
+        thisWeekGallery.innerHTML = '<p class="scripture-text text-center">No featured videos this week.</p>';
+        return;
+      }
+
+      thisWeekGallery.innerHTML = featuredVideos.map((video) => {
+        const index = videos.indexOf(video); // Get original index
+        const videoUrl = video.videoUrl.startsWith('http') 
+          ? video.videoUrl 
+          : `http://localhost:3000${video.videoUrl}`;
+        
+        const watchedClass = watchedVideos.has(video.id) ? 'watched' : '';
+        
+        return `
+        <div class="video-card vintage-card ${watchedClass}" onclick="openWatchMode(${index})">
+          <video 
+            style="width: 100%; height: 100%; object-fit: cover;" 
+            preload="metadata" 
+            muted 
+            playsinline
+            data-thumbnail-index="${index}"
+          >
+            <source src="${videoUrl}#t=0.5" type="video/mp4">
+          </video>
+          <div class="play-icon">▶</div>
+          <div class="video-overlay">
+            <div class="video-title">${video.title}</div>
+            <div class="video-meta">${video.views} views • ${video.likes} likes</div>
+          </div>
+        </div>
+      `}).join('');
+
+      // Force load thumbnails
+      setTimeout(() => {
+        const thumbnailVideos = thisWeekGallery.querySelectorAll('video[data-thumbnail-index]');
+        thumbnailVideos.forEach(video => {
+          video.load();
+          video.addEventListener('loadedmetadata', function() {
+            this.currentTime = 0.5;
+          }, { once: true });
+        });
+      }, 100);
+    }
+
+    // Load Video Gallery (excluding This Week videos)
+    function loadGallery() {
+      const gallery = document.getElementById('videoGallery');
+      
+      // Filter out videos that are in "This Week"
+      const regularVideos = videos.filter(video => {
+        const filename = video.videoUrl.split('/').pop();
+        return !thisWeekVideos.includes(filename);
+      });
+
+      gallery.innerHTML = regularVideos.map((video) => {
+        const index = videos.indexOf(video); // Get original index for proper navigation
+        const videoUrl = video.videoUrl.startsWith('http') 
+          ? video.videoUrl 
+          : `http://localhost:3000${video.videoUrl}`;
+        
+        const watchedClass = watchedVideos.has(video.id) ? 'watched' : '';
+        
+        return `
+        <div class="video-card vintage-card ${watchedClass}" onclick="openWatchMode(${index})">
+          <video 
+            style="width: 100%; height: 100%; object-fit: cover;" 
+            preload="metadata" 
+            muted 
+            playsinline
+            data-thumbnail-index="${index}"
+          >
+            <source src="${videoUrl}#t=0.5" type="video/mp4">
+          </video>
+          <div class="play-icon">▶</div>
+          <div class="video-overlay">
+            <div class="video-title">${video.title}</div>
+            <div class="video-meta">${video.views} views • ${video.likes} likes</div>
+          </div>
+        </div>
+      `}).join('');
+      
+      // Force load thumbnails for better browser compatibility (especially Edge)
+      setTimeout(() => {
+        const thumbnailVideos = gallery.querySelectorAll('video[data-thumbnail-index]');
+        thumbnailVideos.forEach(video => {
+          video.load(); // Force reload to show first frame
+          // Seek to 0.5 seconds for better thumbnail
+          video.addEventListener('loadedmetadata', function() {
+            this.currentTime = 0.5;
+          }, { once: true });
+        });
+      }, 100);
+    }
+
+    // Show video preloader
+    function showVideoPreloader(videoTitle = null) {
+      const preloader = document.getElementById('videoPreloader');
+      const preloaderInfo = document.getElementById('videoPreloaderInfo');
+      if (preloader) {
+        preloader.classList.remove('fade-out');
+        preloader.classList.add('active');
+        
+        // Update info text if video title provided
+        if (preloaderInfo && videoTitle) {
+          preloaderInfo.textContent = `Loading: ${videoTitle}`;
+        } else if (preloaderInfo) {
+          preloaderInfo.textContent = 'Please wait...';
+        }
+      }
+    }
+
+    // Hide video preloader
+    function hideVideoPreloader() {
+      const preloader = document.getElementById('videoPreloader');
+      if (preloader) {
+        preloader.classList.add('fade-out');
+        setTimeout(() => {
+          preloader.classList.remove('active', 'fade-out');
+        }, 300);
+      }
+    }
+
+    // Open Watch Mode
+    function openWatchMode(index) {
+      // Show preloader immediately with video title
+      const videoTitle = videos[index] ? videos[index].title : 'Video';
+      showVideoPreloader(videoTitle);
+      
+      currentVideoIndex = index;
+      const watchMode = document.getElementById('watchMode');
+      const videoSlides = document.getElementById('videoSlides');
+      
+      // Stop all currently playing videos first
+      const existingVideos = videoSlides.querySelectorAll('video');
+      existingVideos.forEach(v => {
+        v.pause();
+        v.currentTime = 0;
+      });
+      
+      // Load all videos as slides (with smart preloading)
+      videoSlides.innerHTML = videos.map((video, idx) => {
+        // Ensure video URL is absolute (includes server address)
+        const videoUrl = video.videoUrl.startsWith('http') 
+          ? video.videoUrl 
+          : `http://localhost:3000${video.videoUrl}`;
+        
+        // Create unique video URL with index for sharing
+        const shareUrl = `${window.location.origin}${window.location.pathname}?video=${idx}`;
+        
+        // Smart preloading: preload current, next, and previous videos
+        const distance = Math.abs(idx - index);
+        let preloadStrategy = 'none';
+        if (distance === 0) {
+          preloadStrategy = 'auto'; // Current video - full preload
+        } else if (distance <= 2) {
+          preloadStrategy = 'metadata'; // Adjacent videos - metadata only
+        }
+        
+        return `
+        <div class="video-slide" data-index="${idx}" data-share-url="${shareUrl}">
+          <video 
+            class="video-player" 
+            loop 
+            playsinline
+            preload="${preloadStrategy}"
+            data-video-id="${idx}"
+          >
+            <source src="${videoUrl}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="video-info-overlay">
+            <div class="video-info-title">${video.title}</div>
+            <div class="video-info-description">${video.description}</div>
+          </div>
+          <div class="video-controls-overlay" data-controls-id="${idx}">
+            <div class="video-progress-bar" onclick="seekVideo(event, ${idx})">
+              <div class="video-progress-filled" id="progress-${idx}"></div>
+            </div>
+            <div class="video-controls-buttons">
+              <button class="video-control-btn" onclick="rewindVideo(${idx})">⏪</button>
+              <button class="video-control-btn play-pause" onclick="togglePlayPause(${idx})" id="playPauseBtn-${idx}">⏸</button>
+              <button class="video-control-btn" onclick="forwardVideo(${idx})">⏩</button>
+            </div>
+            <div class="video-time" id="time-${idx}">0:00 / 0:00</div>
+          </div>
+        </div>
+      `}).join('');
+
+      watchMode.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      // Scroll to selected video and play with sound
+      setTimeout(() => {
+        const targetSlide = videoSlides.children[index];
+        targetSlide.scrollIntoView({ behavior: 'instant' });
+        
+        // Play the selected video with sound (user clicked, so we have interaction)
+        const selectedVideo = targetSlide.querySelector('video');
+        if (selectedVideo) {
+          // Force load the video
+          selectedVideo.load();
+          
+          // Function to attempt playback
+          const attemptPlay = () => {
+            // Try to play with sound first (since user clicked)
+            selectedVideo.muted = false;
+            isMuted = false;
+            
+            const playPromise = selectedVideo.play();
+            if (playPromise !== undefined) {
+              playPromise.then(() => {
+                console.log('✅ Video playing with sound!');
+                updateVolumeButton();
+                setupVideoControls(selectedVideo, index);
+                // Hide preloader when video starts playing
+                hideVideoPreloader();
+              }).catch(error => {
+                console.log('⚠️ Autoplay with sound blocked, trying muted:', error);
+                // If autoplay with sound fails, fallback to muted
+                selectedVideo.muted = true;
+                isMuted = true;
+                selectedVideo.play().then(() => {
+                  console.log('✅ Video playing muted (click 🔊 to unmute)');
+                  updateVolumeButton();
+                  setupVideoControls(selectedVideo, index);
+                  // Hide preloader when video starts playing
+                  hideVideoPreloader();
+                }).catch(e => {
+                  console.log('❌ Muted play also failed:', e);
+                  // Hide preloader even on error
+                  hideVideoPreloader();
+                });
+              });
+            }
+          };
+          
+          // Check if video is ready to play
+          if (selectedVideo.readyState >= 3) {
+            // Video has enough data, play immediately
+            attemptPlay();
+          } else {
+            // Wait for video to be ready
+            selectedVideo.addEventListener('canplay', function onCanPlay() {
+              selectedVideo.removeEventListener('canplay', onCanPlay);
+              attemptPlay();
+            }, { once: true });
+          }
+        }
+      }, 50);
+
+      // Update like button and volume button
+      updateLikeButton();
+      updateVolumeButton();
+
+      // Setup scroll listener for auto-play
+      setupScrollListener();
+      
+      // Setup video watch tracking
+      setupWatchTracking();
+      
+      // Setup video click handlers for controls
+      setupVideoClickHandlers();
+      
+      // Setup dynamic preloading
+      setupDynamicPreloading();
+    }
+    
+    // Dynamic preloading - update preload strategy as user navigates
+    function setupDynamicPreloading() {
+      // This is now integrated into setupScrollListener to avoid multiple scroll listeners
+      // Keeping this function for backward compatibility but it does nothing
+      console.log('Dynamic preloading integrated into scroll listener');
+    }
+    
+    // Update preload strategy based on current video
+    function updatePreloadStrategy() {
+      const watchMode = document.getElementById('watchMode');
+      const videoSlides = watchMode.querySelectorAll('.video-slide');
+      
+      videoSlides.forEach((slide, idx) => {
+        const video = slide.querySelector('video');
+        if (!video) return;
+        
+        const distance = Math.abs(idx - currentVideoIndex);
+        
+        // Update preload attribute based on distance from current video
+        if (distance === 0) {
+          video.preload = 'auto'; // Current video
+        } else if (distance <= 2) {
+          video.preload = 'metadata'; // Adjacent videos
+        } else {
+          video.preload = 'none'; // Far videos - save bandwidth
+        }
+      });
+    }
+
+    // Close Watch Mode
+    function closeWatchMode() {
+      const watchMode = document.getElementById('watchMode');
+      watchMode.classList.remove('active');
+      document.body.style.overflow = 'auto';
+
+      // Remove scroll listener
+      if (scrollListenerAttached && scrollHandler) {
+        watchMode.removeEventListener('scroll', scrollHandler);
+        scrollListenerAttached = false;
+        scrollHandler = null;
+      }
+
+      // Stop and reset all videos
+      const allVideos = watchMode.querySelectorAll('video');
+      allVideos.forEach(video => {
+        video.pause();
+        video.currentTime = 0;
+        video.muted = false; // Reset mute state
+        // Clear any pending event listeners
+        video.oncanplay = null;
+        video.onloadeddata = null;
+      });
+      
+      // Clear video controls tracking
+      clearVideoControlsTracking();
+      
+      // Clear the video slides to free memory
+      setTimeout(() => {
+        document.getElementById('videoSlides').innerHTML = '';
+      }, 300);
+      
+      // Scroll back to gallery (smooth scroll to top)
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Setup Scroll Listener for Auto-Play with smooth video switching
+    let scrollListenerAttached = false;
+    let scrollHandler = null;
+    
+    function setupScrollListener() {
+      const watchMode = document.getElementById('watchMode');
+      const videoSlides = watchMode.querySelectorAll('.video-slide');
+      
+      // Remove existing scroll listener if any
+      if (scrollListenerAttached && scrollHandler) {
+        watchMode.removeEventListener('scroll', scrollHandler);
+        scrollListenerAttached = false;
+      }
+      
+      let isScrolling;
+      let lastPlayedIndex = -1;
+      let scrollStarted = false;
+      
+      scrollHandler = () => {
+        // Show preloader when scrolling starts (without title during scroll)
+        if (!scrollStarted) {
+          showVideoPreloader();
+          scrollStarted = true;
+        }
+        
+        // Pause all videos immediately during scroll
+        videoSlides.forEach((slide) => {
+          const video = slide.querySelector('video');
+          if (video && !video.paused) {
+            video.pause();
+          }
+        });
+        
+        // Clear timeout
+        clearTimeout(isScrolling);
+        
+        // Set timeout to detect when scrolling stops
+        isScrolling = setTimeout(() => {
+          scrollStarted = false;
+          
+          let foundActiveVideo = false;
+          
+          // Find which video is in view
+          videoSlides.forEach((slide, index) => {
+            const rect = slide.getBoundingClientRect();
+            const isInView = rect.top >= 0 && rect.top < window.innerHeight / 2;
+            
+            const video = slide.querySelector('video');
+            
+            if (isInView && !foundActiveVideo) {
+              foundActiveVideo = true;
+              
+              // Only play if this is a new video
+              if (lastPlayedIndex !== index) {
+                // Stop ALL other videos completely
+                videoSlides.forEach((otherSlide, otherIndex) => {
+                  if (otherIndex !== index) {
+                    const otherVideo = otherSlide.querySelector('video');
+                    if (otherVideo) {
+                      otherVideo.pause();
+                      otherVideo.currentTime = 0;
+                      // Remove any pending event listeners
+                      otherVideo.oncanplay = null;
+                    }
+                  }
+                });
+                
+                currentVideoIndex = index;
+                lastPlayedIndex = index;
+                
+                // Update preload strategy for nearby videos
+                updatePreloadStrategy();
+                
+                // Play the current video
+                playCurrentVideo(video, index);
+                updateLikeButton();
+              }
+            }
+          });
+        }, 150); // Slightly increased for better stability
+      };
+      
+      watchMode.addEventListener('scroll', scrollHandler);
+      scrollListenerAttached = true;
+    }
+    
+    // Helper function to play current video
+    function playCurrentVideo(video, index) {
+      if (!video) {
+        hideVideoPreloader();
+        return;
+      }
+      
+      // Clear any existing event listeners to prevent duplicates
+      video.oncanplay = null;
+      video.onloadeddata = null;
+      
+      // Function to attempt playback
+      const attemptPlayback = () => {
+        // Reset video
+        video.currentTime = 0;
+        video.muted = isMuted;
+        
+        // Play with error handling
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            console.log(`✅ Video ${index + 1} playing ${isMuted ? 'muted' : 'with sound'}`);
+            setupVideoControls(video, index);
+            hideVideoPreloader();
+          }).catch(error => {
+            console.log('⚠️ Video play prevented:', error);
+            // If play fails with sound, try muted
+            if (!isMuted) {
+              video.muted = true;
+              isMuted = true;
+              updateVolumeButton();
+              video.play().then(() => {
+                console.log('✅ Video playing muted (autoplay restriction)');
+                setupVideoControls(video, index);
+                hideVideoPreloader();
+              }).catch(e => {
+                console.log('❌ Muted play failed:', e);
+                hideVideoPreloader();
+              });
+            } else {
+              hideVideoPreloader();
+            }
+          });
+        } else {
+          hideVideoPreloader();
+        }
+      };
+      
+      // Check if video is ready to play
+      if (video.readyState >= 3) {
+        // Video has enough data, play immediately
+        attemptPlayback();
+      } else {
+        // Video not ready, load it first
+        video.load();
+        
+        // Wait for video to be ready (use oncanplay to avoid duplicate listeners)
+        video.oncanplay = () => {
+          video.oncanplay = null; // Clear the listener
+          attemptPlayback();
+        };
+        
+        // Fallback timeout in case canplay doesn't fire
+        setTimeout(() => {
+          if (video.readyState >= 2) {
+            video.oncanplay = null;
+            attemptPlayback();
+          }
+        }, 2000);
+      }
+    }
+
+    // Setup watch tracking - mark video as watched after 3 seconds of viewing
+    function setupWatchTracking() {
+      const watchMode = document.getElementById('watchMode');
+      const videoSlides = watchMode.querySelectorAll('.video-slide');
+      
+      videoSlides.forEach((slide, index) => {
+        const video = slide.querySelector('video');
+        let watchTimer = null;
+        
+        video.addEventListener('play', () => {
+          // Clear any existing timer
+          if (watchTimer) clearTimeout(watchTimer);
+          
+          // Mark as watched after 3 seconds of playing
+          watchTimer = setTimeout(() => {
+            const videoId = videos[index].id;
+            if (!watchedVideos.has(videoId)) {
+              markAsWatched(videoId);
+              console.log(`✅ Video "${videos[index].title}" marked as watched`);
+            }
+          }, 3000);
+        });
+        
+        video.addEventListener('pause', () => {
+          // Clear timer if video is paused
+          if (watchTimer) {
+            clearTimeout(watchTimer);
+            watchTimer = null;
+          }
+        });
+      });
+    }
+
+    // Toggle Like
+    function toggleLike() {
+      const videoId = videos[currentVideoIndex].id;
+      
+      if (likedVideos.has(videoId)) {
+        likedVideos.delete(videoId);
+      } else {
+        likedVideos.add(videoId);
+      }
+      
+      updateLikeButton();
+    }
+
+    // Update Like Button
+    function updateLikeButton() {
+      const likeBtn = document.getElementById('likeBtn');
+      const videoId = videos[currentVideoIndex].id;
+      const icon = likeBtn.querySelector('.control-icon');
+      
+      if (likedVideos.has(videoId)) {
+        likeBtn.classList.add('liked');
+        icon.textContent = '♥';
+      } else {
+        likeBtn.classList.remove('liked');
+        icon.textContent = '♡';
+      }
+    }
+
+    // Update Volume Button
+    function updateVolumeButton() {
+      const volumeBtn = document.getElementById('volumeBtn');
+      if (volumeBtn) {
+        const icon = volumeBtn.querySelector('.control-icon');
+        icon.textContent = isMuted ? '🔇' : '🔊';
+        
+        // Update shake animation
+        updateVolumeButtonShake();
+      }
+    }
+
+    // Toggle Mute/Unmute
+    function toggleMute() {
+      const watchMode = document.getElementById('watchMode');
+      const allVideos = watchMode.querySelectorAll('video');
+      
+      isMuted = !isMuted;
+      
+      allVideos.forEach(video => {
+        video.muted = isMuted;
+      });
+      
+      updateVolumeButton();
+    }
+
+    // Share Video with exact video URL
+    async function shareVideo() {
+      const video = videos[currentVideoIndex];
+      const videoSlide = document.querySelector(`.video-slide[data-index="${currentVideoIndex}"]`);
+      const shareUrl = videoSlide ? videoSlide.dataset.shareUrl : window.location.href;
+      
+      const shareData = {
+        title: video.title,
+        text: video.description,
+        url: shareUrl
+      };
+
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+        } else {
+          // Fallback: Copy to clipboard
+          await navigator.clipboard.writeText(shareUrl);
+          alert(`✅ Video link copied to clipboard!\n\n${video.title}\n\nAnyone with this link will be redirected directly to this video.`);
+        }
+      } catch (err) {
+        console.log('Share failed:', err);
+      }
+    }
+
+    // Login Popup Functions
+    function showLoginPopup() {
+      const loginPopup = document.getElementById('loginPopup');
+      loginPopup.classList.add('active');
+    }
+
+    function closeLoginPopup() {
+      const loginPopup = document.getElementById('loginPopup');
+      loginPopup.classList.remove('active');
+    }
+
+    function redirectToLogin() {
+      // Redirect to login page
+      window.location.href = 'login.html';
+    }
+
+    function redirectToSignup() {
+      // Redirect to signup page
+      window.location.href = 'signup.html';
+    }
+
+    // Check if user is logged in - checks for user object from login/signup
+    function isUserLoggedIn() {
+      // Check if user object exists in localStorage (set during login/signup)
+      const user = localStorage.getItem('user');
+      return user !== null && user !== undefined && user !== 'null';
+    }
+
+    // Download Video with Watermark
+    async function downloadVideo() {
+      // Check if user is logged in
+      if (!isUserLoggedIn()) {
+        showLoginPopup();
+        return;
+      }
+
+      const video = videos[currentVideoIndex];
+      const videoUrl = video.videoUrl.startsWith('http') 
+        ? video.videoUrl 
+        : `http://localhost:3000${video.videoUrl}`;
+      
+      try {
+        // Show loading message
+        const downloadBtn = document.querySelector('.control-buttons button:last-child');
+        const originalHTML = downloadBtn.innerHTML;
+        downloadBtn.innerHTML = '<span class="control-icon">⏳</span><span class="control-label">Loading...</span>';
+        downloadBtn.disabled = true;
+
+        // Fetch the video
+        const response = await fetch(videoUrl);
+        const blob = await response.blob();
+        
+        // Create video element to get dimensions
+        const videoElement = document.createElement('video');
+        videoElement.src = URL.createObjectURL(blob);
+        
+        await new Promise((resolve) => {
+          videoElement.onloadedmetadata = resolve;
+        });
+
+        // Create canvas for watermarking
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = videoElement.videoWidth;
+        canvas.height = videoElement.videoHeight;
+
+        // Draw first frame
+        ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+        // Add watermark
+        const watermarkText = "God's Church";
+        const fontSize = Math.max(canvas.width * 0.05, 24);
+        ctx.font = `bold ${fontSize}px 'Playfair Display', serif`;
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+        ctx.strokeStyle = 'rgba(139, 69, 19, 0.8)';
+        ctx.lineWidth = 3;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        
+        const x = canvas.width / 2;
+        const y = canvas.height - 30;
+        
+        ctx.strokeText(watermarkText, x, y);
+        ctx.fillText(watermarkText, x, y);
+
+        // For now, download the original video with a note about watermark
+        // (Full video watermarking requires server-side processing with FFmpeg)
+        const link = document.createElement('a');
+        link.href = videoUrl;
+        link.download = `God's-church-${video.title.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.mp4`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Show info message
+        setTimeout(() => {
+          alert(`📥 Downloading: ${video.title}\n\n⚠️ Note: For full watermarked videos, please contact the church administrator.\n\nThis download is for personal use only.`);
+        }, 500);
+
+        // Restore button
+        downloadBtn.innerHTML = originalHTML;
+        downloadBtn.disabled = false;
+
+        // Clean up
+        URL.revokeObjectURL(videoElement.src);
+        
+      } catch (err) {
+        console.error('Download failed:', err);
+        alert('❌ Download failed. Please try again or contact support.');
+        
+        // Restore button
+        const downloadBtn = document.querySelector('.control-buttons button:last-child');
+        downloadBtn.innerHTML = '<span class="control-icon">⬇</span><span class="control-label">Download</span>';
+        downloadBtn.disabled = false;
+      }
+    }
+
+    // Video Control Functions
+    
+    // Track which videos have controls set up to prevent duplicates
+    const videoControlsSetup = new Set();
+    
+    // Setup video controls for a specific video
+    function setupVideoControls(video, index) {
+      // Skip if controls already set up for this video
+      const videoId = `video-${index}`;
+      if (videoControlsSetup.has(videoId)) {
+        return;
+      }
+      
+      videoControlsSetup.add(videoId);
+      
+      // Update progress bar
+      const timeupdateHandler = () => {
+        const progress = (video.currentTime / video.duration) * 100;
+        const progressBar = document.getElementById(`progress-${index}`);
+        if (progressBar) {
+          progressBar.style.width = `${progress}%`;
+        }
+        
+        // Update time display
+        const timeDisplay = document.getElementById(`time-${index}`);
+        if (timeDisplay) {
+          const current = formatTime(video.currentTime);
+          const duration = formatTime(video.duration);
+          timeDisplay.textContent = `${current} / ${duration}`;
+        }
+      };
+      
+      // Update play/pause button
+      const playHandler = () => {
+        const btn = document.getElementById(`playPauseBtn-${index}`);
+        if (btn) btn.textContent = '⏸';
+      };
+      
+      const pauseHandler = () => {
+        const btn = document.getElementById(`playPauseBtn-${index}`);
+        if (btn) btn.textContent = '▶';
+      };
+      
+      video.addEventListener('timeupdate', timeupdateHandler);
+      video.addEventListener('play', playHandler);
+      video.addEventListener('pause', pauseHandler);
+    }
+    
+    // Clear video controls tracking when closing watch mode
+    function clearVideoControlsTracking() {
+      videoControlsSetup.clear();
+    }
+    
+    // Format time in MM:SS
+    function formatTime(seconds) {
+      if (isNaN(seconds)) return '0:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+    
+    // Toggle play/pause
+    function togglePlayPause(index) {
+      const videoSlide = document.querySelector(`.video-slide[data-index="${index}"]`);
+      if (!videoSlide) return;
+      
+      const video = videoSlide.querySelector('video');
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    }
+    
+    // Rewind video by 10 seconds
+    function rewindVideo(index) {
+      const videoSlide = document.querySelector(`.video-slide[data-index="${index}"]`);
+      if (!videoSlide) return;
+      
+      const video = videoSlide.querySelector('video');
+      video.currentTime = Math.max(0, video.currentTime - 10);
+    }
+    
+    // Forward video by 10 seconds
+    function forwardVideo(index) {
+      const videoSlide = document.querySelector(`.video-slide[data-index="${index}"]`);
+      if (!videoSlide) return;
+      
+      const video = videoSlide.querySelector('video');
+      video.currentTime = Math.min(video.duration, video.currentTime + 10);
+    }
+    
+    // Seek video to specific position
+    function seekVideo(event, index) {
+      const progressBar = event.currentTarget;
+      const rect = progressBar.getBoundingClientRect();
+      const clickX = event.clientX - rect.left;
+      const percentage = clickX / rect.width;
+      
+      const videoSlide = document.querySelector(`.video-slide[data-index="${index}"]`);
+      if (!videoSlide) return;
+      
+      const video = videoSlide.querySelector('video');
+      video.currentTime = video.duration * percentage;
+    }
+    
+    // Setup video click handlers to show/hide controls
+    function setupVideoClickHandlers() {
+      const videoSlides = document.querySelectorAll('.video-slide');
+      const isMobile = window.innerWidth <= 768;
+      
+      videoSlides.forEach((slide, index) => {
+        const video = slide.querySelector('video');
+        const controls = slide.querySelector('.video-controls-overlay');
+        let hideControlsTimeout;
+        
+        // Show/hide controls on video tap/click
+        video.addEventListener('click', (e) => {
+          e.stopPropagation();
+          
+          if (controls.classList.contains('show')) {
+            controls.classList.remove('show');
+            clearTimeout(hideControlsTimeout);
+          } else {
+            controls.classList.add('show');
+            
+            // Auto-hide after 3 seconds
+            hideControlsTimeout = setTimeout(() => {
+              controls.classList.remove('show');
+            }, 3000);
+          }
+        });
+        
+        // Keep controls visible when interacting with them
+        controls.addEventListener('click', (e) => {
+          e.stopPropagation();
+          clearTimeout(hideControlsTimeout);
+          
+          // Reset auto-hide timer
+          hideControlsTimeout = setTimeout(() => {
+            controls.classList.remove('show');
+          }, 3000);
+        });
+        
+        // Show controls on mouse move (DESKTOP ONLY - not on mobile/tablets)
+        if (!isMobile) {
+          video.addEventListener('mousemove', () => {
+            controls.classList.add('show');
+            clearTimeout(hideControlsTimeout);
+            
+            hideControlsTimeout = setTimeout(() => {
+              controls.classList.remove('show');
+            }, 3000);
+          });
+        }
+      });
+    }
+    
+    // Check URL for video parameter and auto-play that video
+    function checkVideoParameter() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const videoIndex = urlParams.get('video');
+      
+      if (videoIndex !== null && videos.length > 0) {
+        const index = parseInt(videoIndex);
+        if (index >= 0 && index < videos.length) {
+          // Auto-open the video with audio enabled
+          setTimeout(() => {
+            // Ensure audio is unmuted for shared links
+            isMuted = false;
+            openWatchMode(index);
+          }, 500);
+        }
+      }
+    }
+
+    // Keyboard Navigation
+    document.addEventListener('keydown', (e) => {
+      const watchMode = document.getElementById('watchMode');
+      if (!watchMode.classList.contains('active')) return;
+
+      if (e.key === 'Escape') {
+        closeWatchMode();
+      } else if (e.key === 'ArrowDown') {
+        // Next video
+        if (currentVideoIndex < videos.length - 1) {
+          const nextSlide = watchMode.querySelectorAll('.video-slide')[currentVideoIndex + 1];
+          nextSlide.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else if (e.key === 'ArrowUp') {
+        // Previous video
+        if (currentVideoIndex > 0) {
+          const prevSlide = watchMode.querySelectorAll('.video-slide')[currentVideoIndex - 1];
+          prevSlide.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else if (e.key === 'ArrowLeft') {
+        // Rewind 10 seconds
+        rewindVideo(currentVideoIndex);
+      } else if (e.key === 'ArrowRight') {
+        // Forward 10 seconds
+        forwardVideo(currentVideoIndex);
+      } else if (e.key === ' ' || e.key === 'k' || e.key === 'K') {
+        // Play/Pause with spacebar or K
+        e.preventDefault();
+        togglePlayPause(currentVideoIndex);
+      } else if (e.key === 'l' || e.key === 'L') {
+        toggleLike();
+      } else if (e.key === 'm' || e.key === 'M') {
+        toggleMute();
+      }
+    });
+
+    // Update header based on login status
+    function updateHeaderLoginStatus() {
+      const user = localStorage.getItem('user');
+      const userStatus = document.getElementById('userStatus');
+      const headerUserName = document.getElementById('headerUserName');
+      const dashboardBtn = document.getElementById('dashboardBtn');
+      const loginBtn = document.getElementById('loginBtn');
+      
+      if (user && user !== 'null') {
+        try {
+          const userData = JSON.parse(user);
+          // User is logged in
+          if (userData.name) {
+            headerUserName.textContent = userData.name;
+            userStatus.classList.remove('hidden');
+          }
+          dashboardBtn.classList.remove('hidden');
+          loginBtn.classList.add('hidden');
+        } catch (e) {
+          // Invalid user data, show login button
+          userStatus.classList.add('hidden');
+          dashboardBtn.classList.add('hidden');
+          loginBtn.classList.remove('hidden');
+        }
+      } else {
+        // User is not logged in
+        userStatus.classList.add('hidden');
+        dashboardBtn.classList.add('hidden');
+        loginBtn.classList.remove('hidden');
+      }
+    }
+
+    // Initialize - Load videos from server on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      loadVideosFromServer();
+      
+      // Update header login status
+      updateHeaderLoginStatus();
+      
+      // Check if this is a first-time user
+      checkFirstTimeUser();
+      
+      // Check if URL has video parameter after videos are loaded
+      setTimeout(() => {
+        checkVideoParameter();
+      }, 1000);
+    });
+  </script>
+
+</body>
+</html>

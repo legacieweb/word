@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eternal Truth - God's Church Chieko</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    .vintage-bg {
+      background: 
+        linear-gradient(45deg, rgba(139, 69, 19, 0.1) 0%, rgba(160, 82, 45, 0.1) 100%),
+        url('https://images.unsplash.com/photo-1481833761820-0509d3217039?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+    
+    .vintage-overlay {
+      background: 
+        radial-gradient(circle at center, rgba(245, 245, 220, 0.95) 0%, rgba(222, 184, 135, 0.98) 100%);
+      backdrop-filter: blur(2px);
+    }
+    
+    .elegant-text {
+      font-family: 'Playfair Display', serif;
+      color: #8B4513;
+      text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
+    }
+    
+    .scripture-text {
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+      color: #654321;
+    }
+    
+    .vintage-card {
+      background: linear-gradient(145deg, #F5F5DC 0%, #FAEBD7 100%);
+      border: 3px solid #D2B48C;
+      box-shadow: 
+        0 8px 32px rgba(139, 69, 19, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      position: relative;
+    }
+    
+    .vintage-card::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px solid #CD853F;
+      pointer-events: none;
+    }
+    
+    .ornamental-border {
+      border-image: linear-gradient(45deg, #CD853F, #D2B48C, #CD853F) 1;
+      border-width: 2px;
+      border-style: solid;
+    }
+    
+    .vintage-button {
+      background: linear-gradient(145deg, #8B4513 0%, #A0522D 100%);
+      border: 2px solid #CD853F;
+      box-shadow: 
+        0 4px 15px rgba(139, 69, 19, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+    
+    .vintage-button:hover {
+      background: linear-gradient(145deg, #A0522D 0%, #8B4513 100%);
+      transform: translateY(-2px);
+      box-shadow: 
+        0 6px 20px rgba(139, 69, 19, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+    
+    .decorative-flourish {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0 10 Q25 0 50 10 T100 10' stroke='%23CD853F' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 20px;
+      width: 100px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body class="vintage-bg min-h-screen overflow-x-hidden">
+
+<!-- Navbar -->
+<header class="vintage-overlay border-b-4 ornamental-border">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-6">
+      <!-- Logo -->
+      <h1 class="text-2xl sm:text-3xl font-bold elegant-text">✝ Eternal Truth - God's Church Chieko</h1>
+
+      <!-- Desktop Menu -->
+      <nav class="hidden md:flex space-x-4">
+        <a href="login.html" class="vintage-button text-white px-6 py-3 rounded-lg">Enter the Kingdom</a>
+        <a href="signup.html" class="vintage-button text-white px-6 py-3 rounded-lg">Begin Your Journey</a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-amber-800 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Links -->
+    <div id="mobile-menu" class="md:hidden hidden flex-col space-y-2 pb-4">
+      <a href="login.html" class="block vintage-button text-white text-center py-3 rounded-lg">Enter the Kingdom</a>
+      <a href="signup.html" class="block vintage-button text-white text-center py-3 rounded-lg">Begin Your Journey</a>
+    </div>
+  </div>
+
+  <!-- Script to toggle menu -->
+  <script>
+    const button = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    button.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
+</header>
+
+<!-- Hero Section - Eternal Truth -->
+<section class="relative min-h-screen flex items-center justify-center px-4 py-20">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 text-center max-w-6xl mx-auto">
+    <div class="mb-12">
+      <div class="decorative-flourish mb-6"></div>
+      <h2 class="text-5xl md:text-7xl font-extrabold mb-8 elegant-text">
+        THE ETERNAL WORD OF GOD
+      </h2>
+      <div class="decorative-flourish mb-8"></div>
+      <div class="text-2xl md:text-3xl font-bold mb-8 scripture-text">
+        "In the beginning was the Word, and the Word was with God, and the Word was God."
+      </div>
+      <p class="text-xl md:text-2xl elegant-text font-semibold">— John 1:1</p>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-8 md:p-12 mb-12 shadow-2xl">
+      <h3 class="text-3xl md:text-4xl font-bold mb-6 elegant-text">
+        You Cannot Say You Don't Believe His Word and Yet Believe in God
+      </h3>
+      <p class="text-lg md:text-xl leading-relaxed mb-6 text-amber-900">
+        God and His Word are ONE. To reject His Word is to reject Him. To doubt His Word is to doubt Him. 
+        True faith requires complete surrender to every word that proceeds from the mouth of God.
+      </p>
+      <div class="decorative-flourish mb-4"></div>
+      <div class="text-xl font-semibold scripture-text">
+        "So then faith comes by hearing, and hearing by the word of God." — Romans 10:17
+      </div>
+    </div>
+    
+    <div class="flex flex-col md:flex-row gap-6 justify-center">
+      <a href="signup.html" class="vintage-button text-white px-10 py-4 rounded-xl text-xl font-bold">
+        🌟 Begin Your Eternal Journey
+      </a>
+      <a href="login.html" class="vintage-button text-white px-10 py-4 rounded-xl text-xl font-bold">
+        ✝ Enter the Kingdom
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- The Foundation: Believing God's Word -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="decorative-flourish mb-6"></div>
+      <h3 class="text-4xl md:text-5xl font-bold elegant-text mb-8">THE FOUNDATION OF FAITH</h3>
+      <p class="text-2xl scripture-text font-semibold">Believing 100% in God's Word</p>
+      <div class="decorative-flourish mt-6"></div>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8 mb-16">
+      <div class="vintage-card rounded-2xl p-8 shadow-2xl">
+        <div class="text-center mb-4">
+        </div>
+        <h4 class="text-2xl font-bold mb-4 text-red-800 elegant-text text-center">❌ You Cannot Have Both</h4>
+        <p class="text-lg mb-4 text-amber-900">
+          Many claim to believe in God while rejecting parts of His Word. This is impossible! 
+          God IS His Word. Jesus IS the Word made flesh.
+        </p>
+        <div class="bg-red-100 p-4 rounded-lg border-l-4 border-red-600 ornamental-border">
+          <p class="font-semibold text-red-800 scripture-text">
+            "And the Word became flesh and dwelt among us" — John 1:14
+          </p>
+        </div>
+      </div>
+      
+      <div class="vintage-card rounded-2xl p-8 shadow-2xl">
+        <div class="text-center mb-4">
+        </div>
+        <h4 class="text-2xl font-bold mb-4 text-green-800 elegant-text text-center">✅ Complete Faith Required</h4>
+        <p class="text-lg mb-4 text-amber-900">
+          True believers accept EVERY word of God without question. His Word is truth, 
+          life, and the only path to salvation.
+        </p>
+        <div class="bg-green-100 p-4 rounded-lg border-l-4 border-green-600 ornamental-border">
+          <p class="font-semibold text-green-800 scripture-text">
+            "Sanctify them by Your truth. Your word is truth." — John 17:17
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl text-center mb-12">
+      <h4 class="text-3xl font-bold mb-8 elegant-text">Biblical Evidence</h4>
+      <div class="decorative-flourish mb-8"></div>
+      <div class="grid md:grid-cols-3 gap-6 text-left">
+        <div class="bg-blue-50 p-6 rounded-lg ornamental-border">
+          <p class="font-bold text-blue-800 mb-3 elegant-text text-lg">Matthew 4:4</p>
+          <p class="scripture-text text-blue-700">"Man shall not live by bread alone, but by every word that proceeds from the mouth of God."</p>
+        </div>
+        <div class="bg-purple-50 p-6 rounded-lg ornamental-border">
+          <p class="font-bold text-purple-800 mb-3 elegant-text text-lg">2 Timothy 3:16</p>
+          <p class="scripture-text text-purple-700">"All Scripture is given by inspiration of God, and is profitable for doctrine, for reproof, for correction, for instruction in righteousness."</p>
+        </div>
+        <div class="bg-green-50 p-6 rounded-lg ornamental-border">
+          <p class="font-bold text-green-800 mb-3 elegant-text text-lg">Isaiah 55:11</p>
+          <p class="scripture-text text-green-700">"So shall My word be that goes forth from My mouth; It shall not return to Me void, but it shall accomplish what I please."</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- The Condemnation of Unbelief -->
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text text-red-800">The Condemnation of Unbelief</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="bg-red-100 p-8 rounded-lg ornamental-border mb-8 text-center">
+        <h5 class="text-2xl font-bold text-red-800 mb-4 elegant-text">⚠️ God's Wrath Upon Unbelievers</h5>
+        <p class="text-lg text-red-700 mb-4">
+          Those who refuse to believe God's Word are already condemned. Their unbelief is not just ignorance - it is rebellion against the Creator.
+        </p>
+        <div class="decorative-flourish mb-4"></div>
+        <div class="text-lg font-semibold text-red-900 scripture-text">
+          "He who believes in Him is not condemned; but he who does not believe is condemned already, because he has not believed in the name of the only begotten Son of God." — John 3:18
+        </div>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <div class="bg-red-50 p-6 rounded-lg ornamental-border">
+          <h6 class="text-lg font-bold text-red-800 mb-3 elegant-text">Mark 16:16</h6>
+          <p class="scripture-text text-red-700">
+            "He who believes and is baptized will be saved; but he who does not believe will be condemned."
+          </p>
+        </div>
+        
+        <div class="bg-red-50 p-6 rounded-lg ornamental-border">
+          <h6 class="text-lg font-bold text-red-800 mb-3 elegant-text">John 3:36</h6>
+          <p class="scripture-text text-red-700">
+            "He who believes in the Son has everlasting life; and he who does not believe the Son shall not see life, but the wrath of God abides on him."
+          </p>
+        </div>
+        
+        <div class="bg-red-50 p-6 rounded-lg ornamental-border">
+          <h6 class="text-lg font-bold text-red-800 mb-3 elegant-text">2 Thessalonians 2:12</h6>
+          <p class="scripture-text text-red-700">
+            "That they all may be condemned who did not believe the truth but had pleasure in unrighteousness."
+          </p>
+        </div>
+        
+        <div class="bg-red-50 p-6 rounded-lg ornamental-border">
+          <h6 class="text-lg font-bold text-red-800 mb-3 elegant-text">Hebrews 3:12</h6>
+          <p class="scripture-text text-red-700">
+            "Beware, brethren, lest there be in any of you an evil heart of unbelief in departing from the living God."
+          </p>
+        </div>
+      </div>
+      
+      <div class="bg-yellow-50 p-8 rounded-lg ornamental-border text-center">
+        <h5 class="text-2xl font-bold text-yellow-800 mb-4 elegant-text">The Hypocrite's Delusion</h5>
+        <p class="text-lg text-yellow-700 mb-4">
+          Many claim to know God while living in disobedience to His Word. They are liars and hypocrites, 
+          deceiving themselves and others. God knows their hearts and will judge them accordingly.
+        </p>
+        <div class="decorative-flourish mb-4"></div>
+        <div class="text-lg font-semibold text-yellow-900 scripture-text">
+          "They profess to know God, but in works they deny Him, being abominable, disobedient, and disqualified for every good work." — Titus 1:16
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What Separates Us From God -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="decorative-flourish mb-6"></div>
+      <h3 class="text-4xl md:text-5xl font-bold elegant-text mb-8">WHAT SEPARATES US FROM GOD</h3>
+      <div class="text-2xl md:text-3xl font-bold scripture-text mb-4">
+        Sin is the Only Thing That Separates Man From God
+      </div>
+      <p class="text-xl elegant-text font-semibold">Understanding the Barrier Between Heaven and Earth</p>
+      <div class="decorative-flourish mt-6"></div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text text-red-800">Sin: The Great Separator</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="bg-red-100 p-8 rounded-lg ornamental-border mb-8 text-center">
+        <h5 class="text-2xl font-bold text-red-800 mb-4 elegant-text">🚫 The Absolute Truth</h5>
+        <p class="text-lg text-red-700 mb-4">
+          It is not poverty, sickness, ignorance, or circumstances that separate you from God. 
+          It is SIN and SIN ALONE that creates an impassable gulf between holy God and sinful man.
+        </p>
+        <div class="decorative-flourish mb-4"></div>
+        <div class="text-lg font-semibold text-red-900 scripture-text">
+          "But your iniquities have separated you from your God; And your sins have hidden His face from you, So that He will not hear." — Isaiah 59:2
+        </div>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h5 class="text-2xl font-bold mb-4 elegant-text text-red-700">⚖️ God's Holiness Demands Perfection</h5>
+          <p class="text-lg mb-4 text-amber-900">
+            God is absolutely holy and cannot tolerate sin in His presence. Even one sin makes you completely unfit for heaven. 
+            His holiness is like a consuming fire that destroys all unrighteousness.
+          </p>
+          <div class="bg-red-50 p-4 rounded-lg ornamental-border mb-4">
+            <p class="font-semibold text-red-800 scripture-text">
+              "For our God is a consuming fire." — Hebrews 12:29
+            </p>
+          </div>
+          <div class="bg-red-50 p-4 rounded-lg ornamental-border">
+            <p class="font-semibold text-red-800 scripture-text">
+              "Your eyes are too pure to look on evil; you cannot tolerate wrongdoing." — Habakkuk 1:13
+            </p>
+          </div>
+        </div>
+        
+        <div>
+          <h5 class="text-2xl font-bold mb-4 elegant-text text-red-700">💀 Sin Brings Spiritual Death</h5>
+          <p class="text-lg mb-4 text-amber-900">
+            Sin doesn't just separate you from God temporarily - it brings spiritual death. 
+            You are born spiritually dead because of sin, unable to please God or understand spiritual things.
+          </p>
+          <div class="bg-red-50 p-4 rounded-lg ornamental-border mb-4">
+            <p class="font-semibold text-red-800 scripture-text">
+              "And you He made alive, who were dead in trespasses and sins." — Ephesians 2:1
+            </p>
+          </div>
+          <div class="bg-red-50 p-4 rounded-lg ornamental-border">
+            <p class="font-semibold text-red-800 scripture-text">
+              "The soul who sins shall die." — Ezekiel 18:20
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-yellow-50 p-8 rounded-lg ornamental-border text-center">
+        <h5 class="text-2xl font-bold text-yellow-800 mb-4 elegant-text">The Impossibility of Self-Salvation</h5>
+        <p class="text-lg text-yellow-700 mb-4">
+          No amount of good works, religious activity, or moral improvement can bridge the gap that sin has created. 
+          You cannot save yourself because you are spiritually dead and completely corrupted by sin.
+        </p>
+        <div class="decorative-flourish mb-4"></div>
+        <div class="text-lg font-semibold text-yellow-900 scripture-text">
+          "But we are all like an unclean thing, And all our righteousnesses are like filthy rags." — Isaiah 64:6
+        </div>
+      </div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text">More Biblical Evidence of Sin's Separation</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-red-50 p-6 rounded-lg ornamental-border">
+          <h6 class="text-lg font-bold text-red-800 mb-3 elegant-text">Romans 6:23</h6>
+          <p class="scripture-text text-red-700 text-sm">
+            "For the wages of sin is death, but the gift of God is eternal life in Christ Jesus our Lord."
+          </p>
+        </div>
+        
+        <div class="bg-red-50 p-6 rounded-lg ornamental-border">
+          <h6 class="text-lg font-bold text-red-800 mb-3 elegant-text">Romans 3:23</h6>
+          <p class="scripture-text text-red-700 text-sm">
+            "For all have sinned and fall short of the glory of God."
+          </p>
+        </div>
+        
+        <div class="bg-red-50 p-6 rounded-lg ornamental-border">
+          <h6 class="text-lg font-bold text-red-800 mb-3 elegant-text">James 2:10</h6>
+          <p class="scripture-text text-red-700 text-sm">
+            "For whoever shall keep the whole law, and yet stumble in one point, he is guilty of all."
+          </p>
+        </div>
+        
+        <div class="bg-red-50 p-6 rounded-lg ornamental-border">
+          <h6 class="text-lg font-bold text-red-800 mb-3 elegant-text">1 John 3:4</h6>
+          <p class="scripture-text text-red-700 text-sm">
+            "Whoever commits sin also commits lawlessness, and sin is lawlessness."
+          </p>
+        </div>
+        
+        <div class="bg-red-50 p-6 rounded-lg ornamental-border">
+          <h6 class="text-lg font-bold text-red-800 mb-3 elegant-text">Galatians 3:22</h6>
+          <p class="scripture-text text-red-700 text-sm">
+            "But the Scripture has confined all under sin, that the promise by faith in Jesus Christ might be given to those who believe."
+          </p>
+        </div>
+        
+        <div class="bg-red-50 p-6 rounded-lg ornamental-border">
+          <h6 class="text-lg font-bold text-red-800 mb-3 elegant-text">Psalm 14:3</h6>
+          <p class="scripture-text text-red-700 text-sm">
+            "They have all turned aside, They have together become corrupt; There is none who does good, No, not one."
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The Origin of Sin: Every Person is Guilty -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="decorative-flourish mb-6"></div>
+      <h3 class="text-4xl md:text-5xl font-bold elegant-text mb-8">THE ORIGIN OF SIN</h3>
+      <div class="text-2xl md:text-3xl font-bold scripture-text mb-4">
+        Every Person is Guilty Before God
+      </div>
+      <p class="text-xl elegant-text font-semibold">Understanding Our Sinful Nature</p>
+      <div class="decorative-flourish mt-6"></div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text text-red-800">Adam's Sin Spread to All Mankind</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h5 class="text-2xl font-bold mb-4 elegant-text text-red-700">🍎 The First Sin</h5>
+          <p class="text-lg mb-4 text-amber-900">
+            In the Garden of Eden, Adam disobeyed God's command and brought sin into the world. 
+            Through one man's disobedience, sin entered and death spread to all mankind.
+          </p>
+          <div class="bg-red-50 p-4 rounded-lg ornamental-border mb-4">
+            <p class="font-semibold text-red-800 scripture-text">
+              "Therefore, just as through one man sin entered the world, and death through sin, and thus death spread to all men, because all sinned" — Romans 5:12
+            </p>
+          </div>
+        </div>
+        
+        <div>
+          <h5 class="text-2xl font-bold mb-4 elegant-text text-red-700">⚖️ All Are Guilty</h5>
+          <p class="text-lg mb-4 text-amber-900">
+            Even those who never committed the same sin as Adam are still guilty before God. 
+            We are all born with a sinful nature inherited from Adam.
+          </p>
+          <div class="bg-red-50 p-4 rounded-lg ornamental-border mb-4">
+            <p class="font-semibold text-red-800 scripture-text">
+              "Nevertheless death reigned from Adam to Moses, even over those who had not sinned according to the likeness of Adam's transgression" — Romans 5:14
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-yellow-50 p-8 rounded-lg ornamental-border text-center">
+        <h5 class="text-2xl font-bold text-yellow-800 mb-4 elegant-text">The Universal Verdict</h5>
+        <p class="text-xl text-yellow-700 mb-4">
+          Scripture declares that ALL have sinned and fall short of God's glory. There are no exceptions - 
+          every person who has ever lived (except Jesus) is guilty of sin.
+        </p>
+        <div class="decorative-flourish mb-4"></div>
+        <div class="text-lg font-semibold text-yellow-900 scripture-text">
+          "For all have sinned and fall short of the glory of God" — Romans 3:23
+        </div>
+      </div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text">Biblical Evidence of Universal Sin</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-red-50 p-6 rounded-lg ornamental-border">
+          <h6 class="text-lg font-bold text-red-800 mb-3 elegant-text">Romans 3:10-12</h6>
+          <p class="scripture-text text-red-700 text-sm">
+            "There is none righteous, no, not one; There is none who understands; There is none who seeks after God. 
+            They have all turned aside; They have together become unprofitable; There is none who does good, no, not one."
+          </p>
+        </div>
+        
+        <div class="bg-red-50 p-6 rounded-lg ornamental-border">
+          <h6 class="text-lg font-bold text-red-800 mb-3 elegant-text">Ecclesiastes 7:20</h6>
+          <p class="scripture-text text-red-700 text-sm">
+            "For there is not a just man on earth who does good and does not sin."
+          </p>
+        </div>
+        
+        <div class="bg-red-50 p-6 rounded-lg ornamental-border">
+          <h6 class="text-lg font-bold text-red-800 mb-3 elegant-text">1 John 1:8</h6>
+          <p class="scripture-text text-red-700 text-sm">
+            "If we say that we have no sin, we deceive ourselves, and the truth is not in us."
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl text-center">
+      <h4 class="text-3xl font-bold mb-8 elegant-text text-orange-800">The Consequence: Death and Hell</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-orange-50 p-6 rounded-lg ornamental-border">
+          <h5 class="text-xl font-bold text-orange-800 mb-4 elegant-text">Physical Death</h5>
+          <p class="text-lg text-orange-700 mb-4">
+            Because of sin, every person will die physically. Death entered the world through Adam's sin.
+          </p>
+          <div class="scripture-text text-orange-600 text-sm">
+            "For the wages of sin is death" — Romans 6:23
+          </div>
+        </div>
+        
+        <div class="bg-red-50 p-6 rounded-lg ornamental-border">
+          <h5 class="text-xl font-bold text-red-800 mb-4 elegant-text">Eternal Death (Hell)</h5>
+          <p class="text-lg text-red-700 mb-4">
+            More importantly, sin separates us from God forever. Without salvation, sinners face eternal punishment.
+          </p>
+          <div class="scripture-text text-red-600 text-sm">
+            "And these will go away into everlasting punishment" — Matthew 25:46
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Destination: Heaven or Hell -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="decorative-flourish mb-6"></div>
+      <h3 class="text-4xl md:text-5xl font-bold elegant-text mb-8">YOUR ETERNAL DESTINATION</h3>
+      <div class="text-2xl md:text-3xl font-bold scripture-text mb-4">
+        Heaven or Hell - There Are Only Two Options
+      </div>
+      <p class="text-xl elegant-text font-semibold">Where Will You Spend Eternity?</p>
+      <div class="decorative-flourish mt-6"></div>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8 mb-12">
+      <div class="vintage-card rounded-2xl p-8 shadow-2xl">
+        <h4 class="text-3xl font-bold mb-6 text-center elegant-text text-yellow-600">🌟 HEAVEN</h4>
+        <div class="decorative-flourish mb-6"></div>
+        
+        <div class="space-y-4">
+          <div class="bg-yellow-50 p-4 rounded-lg ornamental-border">
+            <h5 class="font-bold text-yellow-800 mb-2 elegant-text">Eternal Life with God</h5>
+            <p class="text-sm text-yellow-700 scripture-text">
+              "And God will wipe away every tear from their eyes; there shall be no more death, nor sorrow, nor crying. There shall be no more pain, for the former things have passed away." — Revelation 21:4
+            </p>
+          </div>
+          
+          <div class="bg-yellow-50 p-4 rounded-lg ornamental-border">
+            <h5 class="font-bold text-yellow-800 mb-2 elegant-text">Perfect Joy and Peace</h5>
+            <p class="text-sm text-yellow-700 scripture-text">
+              "In Your presence is fullness of joy; At Your right hand are pleasures forevermore." — Psalm 16:11
+            </p>
+          </div>
+          
+          <div class="bg-yellow-50 p-4 rounded-lg ornamental-border">
+            <h5 class="font-bold text-yellow-800 mb-2 elegant-text">No More Sin or Suffering</h5>
+            <p class="text-sm text-yellow-700 scripture-text">
+              "But nothing unclean, and no one who practices abomination and lying, shall ever come into it." — Revelation 21:27
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="vintage-card rounded-2xl p-8 shadow-2xl">
+        <h4 class="text-3xl font-bold mb-6 text-center elegant-text text-red-600">🔥 HELL</h4>
+        <div class="decorative-flourish mb-6"></div>
+        
+        <div class="space-y-4">
+          <div class="bg-red-50 p-4 rounded-lg ornamental-border">
+            <h5 class="font-bold text-red-800 mb-2 elegant-text">Eternal Separation from God</h5>
+            <p class="text-sm text-red-700 scripture-text">
+              "And these will go away into everlasting punishment, but the righteous into eternal life." — Matthew 25:46
+            </p>
+          </div>
+          
+          <div class="bg-red-50 p-4 rounded-lg ornamental-border">
+            <h5 class="font-bold text-red-800 mb-2 elegant-text">Conscious Torment Forever</h5>
+            <p class="text-sm text-red-700 scripture-text">
+              "And the smoke of their torment ascends forever and ever; and they have no rest day or night." — Revelation 14:11
+            </p>
+          </div>
+          
+          <div class="bg-red-50 p-4 rounded-lg ornamental-border">
+            <h5 class="font-bold text-red-800 mb-2 elegant-text">No Second Chance</h5>
+            <p class="text-sm text-red-700 scripture-text">
+              "And besides all this, between us and you there is a great gulf fixed, so that those who want to pass from here to you cannot." — Luke 16:26
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl text-center">
+      <h4 class="text-3xl font-bold mb-8 elegant-text text-purple-800">The Choice is Yours</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <p class="text-xl mb-8 leading-relaxed text-amber-900">
+        Every person will spend eternity in one of these two places. There is no middle ground, 
+        no purgatory, no second chances after death. Your choice in this life determines your eternal destiny.
+      </p>
+      
+      <div class="bg-purple-50 p-8 rounded-lg ornamental-border">
+        <h5 class="text-2xl font-bold text-purple-800 mb-4 elegant-text">The Time to Choose is NOW</h5>
+        <p class="text-lg text-purple-700 mb-4">
+          You don't know when your life will end. Today could be your last opportunity to choose Heaven over Hell.
+        </p>
+        <div class="decorative-flourish mb-4"></div>
+        <div class="text-lg font-semibold text-purple-900 scripture-text">
+          "Behold, now is the accepted time; behold, now is the day of salvation." — 2 Corinthians 6:2
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The Path to Righteousness -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="decorative-flourish mb-6"></div>
+      <h3 class="text-4xl md:text-5xl font-bold elegant-text mb-8">THE PATH TO RIGHTEOUSNESS</h3>
+      <p class="text-2xl scripture-text font-semibold">According to God's Word</p>
+      <div class="decorative-flourish mt-6"></div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text">The Essential Steps</h4>
+      <div class="decorative-flourish mb-8"></div>
+      <div class="grid md:grid-cols-5 gap-6">
+        <a href="step1-learn-your-nature.html" class="bg-gradient-to-b from-red-50 to-red-100 p-6 rounded-xl text-center ornamental-border hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer">
+          <div class="text-4xl mb-4">🪞</div>
+          <h5 class="text-xl font-bold mb-3 text-red-800 elegant-text">Step 1</h5>
+          <h6 class="text-lg font-semibold mb-2 text-red-700">Learn Your Nature</h6>
+          <p class="text-sm text-red-600">Understand your sinful condition</p>
+          <div class="mt-4 text-red-800 font-semibold">Click to Learn →</div>
+        </a>
+        
+        <a href="step2-understanding-repentance.html" class="bg-gradient-to-b from-orange-50 to-orange-100 p-6 rounded-xl text-center ornamental-border hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer">
+          <div class="text-4xl mb-4">😢</div>
+          <h5 class="text-xl font-bold mb-3 text-orange-800 elegant-text">Step 2</h5>
+          <h6 class="text-lg font-semibold mb-2 text-orange-700">Understanding Repentance</h6>
+          <p class="text-sm text-orange-600">Learn biblical repentance</p>
+          <div class="mt-4 text-orange-800 font-semibold">Click to Learn →</div>
+        </a>
+        
+        <a href="step3-the-new-testament.html" class="bg-gradient-to-b from-purple-50 to-purple-100 p-6 rounded-xl text-center ornamental-border hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer">
+          <div class="text-4xl mb-4">📜</div>
+          <h5 class="text-xl font-bold mb-3 text-purple-800 elegant-text">Step 3</h5>
+          <h6 class="text-lg font-semibold mb-2 text-purple-700">Old Testament Atonement</h6>
+          <p class="text-sm text-purple-600">God's sacrificial system</p>
+          <div class="mt-4 text-purple-800 font-semibold">Click to Learn →</div>
+        </a>
+        
+        <a href="step4-the-new-testament.html" class="bg-gradient-to-b from-blue-50 to-blue-100 p-6 rounded-xl text-center ornamental-border hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer">
+          <div class="text-4xl mb-4">✝️</div>
+          <h5 class="text-xl font-bold mb-3 text-blue-800 elegant-text">Step 4</h5>
+          <h6 class="text-lg font-semibold mb-2 text-blue-700">New Testament Fulfillment</h6>
+          <p class="text-sm text-blue-600">John the Baptist and Jesus</p>
+          <div class="mt-4 text-blue-800 font-semibold">Click to Learn →</div>
+        </a>
+        
+        <a href="step5-get-saved.html" class="bg-gradient-to-b from-green-50 to-green-100 p-6 rounded-xl text-center ornamental-border hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer">
+          <div class="text-4xl mb-4">🙏</div>
+          <h5 class="text-xl font-bold mb-3 text-green-800 elegant-text">Step 5</h5>
+          <h6 class="text-lg font-semibold mb-2 text-green-700">Get Saved</h6>
+          <p class="text-sm text-green-600">Receive salvation through faith</p>
+          <div class="mt-4 text-green-800 font-semibold">Click to Learn →</div>
+        </a>
+      </div>
+      
+      <div class="mt-12 text-center">
+        <div class="decorative-flourish mb-6"></div>
+        <p class="text-xl text-amber-900 mb-6 leading-relaxed">
+          These five essential steps represent the biblical path to salvation. Now that you understand God's Word 
+          and what separates you from Him, you must proceed through each step to experience His saving grace.
+        </p>
+        
+        <div class="mb-8">
+          <a href="step1-learn-your-nature.html" class="vintage-button text-white px-12 py-5 rounded-xl text-2xl font-bold inline-block">
+            🪞 Begin Your Journey to Truth
+          </a>
+        </div>
+        
+        <div class="bg-yellow-50 p-6 rounded-lg ornamental-border">
+          <p class="text-lg font-semibold text-yellow-800 scripture-text">
+            "My people are destroyed for lack of knowledge. Because you have rejected knowledge, I also reject you." — Hosea 4:6
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-4xl mx-auto text-center">
+    <div class="decorative-flourish mb-6"></div>
+    <h3 class="text-4xl md:text-5xl font-bold elegant-text mb-8">ARE YOU READY?</h3>
+    <p class="text-2xl scripture-text mb-8 font-semibold">
+      To embark on the eternal journey of faith and righteousness?
+    </p>
+    <p class="text-xl text-amber-900 mb-12 leading-relaxed">
+      The Word of God is calling you today. Don't delay your salvation. 
+      Every moment you wait is a moment closer to eternity without God.
+    </p>
+    
+    <div class="vintage-card rounded-2xl p-8 mb-12">
+      <h4 class="text-2xl font-bold mb-4 text-red-800 elegant-text">⚠️ Warning from Scripture</h4>
+      <div class="decorative-flourish mb-4"></div>
+      <p class="text-lg mb-4 scripture-text text-red-700">
+        "How shall we escape if we neglect so great a salvation?" — Hebrews 2:3
+      </p>
+      <p class="text-lg scripture-text text-red-700">
+        "Behold, now is the accepted time; behold, now is the day of salvation." — 2 Corinthians 6:2
+      </p>
+    </div>
+    
+    <div class="flex flex-col md:flex-row gap-6 justify-center">
+      <a href="signup.html" class="vintage-button text-white px-10 py-5 rounded-xl text-2xl font-bold">
+        🌟 Start Your Eternal Journey Now
+      </a>
+      <a href="login.html" class="vintage-button text-white px-10 py-5 rounded-xl text-2xl font-bold">
+        ✝ Continue Your Walk with God
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="vintage-overlay text-center py-12 ornamental-border border-t-4">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="decorative-flourish mb-4"></div>
+    <h4 class="text-2xl font-bold elegant-text mb-4">✝ Eternal Truth - God's Church Chieko</h4>
+    <p class="scripture-text mb-4 text-lg">
+      "Heaven and earth will pass away, but My words will by no means pass away." — Matthew 24:35
+    </p>
+    <div class="decorative-flourish mb-4"></div>
+    
+    <!-- Reels Button -->
+    <div class="mb-6">
+      <a href="reels.html" class="vintage-button text-white px-8 py-3 rounded-lg text-lg font-bold inline-flex items-center gap-2">
+        🎬 Watch Church Reels
+      </a>
+    </div>
+    
+    <p class="text-amber-800 font-semibold">&copy; 2025 God's Church Chieko. All rights reserved. | Walking in Eternal Truth</p>
+  </div>
+</footer>
+
+</body>
+</html>

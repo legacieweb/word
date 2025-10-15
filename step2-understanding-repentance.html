@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Step 2: Understanding Repentance - God's Church Chieko</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    .vintage-bg {
+      background: 
+        linear-gradient(45deg, rgba(139, 69, 19, 0.1) 0%, rgba(160, 82, 45, 0.1) 100%),
+        url('https://images.unsplash.com/photo-1481833761820-0509d3217039?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+    
+    .vintage-overlay {
+      background: 
+        radial-gradient(circle at center, rgba(245, 245, 220, 0.95) 0%, rgba(222, 184, 135, 0.98) 100%);
+      backdrop-filter: blur(2px);
+    }
+    
+    .elegant-text {
+      font-family: 'Playfair Display', serif;
+      color: #8B4513;
+      text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
+    }
+    
+    .scripture-text {
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+      color: #654321;
+    }
+    
+    .vintage-card {
+      background: linear-gradient(145deg, #F5F5DC 0%, #FAEBD7 100%);
+      border: 3px solid #D2B48C;
+      box-shadow: 
+        0 8px 32px rgba(139, 69, 19, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      position: relative;
+    }
+    
+    .vintage-card::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px solid #CD853F;
+      pointer-events: none;
+    }
+    
+    .ornamental-border {
+      border-image: linear-gradient(45deg, #CD853F, #D2B48C, #CD853F) 1;
+      border-width: 2px;
+      border-style: solid;
+    }
+    
+    .vintage-button {
+      background: linear-gradient(145deg, #8B4513 0%, #A0522D 100%);
+      border: 2px solid #CD853F;
+      box-shadow: 
+        0 4px 15px rgba(139, 69, 19, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+    
+    .vintage-button:hover {
+      background: linear-gradient(145deg, #A0522D 0%, #8B4513 100%);
+      transform: translateY(-2px);
+      box-shadow: 
+        0 6px 20px rgba(139, 69, 19, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+    
+    .decorative-flourish {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0 10 Q25 0 50 10 T100 10' stroke='%23CD853F' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 20px;
+      width: 100px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body class="vintage-bg min-h-screen overflow-x-hidden">
+
+<!-- Navbar -->
+<header class="vintage-overlay border-b-4 ornamental-border">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-6">
+      <!-- Logo -->
+      <h1 class="text-2xl sm:text-3xl font-bold elegant-text">✝ Eternal Truth - God's Church Chieko</h1>
+
+      <!-- Navigation -->
+      <nav class="hidden md:flex space-x-4">
+        <a href="step1-learn-your-nature.html" class="vintage-button text-white px-6 py-3 rounded-lg">← Previous Step</a>
+        <a href="index.html" class="vintage-button text-white px-6 py-3 rounded-lg">Home</a>
+        <a href="step3-the-new-testament.html" class="vintage-button text-white px-6 py-3 rounded-lg">Next Step →</a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-amber-800 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Links -->
+    <div id="mobile-menu" class="md:hidden hidden flex-col space-y-2 pb-4">
+      <a href="step1-learn-your-nature.html" class="block vintage-button text-white text-center py-3 rounded-lg">← Previous Step</a>
+      <a href="index.html" class="block vintage-button text-white text-center py-3 rounded-lg">Home</a>
+      <a href="step3-the-new-testament.html" class="block vintage-button text-white text-center py-3 rounded-lg">Next Step →</a>
+    </div>
+  </div>
+
+  <!-- Script to toggle menu -->
+  <script>
+    const button = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    button.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
+</header>
+
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center px-4 py-20">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 text-center max-w-6xl mx-auto">
+    <div class="mb-12">
+      <div class="decorative-flourish mb-6"></div>
+      <h2 class="text-5xl md:text-7xl font-extrabold mb-8 elegant-text">
+        STEP 2
+      </h2>
+      <h3 class="text-4xl md:text-5xl font-bold mb-8 elegant-text">
+        UNDERSTANDING REPENTANCE
+      </h3>
+      <div class="decorative-flourish mb-8"></div>
+      <div class="text-2xl md:text-3xl font-bold mb-8 scripture-text">
+        "Repent therefore and be converted, that your sins may be blotted out"
+      </div>
+      <p class="text-xl md:text-2xl elegant-text font-semibold">— Acts 3:19</p>
+    </div>
+  </div>
+</section>
+
+<!-- Human Thoughts vs Spiritual Thoughts -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="decorative-flourish mb-6"></div>
+      <h3 class="text-4xl md:text-5xl font-bold elegant-text mb-8">HUMAN THOUGHTS vs SPIRITUAL THOUGHTS</h3>
+      <p class="text-2xl scripture-text font-semibold">The Battle Between Flesh and Spirit</p>
+      <div class="decorative-flourish mt-6"></div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text text-red-800">⚠️ ADMONISHMENT TO THE CARNAL MIND</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="bg-red-50 p-8 rounded-lg ornamental-border mb-8">
+        <h5 class="text-2xl font-bold text-red-800 mb-4 elegant-text text-center">🧠 Your Natural Mind is Enmity Against God</h5>
+        <p class="text-lg text-red-700 mb-6 text-center">
+          Your human reasoning and natural thoughts are hostile to God. You cannot understand spiritual things 
+          with your carnal mind, and you resist God's truth because it condemns you.
+        </p>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white p-6 rounded-lg ornamental-border">
+            <h6 class="text-lg font-bold text-red-800 mb-3 elegant-text">The Carnal Mind</h6>
+            <p class="scripture-text text-red-700 mb-3 text-sm">
+              "Because the carnal mind is enmity against God; for it is not subject to the law of God, nor indeed can be." — Romans 8:7
+            </p>
+            <p class="text-xs text-red-600">
+              Your natural mind is at war with God and cannot submit to His law.
+            </p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-lg ornamental-border">
+            <h6 class="text-lg font-bold text-red-800 mb-3 elegant-text">Spiritual Blindness</h6>
+            <p class="scripture-text text-red-700 mb-3 text-sm">
+              "But the natural man does not receive the things of the Spirit of God, for they are foolishness to him; nor can he know them, because they are spiritually discerned." — 1 Corinthians 2:14
+            </p>
+            <p class="text-xs text-red-600">
+              You cannot understand God's truth in your natural state.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-yellow-50 p-8 rounded-lg ornamental-border">
+        <h5 class="text-2xl font-bold text-yellow-800 mb-4 elegant-text text-center">🔥 Stop Trusting Your Own Understanding!</h5>
+        <p class="text-lg text-yellow-700 mb-4 text-center">
+          Your human wisdom is foolishness to God. Stop leaning on your own understanding and submit to God's Word!
+        </p>
+        <div class="scripture-text text-yellow-600 font-semibold text-center mb-4">
+          "Trust in the LORD with all your heart, And lean not on your own understanding" — Proverbs 3:5
+        </div>
+        <div class="scripture-text text-yellow-600 font-semibold text-center">
+          "For the wisdom of this world is foolishness with God" — 1 Corinthians 3:19
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- True Repentance: Biblical Definition -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="decorative-flourish mb-6"></div>
+      <h3 class="text-4xl md:text-5xl font-bold elegant-text mb-8">WHAT TRUE REPENTANCE MEANS</h3>
+      <p class="text-2xl scripture-text font-semibold">Biblical Repentance from Both Testaments</p>
+      <div class="decorative-flourish mt-6"></div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text">📖 OLD TESTAMENT REPENTANCE</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="space-y-8">
+        <div class="bg-blue-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-blue-800 mb-4 elegant-text">🔄 "Shuv" - To Turn Back</h5>
+          <p class="text-lg text-blue-700 mb-4">
+            The Hebrew word "shuv" means to turn back, return, or change direction. It involves turning away from sin and turning back to God.
+          </p>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="scripture-text text-blue-600 font-semibold text-sm">
+              "Let the wicked forsake his way, And the unrighteous man his thoughts; Let him return to the LORD, And He will have mercy on him" — Isaiah 55:7
+            </div>
+            <div class="scripture-text text-blue-600 font-semibold text-sm">
+              "Turn us back to You, O LORD, and we will be restored; Renew our days as of old" — Lamentations 5:21
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-purple-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-purple-800 mb-4 elegant-text">💔 "Nacham" - To Be Sorry/Grieved</h5>
+          <p class="text-lg text-purple-700 mb-4">
+            The Hebrew word "nacham" means to be sorry, to grieve, or to have compassion. True repentance involves genuine sorrow for sin.
+          </p>
+          <div class="scripture-text text-purple-600 font-semibold text-center">
+            "I have surely heard Ephraim bemoaning himself: 'You have chastised me, and I was chastised, Like an untrained bull; Restore me, and I will return, For You are the LORD my God.'" — Jeremiah 31:18
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text">📜 NEW TESTAMENT REPENTANCE</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="space-y-8">
+        <div class="bg-green-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-green-800 mb-4 elegant-text">🧠 "Metanoia" - Change of Mind</h5>
+          <p class="text-lg text-green-700 mb-4">
+            The Greek word "metanoia" means a change of mind, a transformation of thinking. It's a complete reversal of attitude toward sin and God.
+          </p>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="scripture-text text-green-600 font-semibold text-sm">
+              "Repent, for the kingdom of heaven is at hand!" — Matthew 3:2
+            </div>
+            <div class="scripture-text text-green-600 font-semibold text-sm">
+              "The time is fulfilled, and the kingdom of God is at hand. Repent, and believe in the gospel." — Mark 1:15
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-orange-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-orange-800 mb-4 elegant-text">😢 Godly Sorrow vs Worldly Sorrow</h5>
+          <p class="text-lg text-orange-700 mb-4">
+            There is a difference between godly sorrow that leads to repentance and worldly sorrow that leads to death.
+          </p>
+          <div class="scripture-text text-orange-600 font-semibold text-center mb-4">
+            "For godly sorrow produces repentance leading to salvation, not to be regretted; but the sorrow of the world produces death." — 2 Corinthians 7:10
+          </div>
+          <div class="bg-white p-4 rounded-lg ornamental-border">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <h6 class="font-bold text-green-800 mb-2">✅ Godly Sorrow:</h6>
+                <ul class="text-sm text-green-700 space-y-1">
+                  <li>• Grieves over offending God</li>
+                  <li>• Leads to genuine repentance</li>
+                  <li>• Results in changed behavior</li>
+                  <li>• Seeks God's forgiveness</li>
+                </ul>
+              </div>
+              <div>
+                <h6 class="font-bold text-red-800 mb-2">❌ Worldly Sorrow:</h6>
+                <ul class="text-sm text-red-700 space-y-1">
+                  <li>• Only sorry for consequences</li>
+                  <li>• No real change of heart</li>
+                  <li>• Continues in sin</li>
+                  <li>• Leads to spiritual death</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Confession of Sin -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="decorative-flourish mb-6"></div>
+      <h3 class="text-4xl md:text-5xl font-bold elegant-text mb-8">CONFESSION OF SIN</h3>
+      <p class="text-2xl scripture-text font-semibold">Acknowledging Your Guilt Before God</p>
+      <div class="decorative-flourish mt-6"></div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text">🙏 BIBLICAL EXAMPLES OF CONFESSION</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="space-y-8">
+        <div class="bg-red-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-red-800 mb-4 elegant-text">👑 King David's Confession</h5>
+          <p class="text-lg text-red-700 mb-4">
+            After his sin with Bathsheba, David made a complete confession of his sin before God:
+          </p>
+          <div class="bg-white p-6 rounded-lg ornamental-border">
+            <div class="scripture-text text-red-600 font-semibold text-center mb-4">
+              "Against You, You only, have I sinned, And done this evil in Your sight— That You may be found just when You speak, And blameless when You judge." — Psalm 51:4
+            </div>
+            <div class="scripture-text text-red-600 font-semibold text-center">
+              "Create in me a clean heart, O God, And renew a steadfast spirit within me." — Psalm 51:10
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-blue-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-blue-800 mb-4 elegant-text">📜 Daniel's Confession for Israel</h5>
+          <p class="text-lg text-blue-700 mb-4">
+            Daniel confessed not only his own sins but the sins of his people:
+          </p>
+          <div class="scripture-text text-blue-600 font-semibold text-center">
+            "We have sinned and committed iniquity, we have done wickedly and rebelled, even by departing from Your precepts and Your judgments." — Daniel 9:5
+          </div>
+        </div>
+        
+        <div class="bg-green-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-green-800 mb-4 elegant-text">🏠 The Prodigal Son's Confession</h5>
+          <p class="text-lg text-green-700 mb-4">
+            The prodigal son's repentance included a specific confession:
+          </p>
+          <div class="scripture-text text-green-600 font-semibold text-center">
+            "Father, I have sinned against heaven and in your sight, and am no longer worthy to be called your son." — Luke 15:21
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The Old Testament System of Atonement -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="decorative-flourish mb-6"></div>
+      <h3 class="text-4xl md:text-5xl font-bold elegant-text mb-8">GOD'S LAW OF ATONEMENT</h3>
+      <p class="text-2xl scripture-text font-semibold">The Only Way God Established for Forgiveness</p>
+      <div class="decorative-flourish mt-6"></div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text text-red-800">🩸 WITHOUT BLOOD, NO FORGIVENESS</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="bg-red-50 p-8 rounded-lg ornamental-border mb-8">
+        <h5 class="text-2xl font-bold text-red-800 mb-4 elegant-text text-center">⚖️ God's Unchanging Law</h5>
+        <p class="text-lg text-red-700 mb-6 text-center">
+          From the very beginning, God established that sin requires death, and forgiveness requires the shedding of blood. 
+          This is not man's idea - this is God's eternal law.
+        </p>
+        
+        <div class="bg-white p-6 rounded-lg ornamental-border mb-6">
+          <div class="scripture-text text-red-800 font-semibold text-lg text-center mb-4">
+            "And according to the law almost all things are purified with blood, and without shedding of blood there is no remission." — Hebrews 9:22
+          </div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white p-6 rounded-lg ornamental-border">
+            <h6 class="text-lg font-bold text-red-800 mb-3 elegant-text">The Wages of Sin</h6>
+            <p class="scripture-text text-red-700 mb-3 text-sm">
+              "For the wages of sin is death" — Romans 6:23a
+            </p>
+            <p class="text-xs text-red-600">
+              Sin demands death as payment. This is God's justice.
+            </p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-lg ornamental-border">
+            <h6 class="text-lg font-bold text-red-800 mb-3 elegant-text">Life is in the Blood</h6>
+            <p class="scripture-text text-red-700 mb-3 text-sm">
+              "For the life of the flesh is in the blood, and I have given it to you upon the altar to make atonement for your souls; for it is the blood that makes atonement for the soul." — Leviticus 17:11
+            </p>
+            <p class="text-xs text-red-600">
+              Blood represents life given for atonement.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text">🐑 THE SACRIFICIAL SYSTEM</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="space-y-8">
+        <div class="bg-yellow-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-yellow-800 mb-4 elegant-text">🔥 The Daily Sacrifices</h5>
+          <p class="text-lg text-yellow-700 mb-4">
+            God commanded daily sacrifices to be offered for the sins of the people. These sacrifices pointed to the need for atonement.
+          </p>
+          <div class="scripture-text text-yellow-600 font-semibold text-center">
+            "Now this is what you shall offer on the altar: two lambs of the first year, day by day continually." — Exodus 29:38
+          </div>
+        </div>
+        
+        <div class="bg-purple-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-purple-800 mb-4 elegant-text">🎯 The Day of Atonement</h5>
+          <p class="text-lg text-purple-700 mb-4">
+            Once a year, on the Day of Atonement, the high priest would make atonement for all the sins of Israel.
+          </p>
+          <div class="scripture-text text-purple-600 font-semibold text-center mb-4">
+            "For on that day the priest shall make atonement for you, to cleanse you, that you may be clean from all your sins before the LORD." — Leviticus 16:30
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded-lg ornamental-border">
+              <h6 class="font-bold text-purple-800 mb-2">🐐 The Scapegoat</h6>
+              <p class="text-sm text-purple-700">One goat was sacrificed, the other sent away bearing the sins of the people</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg ornamental-border">
+              <h6 class="font-bold text-purple-800 mb-2">🩸 Blood in the Holy of Holies</h6>
+              <p class="text-sm text-purple-700">The high priest sprinkled blood on the mercy seat for atonement</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-green-50 p-8 rounded-lg ornamental-border">
+          <h5 class="text-2xl font-bold text-green-800 mb-4 elegant-text">🐑 The Passover Lamb</h5>
+          <p class="text-lg text-green-700 mb-4">
+            The Passover lamb had to be without blemish, and its blood protected the Israelites from death.
+          </p>
+          <div class="scripture-text text-green-600 font-semibold text-center">
+            "And when I see the blood, I will pass over you; and the plague shall not be on you to destroy you when I strike the land of Egypt." — Exodus 12:13
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The Promise Through Malachi -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="decorative-flourish mb-6"></div>
+      <h3 class="text-4xl md:text-5xl font-bold elegant-text mb-8">THE PROMISE THROUGH MALACHI</h3>
+      <p class="text-2xl scripture-text font-semibold">God's Final Word in the Old Testament</p>
+      <div class="decorative-flourish mt-6"></div>
+    </div>
+    
+    <div class="vintage-card rounded-2xl p-10 shadow-2xl mb-12">
+      <h4 class="text-3xl font-bold mb-8 text-center elegant-text">📜 THE MESSENGER OF THE COVENANT</h4>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="bg-blue-50 p-8 rounded-lg ornamental-border mb-8">
+        <h5 class="text-2xl font-bold text-blue-800 mb-4 elegant-text text-center">👤 The Coming Messenger</h5>
+        <p class="text-lg text-blue-700 mb-6 text-center">
+          Through the prophet Malachi, God promised to send a messenger who would prepare the way, 
+          and then the Lord Himself would suddenly come to His temple.
+        </p>
+        
+        <div class="bg-white p-6 rounded-lg ornamental-border mb-6">
+          <div class="scripture-text text-blue-800 font-semibold text-lg text-center mb-4">
+            "Behold, I send My messenger, And he will prepare the way before Me. And the Lord, whom you seek, 
+            Will suddenly come to His temple, Even the Messenger of the covenant, In whom you delight. 
+            Behold, He is coming," says the Lord of hosts." — Malachi 3:1
+          </div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white p-6 rounded-lg ornamental-border">
+            <h6 class="text-lg font-bold text-blue-800 mb-3 elegant-text">The Preparer</h6>
+            <p class="text-sm text-blue-700 mb-3">
+              "My messenger" who would prepare the way - this speaks of one who would come first to make ready the people.
+            </p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-lg ornamental-border">
+            <h6 class="text-lg font-bold text-blue-800 mb-3 elegant-text">The Lord Himself</h6>
+            <p class="text-sm text-blue-700 mb-3">
+              "The Lord" and "the Messenger of the covenant" - this speaks of God Himself coming to His people.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-yellow-50 p-8 rounded-lg ornamental-border mb-8">
+        <h5 class="text-2xl font-bold text-yellow-800 mb-4 elegant-text text-center">🔥 But Who Can Endure His Coming?</h5>
+        <p class="text-lg text-yellow-700 mb-4 text-center">
+          Malachi warns that when the Lord comes, He will be like a refiner's fire and like launderer's soap - 
+          He will purify and cleanse, but who can stand before His holiness?
+        </p>
+        <div class="scripture-text text-yellow-600 font-semibold text-center mb-4">
+          "But who can endure the day of His coming? And who can stand when He appears? For He is like a refiner's fire And like launderer's soap." — Malachi 3:2
+        </div>
+        <p class="text-yellow-700 text-center">
+          This promise points to a coming One who would deal with sin once and for all.
+        </p>
+      </div>
+      
+      <div class="bg-green-50 p-8 rounded-lg ornamental-border">
+        <h5 class="text-2xl font-bold text-green-800 mb-4 elegant-text text-center">⏰ 400 Years of Silence</h5>
+        <p class="text-lg text-green-700 mb-4 text-center">
+          After Malachi's prophecy, God was silent for 400 years. No prophet spoke. 
+          The people waited for the fulfillment of this promise.
+        </p>
+        <div class="decorative-flourish mb-4"></div>
+        <p class="text-green-700 text-center font-semibold">
+          The Old Testament ends with this promise hanging in the air: 
+          God will send His messenger, and then the Lord Himself will come!
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-20 px-6 relative">
+  <div class="vintage-overlay absolute inset-0"></div>
+  <div class="relative z-10 max-w-4xl mx-auto text-center">
+    <div class="vintage-card rounded-2xl p-12 shadow-2xl">
+      <h3 class="text-4xl font-bold mb-8 elegant-text">Are You Ready for the Fulfillment?</h3>
+      <div class="decorative-flourish mb-8"></div>
+      
+      <div class="bg-blue-50 p-8 rounded-lg ornamental-border mb-8">
+        <h4 class="text-2xl font-bold text-blue-800 mb-4 elegant-text text-center">📖 What You Have Learned</h4>
+        <div class="grid md:grid-cols-2 gap-4 text-left">
+          <div>
+            <p class="text-blue-700 font-semibold mb-2">✓ Your carnal mind is enmity against God</p>
+            <p class="text-blue-700 font-semibold mb-2">✓ True repentance means change of mind</p>
+            <p class="text-blue-700 font-semibold mb-2">✓ Confession of sin is required</p>
+          </div>
+          <div>
+            <p class="text-blue-700 font-semibold mb-2">✓ Without blood, there is no forgiveness</p>
+            <p class="text-blue-700 font-semibold mb-2">✓ God established the law of atonement</p>
+            <p class="text-blue-700 font-semibold mb-2">✓ God promised to send His messenger</p>
+          </div>
+        </div>
+      </div>
+      
+      <p class="text-xl mb-8 text-amber-900">
+        Now you are ready to learn about the fulfillment of God's promise. 
+        The next step will reveal how God kept His word through the New Testament!
+      </p>
+      
+      <div class="flex flex-col md:flex-row gap-6 justify-center">
+        <a href="step3-the-new-testament.html" class="vintage-button text-white px-10 py-4 rounded-xl text-xl font-bold">
+          ✨ Continue to Step 3: The New Testament Fulfillment
+        </a>
+        <a href="step1-learn-your-nature.html" class="vintage-button text-white px-10 py-4 rounded-xl text-xl font-bold">
+          ← Back to Step 1
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="vintage-overlay py-12 border-t-4 ornamental-border">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <div class="decorative-flourish mb-6"></div>
+    <h3 class="text-2xl font-bold elegant-text mb-4">✝ God's Church Chieko</h3>
+    <p class="scripture-text text-lg mb-4">
+      "Repent therefore and be converted, that your sins may be blotted out" — Acts 3:19
+    </p>
+    <div class="decorative-flourish"></div>
+  </div>
+</footer>
+
+</body>
+</html>
