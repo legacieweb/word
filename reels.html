@@ -1494,7 +1494,7 @@
     let isMuted = false; // Start unmuted - will play with sound when user clicks
 
     // API endpoint for loading videos (using main server)
-    const VIDEO_API = 'http://localhost:3000/api/videos';
+    const VIDEO_API = 'https://word-laaq.onrender.com/api/videos';
 
     // First Time Guide Functions
     function checkFirstTimeUser() {
@@ -1708,7 +1708,7 @@
         const index = videos.indexOf(video); // Get original index
         const videoUrl = video.videoUrl.startsWith('http') 
           ? video.videoUrl 
-          : `http://localhost:3000${video.videoUrl}`;
+          : `https://word-laaq.onrender.com${video.videoUrl}`;
         
         const watchedClass = watchedVideos.has(video.id) ? 'watched' : '';
         
@@ -1757,7 +1757,7 @@
         const index = videos.indexOf(video); // Get original index for proper navigation
         const videoUrl = video.videoUrl.startsWith('http') 
           ? video.videoUrl 
-          : `http://localhost:3000${video.videoUrl}`;
+          : `https://word-laaq.onrender.com${video.videoUrl}`;
         
         const watchedClass = watchedVideos.has(video.id) ? 'watched' : '';
         
@@ -1843,7 +1843,7 @@
         // Ensure video URL is absolute (includes server address)
         const videoUrl = video.videoUrl.startsWith('http') 
           ? video.videoUrl 
-          : `http://localhost:3000${video.videoUrl}`;
+          : `https://word-laaq.onrender.com${video.videoUrl}`;
         
         // Create unique video URL with index for sharing
         const shareUrl = `${window.location.origin}${window.location.pathname}?video=${idx}`;
@@ -2343,7 +2343,7 @@
       const video = videos[currentVideoIndex];
       const videoUrl = video.videoUrl.startsWith('http') 
         ? video.videoUrl 
-        : `http://localhost:3000${video.videoUrl}`;
+        : `https://word-laaq.onrender.com${video.videoUrl}`;
       
       try {
         // Show loading message

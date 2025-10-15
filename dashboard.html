@@ -171,7 +171,6 @@
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.5; }
-      border-style: solid;
     }
   </style>
 </head>
@@ -361,7 +360,7 @@
   </footer>
 
   <script>
-    const VIDEO_API = 'http://localhost:3000/api/videos';
+    const VIDEO_API = 'https://word-laaq.onrender.com/api/videos';
     let reelsData = [];
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -389,7 +388,7 @@
 
         // Load personal notes
         if (userData._id) {
-          fetch(`http://localhost:3000/api/user/notes/${userData._id}`)
+          fetch(`https://word-laaq.onrender.com/api/user/notes/${userData._id}`)
             .then(res => res.ok ? res.json() : Promise.reject(res.status))
             .then(data => {
               const notes = data.notes || [];
@@ -507,7 +506,7 @@
         const msg = document.getElementById("userComment").value.trim();
         if (!msg || !userData?._id) return alert("Missing input or user ID.");
         try {
-          const res = await fetch("http://localhost:3000/api/user/comment", {
+          const res = await fetch("https://word-laaq.onrender.com/api/user/comment", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ userId: userData._id, message: msg })
@@ -527,7 +526,7 @@
         const message = input.value.trim();
         if (!message) return alert("Reply cannot be empty.");
         try {
-          const res = await fetch(`http://localhost:3000/api/users/${userId}/notes/${noteId}/reply`, {
+          const res = await fetch(`https://word-laaq.onrender.com/api/users/${userId}/notes/${noteId}/reply`, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message })
@@ -545,7 +544,7 @@
       }
 
       // Check if sermon is already live
-      fetch("http://localhost:3000/api/sermons/status")
+      fetch("https://word-laaq.onrender.com/api/sermons/status")
         .then(res => res.json())
         .then(data => {
           if (data?.isLive) {
@@ -611,7 +610,7 @@
     // Load schedule
     async function loadSchedule() {
       try {
-        const response = await fetch('http://localhost:3000/api/schedule');
+        const response = await fetch('https://word-laaq.onrender.com/api/schedule');
         const schedules = await response.json();
         
         const container = document.getElementById('scheduleList');

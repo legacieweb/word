@@ -667,7 +667,7 @@
     // Check for live sermon
     async function checkLiveSermon() {
       try {
-        const response = await fetch('http://localhost:3000/api/sermons/current-live');
+        const response = await fetch('https://word-laaq.onrender.com/api/sermons/current-live');
         const data = await response.json();
         
         if (data.isLive && data.sermon) {
@@ -861,7 +861,7 @@
       if (!message) return;
 
       try {
-        const response = await fetch('http://localhost:3000/api/sermons/chat', {
+        const response = await fetch('https://word-laaq.onrender.com/api/sermons/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -889,7 +889,7 @@
     // Load chat messages
     async function loadChatMessages(sermonId) {
       try {
-        const response = await fetch(`http://localhost:3000/api/sermons/${sermonId}/chat`);
+        const response = await fetch(`https://word-laaq.onrender.com/api/sermons/${sermonId}/chat`);
         const data = await response.json();
         
         const chatContainer = document.getElementById('chatMessages');
@@ -961,7 +961,7 @@
     // Load sermons archive
     async function loadSermons() {
       try {
-        const response = await fetch('http://localhost:3000/api/sermons');
+        const response = await fetch('https://word-laaq.onrender.com/api/sermons');
         const sermons = await response.json();
         
         const container = document.getElementById('sermonsList');
@@ -1036,7 +1036,7 @@
         ${sermon.audio && sermon.audio.data ? `
           <div class="bg-amber-50 rounded-lg p-4 mb-4 border border-amber-200">
             <audio controls class="w-full">
-              <source src="http://localhost:3000/api/sermons/${sermon._id}/audio" type="${sermon.audio.contentType || 'audio/webm'}">
+              <source src="https://word-laaq.onrender.com/api/sermons/${sermon._id}/audio" type="${sermon.audio.contentType || 'audio/webm'}">
               Your browser does not support the audio element.
             </audio>
           </div>
@@ -1072,7 +1072,7 @@
     // View chat history
     async function viewChatHistory(sermonId) {
       try {
-        const response = await fetch(`http://localhost:3000/api/sermons/${sermonId}/chat`);
+        const response = await fetch(`https://word-laaq.onrender.com/api/sermons/${sermonId}/chat`);
         const data = await response.json();
         
         document.getElementById('chatHistoryTitle').textContent = `Chat: ${data.title || 'Sermon'}`;
@@ -1126,7 +1126,7 @@
     // Load schedule
     async function loadSchedule() {
       try {
-        const response = await fetch('http://localhost:3000/api/schedule');
+        const response = await fetch('https://word-laaq.onrender.com/api/schedule');
         const schedules = await response.json();
         
         const container = document.getElementById('scheduleList');
@@ -1185,7 +1185,7 @@
     // Render PDF page
     async function renderPdfPage(pdfPath, pageNumber) {
       try {
-        const pdfUrl = `http://localhost:3000/books/${pdfPath}`;
+        const pdfUrl = `https://word-laaq.onrender.com/books/${pdfPath}`;
         
         // Load PDF document if not already loaded or if path changed
         if (!pdfDoc || currentPdfPath !== pdfPath) {

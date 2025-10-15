@@ -538,7 +538,7 @@
       }
 
       try {
-        const res = await fetch('http://localhost:3000/api/schedule', {
+        const res = await fetch('https://word-laaq.onrender.com/api/schedule', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -560,7 +560,7 @@
 
     async function loadSchedule() {
       try {
-        const res = await fetch('http://localhost:3000/api/schedule');
+        const res = await fetch('https://word-laaq.onrender.com/api/schedule');
         const schedules = await res.json();
 
         const scheduleList = document.getElementById('scheduleList');
@@ -604,7 +604,7 @@
       }
 
       try {
-        const res = await fetch(`http://localhost:3000/api/schedule/${id}`, {
+        const res = await fetch(`https://word-laaq.onrender.com/api/schedule/${id}`, {
           method: 'DELETE',
           headers: { 'x-admin-pin': pin }
         });
@@ -656,7 +656,7 @@
         audioPreview.srcObject = liveStream;
         
         // Start sermon on server
-        const res = await fetch('http://localhost:3000/api/sermons/start-live', {
+        const res = await fetch('https://word-laaq.onrender.com/api/sermons/start-live', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -718,7 +718,7 @@
         formData.append('audio', audioBlob, 'sermon.webm');
         formData.append('sermonId', liveSermonId);
         
-        const res = await fetch('http://localhost:3000/api/sermons/stop-live', {
+        const res = await fetch('https://word-laaq.onrender.com/api/sermons/stop-live', {
           method: 'POST',
           headers: {
             'x-admin-pin': ADMIN_PIN
@@ -792,7 +792,7 @@
 
     async function checkLiveSermonStatus() {
       try {
-        const res = await fetch('http://localhost:3000/api/sermons/current-live');
+        const res = await fetch('https://word-laaq.onrender.com/api/sermons/current-live');
         const data = await res.json();
         
         if (data.isLive) {
@@ -815,8 +815,8 @@
     async function fetchMembers(firstTimeOnly = false) {
       try {
         const url = firstTimeOnly 
-          ? 'http://localhost:3000/api/admin/first-time-visitors'
-          : 'http://localhost:3000/api/admin/users';
+          ? 'https://word-laaq.onrender.com/api/admin/first-time-visitors'
+          : 'https://word-laaq.onrender.com/api/admin/users';
         
         const res = await fetch(url);
         if (!res.ok) {
@@ -852,7 +852,7 @@
     // ===== SERMON RECORDINGS =====
     async function loadSermons() {
       try {
-        const res = await fetch('http://localhost:3000/api/sermons');
+        const res = await fetch('https://word-laaq.onrender.com/api/sermons');
         const sermons = await res.json();
         
         const sermonList = document.getElementById('sermonList');
@@ -896,7 +896,7 @@
       }
       
       try {
-        const res = await fetch(`http://localhost:3000/api/sermons/${id}`, {
+        const res = await fetch(`https://word-laaq.onrender.com/api/sermons/${id}`, {
           method: 'DELETE',
           headers: { 'x-admin-pin': pin }
         });
