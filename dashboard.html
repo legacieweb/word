@@ -105,13 +105,13 @@
       box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
     }
 
-    .reels-grid {
+    .sermons-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 1rem;
     }
 
-    .reel-card {
+    .sermon-card {
       position: relative;
       aspect-ratio: 9/16;
       border-radius: 1rem;
@@ -122,19 +122,19 @@
       box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
     }
 
-    .reel-card:hover {
+    .sermon-card:hover {
       transform: scale(1.05);
       box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
       border-color: #CD853F;
     }
 
-    .reel-card img {
+    .sermon-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .reel-overlay {
+    .sermon-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
@@ -231,9 +231,9 @@
         <div class="text-sm opacity-90">Sermons Watched</div>
       </div>
       <div class="stat-card">
-        <div class="text-4xl mb-2">🎬</div>
+        <div class="text-4xl mb-2">📖</div>
         <div class="text-2xl font-bold" id="reelsWatchedCount">0</div>
-        <div class="text-sm opacity-90">Reels Watched</div>
+        <div class="text-sm opacity-90">Sermons Watched</div>
       </div>
       <div class="stat-card">
         <div class="text-4xl mb-2">📅</div>
@@ -290,23 +290,23 @@
     <div class="vintage-card rounded-2xl p-6 mb-6">
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-2xl sm:text-3xl font-bold elegant-text flex items-center gap-2">
-          <span>🎬</span> Church Reels
+          <span>📖</span> Church Sermons
         </h2>
-        <a href="reels.html" class="vintage-button text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base">
-          View All Reels →
+        <a href="sermon.html" class="vintage-button text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base">
+          View All Sermons →
         </a>
       </div>
       
-      <div id="reelsPreloader" class="text-center py-12">
+      <div id="sermonsPreloader" class="text-center py-12">
         <div class="inline-block animate-spin text-6xl">⏳</div>
-        <p class="scripture-text mt-4">Loading inspiring content...</p>
+        <p class="scripture-text mt-4">Loading inspiring sermons...</p>
       </div>
 
-      <div id="reelsGrid" class="reels-grid hidden"></div>
+      <div id="sermonsGrid" class="sermons-grid hidden"></div>
 
-      <div id="noReelsMessage" class="hidden text-center py-12">
-        <div class="text-6xl mb-4">🎬</div>
-        <p class="elegant-text text-xl mb-2">No reels available yet</p>
+      <div id="noSermonsMessage" class="hidden text-center py-12">
+        <div class="text-6xl mb-4">📖</div>
+        <p class="elegant-text text-xl mb-2">No sermons available yet</p>
         <p class="scripture-text">Check back soon for inspiring content!</p>
       </div>
     </div>
@@ -360,8 +360,8 @@
   </footer>
 
   <script>
-    const VIDEO_API = 'https://word-laaq.onrender.com/api/videos';
-    let reelsData = [];
+    const SERMON_API = 'https://word-laaq.onrender.com/api/sermons';
+    let sermonsData = [];
 
     document.addEventListener("DOMContentLoaded", () => {
       const liveBanner = document.getElementById("liveBanner");
@@ -426,15 +426,15 @@
         }
       }
 
-      // Load reels
-      loadReels();
+      // Load sermons
+      loadSermons();
 
       // Load schedule
       loadSchedule();
 
-      // Load watched reels count
-      const watchedVideos = JSON.parse(localStorage.getItem('watchedVideos') || '[]');
-      document.getElementById('reelsWatchedCount').textContent = watchedVideos.length;
+      // Load watched sermons count
+      const watchedSermons = JSON.parse(localStorage.getItem('watchedSermons') || '[]');
+      document.getElementById('reelsWatchedCount').textContent = watchedSermons.length;
 
       // WebSocket for live sermon
       const ws = new WebSocket("ws://localhost:3000");
@@ -556,55 +556,55 @@
         .catch(err => console.error("Check live sermon error:", err));
     });
 
-    // Load reels from server
-    async function loadReels() {
+    // Load sermons from server
+    async function loadSermons() {
       try {
-        const response = await fetch(VIDEO_API);
+        const response = await fetch(SERMON_API);
         const data = await response.json();
-        
-        if (data.success && data.videos.length > 0) {
-          reelsData = data.videos.slice(0, 8); // Show first 8 reels
-          displayReels();
+
+        if (data.length > 0) {
+          sermonsData = data.slice(0, 8); // Show first 8 sermons
+          displaySermons();
         } else {
-          showNoReels();
+          showNoSermons();
         }
       } catch (error) {
-        console.error('Error loading reels:', error);
-        showNoReels();
+        console.error('Error loading sermons:', error);
+        showNoSermons();
       }
     }
 
-    // Display reels in grid
-    function displayReels() {
-      const grid = document.getElementById('reelsGrid');
-      const preloader = document.getElementById('reelsPreloader');
-      
+    // Display sermons in grid
+    function displaySermons() {
+      const grid = document.getElementById('sermonsGrid');
+      const preloader = document.getElementById('sermonsPreloader');
+
       grid.innerHTML = '';
-      
-      reelsData.forEach((video, index) => {
+
+      sermonsData.forEach((sermon, index) => {
         const card = document.createElement('div');
-        card.className = 'reel-card';
-        card.onclick = () => window.location.href = 'reels.html';
-        
+        card.className = 'sermon-card';
+        card.onclick = () => window.location.href = 'sermon.html';
+
         card.innerHTML = `
-          <img src="${video.thumbnail}" alt="${video.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 356%22%3E%3Crect fill=%22%23D2B48C%22 width=%22200%22 height=%22356%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22%238B4513%22%3E🎬%3C/text%3E%3C/svg%3E'" />
-          <div class="reel-overlay">
-            <div class="font-bold text-sm mb-1">${video.title}</div>
-            <div class="text-xs opacity-90">👁️ ${video.views || 0} views</div>
+          <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 356%22%3E%3Crect fill=%22%23D2B48C%22 width=%22200%22 height=%22356%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22%238B4513%22%3E📖%3C/text%3E%3C/svg%3E" alt="${sermon.title}" />
+          <div class="sermon-overlay">
+            <div class="font-bold text-sm mb-1">${sermon.title}</div>
+            <div class="text-xs opacity-90">📅 ${new Date(sermon.createdAt).toLocaleDateString()}</div>
           </div>
         `;
-        
+
         grid.appendChild(card);
       });
-      
+
       preloader.classList.add('hidden');
       grid.classList.remove('hidden');
     }
 
-    // Show no reels message
-    function showNoReels() {
-      document.getElementById('reelsPreloader').classList.add('hidden');
-      document.getElementById('noReelsMessage').classList.remove('hidden');
+    // Show no sermons message
+    function showNoSermons() {
+      document.getElementById('sermonsPreloader').classList.add('hidden');
+      document.getElementById('noSermonsMessage').classList.remove('hidden');
     }
 
     // Load schedule

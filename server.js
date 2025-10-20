@@ -13,8 +13,12 @@ const User = require('./models/User');
 const Admin = require('./models/Admin');
 const Sermon = require('./models/Sermon');
 const Schedule = require('./models/Schedule');
+const Song = require('./models/Song');
+const Album = require('./models/Album');
 const adminRoutes = require('./routes/admin');
 const userRoutes = require('./routes/user');
+const songRoutes = require('./routes/songs');
+const albumRoutes = require('./routes/albums');
 
 dotenv.config();
 
@@ -117,6 +121,8 @@ app.get('/api/sermons/status', (req, res) => {
 // === Route groups ===
 app.use('/api/admin', adminRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/songs', songRoutes);
+app.use('/api/albums', albumRoutes);
 
 // === Signup ===
 app.post('/api/signup', async (req, res) => {
@@ -470,79 +476,6 @@ app.get('/api/sermons/:id/chat', async (req, res) => {
   }
 });
 
-// === VIDEO REELS API ===
-// Get all videos from church_videos folder
-app.get('/api/videos', (req, res) => {
-  const videosDir = path.join(__dirname, 'church_videos');
-  const thumbnailsDir = path.join(videosDir, 'thumbnails');
-  
-  // Create directories if they don't exist
-  if (!fs.existsSync(videosDir)) {
-    fs.mkdirSync(videosDir, { recursive: true });
-  }
-  if (!fs.existsSync(thumbnailsDir)) {
-    fs.mkdirSync(thumbnailsDir, { recursive: true });
-  }
-  
-  const videos = [];
-  const allowedExtensions = ['.mp4', '.MP4'];
-  
-  try {
-    const files = fs.readdirSync(videosDir);
-    
-    files.forEach(file => {
-      const filePath = path.join(videosDir, file);
-      const ext = path.extname(file);
-      
-      // Check if it's a video file
-      if (fs.statSync(filePath).isFile() && allowedExtensions.includes(ext)) {
-        const fileName = path.parse(file).name;
-        const thumbnailName = fileName + '.jpg';
-        const thumbnailPath = path.join(thumbnailsDir, thumbnailName);
-        
-        // Get file info
-        const stats = fs.statSync(filePath);
-        const fileSizeMB = (stats.size / 1048576).toFixed(2);
-        
-        // Parse title from filename (replace underscores/hyphens with spaces)
-        const title = fileName.replace(/[_-]/g, ' ')
-          .split(' ')
-          .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-          .join(' ');
-        
-        videos.push({
-          id: videos.length + 1,
-          title: title,
-          description: 'Church video - ' + title,
-          filename: file,
-          videoUrl: '/church_videos/' + encodeURIComponent(file),
-          thumbnail: fs.existsSync(thumbnailPath) 
-            ? '/church_videos/thumbnails/' + encodeURIComponent(thumbnailName)
-            : 'https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=400&q=80',
-          fileSize: fileSizeMB + ' MB',
-          views: Math.floor(Math.random() * 4500) + 500,
-          likes: Math.floor(Math.random() * 950) + 50
-        });
-      }
-    });
-    
-    // Sort videos by filename
-    videos.sort((a, b) => a.filename.localeCompare(b.filename));
-    
-    res.json({
-      success: true,
-      count: videos.length,
-      videos: videos
-    });
-  } catch (err) {
-    console.error('❌ Error reading videos:', err);
-    res.status(500).json({
-      success: false,
-      message: 'Error reading videos folder',
-      error: err.message
-    });
-  }
-});
 
 // === SCHEDULE API ===
 // Get all schedules
@@ -653,5 +586,5 @@ app.post('/api/sermons/broadcast-pdf', verifyAdmin, async (req, res) => {
 // === Start Server ===
 server.listen(PORT, () => {
   console.log(`🚀 Server is running at http://localhost:${PORT}`);
-  console.log(`📹 Video API available at http://localhost:${PORT}/api/videos`);
+  console.log(`📖 Sermon API available at http://localhost:${PORT}/api/sermons`);
 });
