@@ -819,7 +819,7 @@
     // ============ LOAD SONGS FROM API ============
     async function loadSongs() {
       try {
-        const response = await fetch('http://localhost:3000/api/songs');
+        const response = await fetch('https://word-laaq.onrender.com/api/songs');
         if (!response.ok) throw new Error('Failed to load songs');
         songs = await response.json();
         shuffledOrder = [...Array(songs.length).keys()];
@@ -834,7 +834,7 @@
     // ============ LOAD ALBUMS FROM API ============
     async function loadAlbums() {
       try {
-        const response = await fetch('http://localhost:3000/api/albums');
+        const response = await fetch('https://word-laaq.onrender.com/api/albums');
         if (!response.ok) throw new Error('Failed to load albums');
         albums = await response.json();
         updateAlbumsUI();
@@ -985,7 +985,7 @@
       audio.currentTime = 0;
 
       // Load audio
-      const audioUrl = `http://localhost:3000/api/songs/${song._id}/audio`;
+      const audioUrl = `https://word-laaq.onrender.com/api/songs/${song._id}/audio`;
       audio.src = audioUrl;
       
       audio.onloadedmetadata = function() {
